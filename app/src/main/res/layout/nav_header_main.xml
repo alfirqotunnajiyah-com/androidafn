@@ -68,6 +68,7 @@
             android:background="@color/greyB"/>
     </LinearLayout>
     <LinearLayout
+        android:background="@color/white"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
@@ -79,8 +80,10 @@
             android:paddingTop="7dp"
             android:paddingBottom="7dp"
             android:paddingRight="7dp"
-            android:gravity="center_vertical">
+            android:gravity="center_vertical"
+            android:id="@+id/llBeranda">
             <ImageView
+                android:visibility="gone"
                 android:tint="@color/greyB"
                 android:layout_width="0dp"
                 android:layout_weight="0.1"
@@ -94,74 +97,87 @@
                 android:layout_height="wrap_content"
                 android:text="Beranda"/>
         </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/grey"/>
+        <TextView
+            android:textColor="@color/black"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Ikuti Kami"
+            android:paddingLeft="14dp"
+            android:paddingTop="17dp"
+            android:paddingBottom="10dp"/>
         <LinearLayout
+            android:id="@+id/llInstagram"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:paddingLeft="@dimen/activity_horizontal_margin"
-            android:paddingTop="7dp"
-            android:paddingBottom="7dp"
-            android:paddingRight="7dp"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:paddingRight="5dp"
             android:gravity="center_vertical">
             <ImageView
                 android:tint="@color/greyB"
-                android:layout_width="0dp"
-                android:layout_weight="0.1"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_quran"/>
+                android:src="@drawable/ic_instagram"/>
             <TextView
                 android:textColor="@color/greyB"
                 android:padding="10dp"
                 android:layout_width="0dp"
                 android:layout_weight="0.9"
                 android:layout_height="wrap_content"
-                android:text="Al-Quran Terjemahan"/>
+                android:text="Instagram"/>
         </LinearLayout>
         <LinearLayout
+            android:id="@+id/llFacebook"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:paddingLeft="@dimen/activity_horizontal_margin"
-            android:paddingTop="7dp"
-            android:paddingBottom="7dp"
-            android:paddingRight="7dp"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:paddingRight="5dp"
             android:gravity="center_vertical">
             <ImageView
                 android:tint="@color/greyB"
-                android:layout_width="0dp"
-                android:layout_weight="0.1"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_menu_manage"/>
+                android:src="@drawable/ic_facebook"/>
             <TextView
                 android:textColor="@color/greyB"
                 android:padding="10dp"
                 android:layout_width="0dp"
                 android:layout_weight="0.9"
                 android:layout_height="wrap_content"
-                android:text="Dzikir Pagi"/>
+                android:text="Facebook"/>
         </LinearLayout>
         <LinearLayout
+            android:visibility="gone"
+            android:id="@+id/llTwitter"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:paddingLeft="@dimen/activity_horizontal_margin"
-            android:paddingTop="7dp"
-            android:paddingBottom="7dp"
-            android:paddingRight="7dp"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:paddingRight="5dp"
             android:gravity="center_vertical">
             <ImageView
                 android:tint="@color/greyB"
-                android:layout_width="0dp"
-                android:layout_weight="0.1"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_menu_manage"/>
+                android:src="@drawable/ic_twitter"/>
             <TextView
                 android:textColor="@color/greyB"
                 android:padding="10dp"
                 android:layout_width="0dp"
                 android:layout_weight="0.9"
                 android:layout_height="wrap_content"
-                android:text="Dzikir Petang"/>
+                android:text="Twitter"/>
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>

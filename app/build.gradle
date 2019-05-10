@@ -30,4 +30,11 @@ dependencies {
 
     //UI Lain
     implementation 'com.github.ybq:Android-SpinKit:1.2.0'
+    implementation 'com.aurelhubert:ahbottomnavigation:2.2.0'
+
+    implementation "com.android.support:support-v4:+"
+    implementation 'com.squareup.picasso:picasso:2.3.2'
+    implementation 'com.nineoldandroids:library:2.4.0'
+    implementation 'com.daimajia.slider:library:1.1.5@aar'
+    implementation 'com.github.paolorotolo:expandableheightlistview:1.0.0'
 }
