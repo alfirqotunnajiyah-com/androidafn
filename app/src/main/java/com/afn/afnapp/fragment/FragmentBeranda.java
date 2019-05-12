@@ -8,8 +8,10 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 
 import com.afn.afnapp.R;
+import com.afn.afnapp.activity.DzikirPagiDanPetangActivity;
 import com.afn.afnapp.adapter.FiturAdapter;
 import com.afn.afnapp.model.FiturModel;
 import com.daimajia.slider.library.Indicators.PagerIndicator;
@@ -61,6 +63,7 @@ public class FragmentBeranda extends Fragment {
         layoutNa();
         setGambarNa();
         setFiturNa();
+        setKLik();
 
         return view;
     }
@@ -71,6 +74,18 @@ public class FragmentBeranda extends Fragment {
         gvFitur = view.findViewById(R.id.gvFitur);
 
         gvFitur.setExpanded(true);
+    }
+
+    void setKLik() {
+        gvFitur.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                FiturModel ff = listFitur.get(position);
+                if (ff.getFiturNama().equalsIgnoreCase("Dzikir Pagi")) {
+                    startActivity(new Intent(getActivity(), DzikirPagiDanPetangActivity.class));
+                }
+            }
+        });
     }
 
     void setFiturNa() {
@@ -128,10 +143,6 @@ public class FragmentBeranda extends Fragment {
 
             slider.addSlider(textSliderView);
         }
-
         slider.setDuration(4000);
-
-
     }
-
 }
