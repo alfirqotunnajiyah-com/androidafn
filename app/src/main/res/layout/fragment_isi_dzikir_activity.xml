@@ -24,12 +24,13 @@
                 android:layout_weight="0.1"
                 android:src="@drawable/ic_keyboard_arrow_left"
                 android:tint="@color/white" />
+            <!--android:layout_height="?attr/actionBarSize"-->
             <TextView
                 android:singleLine="true"
                 android:padding="10dp"
                 android:id="@+id/tvTitle"
                 android:layout_width="0dp"
-                android:layout_height="?attr/actionBarSize"
+                android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:layout_weight="0.8"
                 android:background="?attr/colorPrimary"
@@ -37,7 +38,7 @@
                 android:gravity="left|center_vertical"
                 android:text=""
                 android:textColor="@color/white"
-                android:textSize="20sp" />
+                android:textSize="17sp" />
             <ImageView
                 android:visibility="gone"
                 android:id="@+id/ivRight"
@@ -53,17 +54,48 @@
         android:layout_height="match_parent"
         android:layout_above="@id/seekBarNa"
         android:layout_below="@id/appbar">
-        <TextView
-            android:id="@+id/tvText"
+        <LinearLayout
+            android:paddingTop="10dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:fontFamily="@font/scheherazade"
-            android:gravity="center"
-            android:padding="10dp"
-            android:text=""
-            android:textColor="@color/textColor"
-            android:textSize="30dp" />
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/tvText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:fontFamily="@font/scheherazade"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text=""
+                android:textColor="@color/textColor"
+                android:textSize="30dp"
+                android:textIsSelectable="true"/>
+            <TextView
+                android:id="@+id/tvTextTerjemahan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:fontFamily="@font/scheherazade"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text=""
+                android:textColor="@color/textColor"
+                android:textSize="20dp"
+                android:textIsSelectable="true"/>
+            <TextView
+                android:id="@+id/tvTextFaidah"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textStyle="italic"
+                android:layout_marginBottom="10dp"
+                android:gravity="center"
+                android:padding="15dp"
+                android:textSize="13dp"
+                android:text=""
+                android:textColor="#829ae9"
+                android:textIsSelectable="true"/>
+        </LinearLayout>
     </ScrollView>
     <LinearLayout
         android:id="@+id/seekBarNa"
@@ -77,7 +109,7 @@
         <com.xw.repo.BubbleSeekBar
             android:id="@+id/sliderNa"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="wrap_content"
             app:bsb_max="40"
             app:bsb_min="30"
             app:bsb_thumb_color="@color/white"
