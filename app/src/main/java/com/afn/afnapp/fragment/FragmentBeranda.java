@@ -82,7 +82,13 @@ public class FragmentBeranda extends Fragment {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 FiturModel ff = listFitur.get(position);
                 if (ff.getFiturNama().equalsIgnoreCase("Dzikir Pagi")) {
-                    startActivity(new Intent(getActivity(), DzikirPagiDanPetangActivity.class));
+                    Intent i = new Intent(getActivity(),DzikirPagiDanPetangActivity.class);
+                    i.putExtra("waktu",1);
+                    startActivity(i);
+                }else if(ff.getFiturNama().equalsIgnoreCase("Dzikir Petang")){
+                    Intent i = new Intent(getActivity(),DzikirPagiDanPetangActivity.class);
+                    i.putExtra("waktu",2);
+                    startActivity(i);
                 }
             }
         });
