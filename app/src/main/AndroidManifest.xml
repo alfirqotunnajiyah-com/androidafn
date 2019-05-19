@@ -23,11 +23,13 @@
             android:name=".MainActivity"
             android:label="@string/title_activity_main"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".activity.DzikirPagiDanPetangActivity"></activity>
+        <activity android:name=".activity.DzikirPagiDanPetangActivity" />
 
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
+
+        <activity android:name=".activity.AlQuranActivity"></activity>
     </application>
 
 </manifest>

@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 
 import com.afn.afnapp.R;
+import com.afn.afnapp.activity.AlQuranActivity;
 import com.afn.afnapp.activity.DzikirPagiDanPetangActivity;
 import com.afn.afnapp.adapter.FiturAdapter;
 import com.afn.afnapp.model.FiturModel;
@@ -44,11 +45,13 @@ public class FragmentBeranda extends Fragment {
 
     private String[] listNamaFitur = {
             "Dzikir Pagi",
-            "Dzikir Petang"
+            "Dzikir Petang",
+            "Al-Quran"
     };
     private int[] listGambarFitur = {
             R.drawable.ic_dzikir_pagi,
-            R.drawable.ic_dzikir_petang
+            R.drawable.ic_dzikir_petang,
+            R.drawable.ic_quran
     };
 
     @Override
@@ -82,12 +85,15 @@ public class FragmentBeranda extends Fragment {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 FiturModel ff = listFitur.get(position);
                 if (ff.getFiturNama().equalsIgnoreCase("Dzikir Pagi")) {
-                    Intent i = new Intent(getActivity(),DzikirPagiDanPetangActivity.class);
-                    i.putExtra("waktu",1);
+                    Intent i = new Intent(getActivity(), DzikirPagiDanPetangActivity.class);
+                    i.putExtra("waktu", 1);
                     startActivity(i);
-                }else if(ff.getFiturNama().equalsIgnoreCase("Dzikir Petang")){
-                    Intent i = new Intent(getActivity(),DzikirPagiDanPetangActivity.class);
-                    i.putExtra("waktu",2);
+                } else if (ff.getFiturNama().equalsIgnoreCase("Dzikir Petang")) {
+                    Intent i = new Intent(getActivity(), DzikirPagiDanPetangActivity.class);
+                    i.putExtra("waktu", 2);
+                    startActivity(i);
+                } else if (ff.getFiturNama().equalsIgnoreCase("Al-Quran")) {
+                    Intent i = new Intent(getActivity(), AlQuranActivity.class);
                     startActivity(i);
                 }
             }
