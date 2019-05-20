@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/textColor"/>
+        <TextView
+            android:fontFamily="@font/scheherazade"
+            android:text="12"
+            android:paddingRight="10dp"
+            android:paddingLeft="10dp"
+            android:textColor="@color/white"
+            android:gravity="center"
+            android:textSize="15dp"
+            android:id="@+id/tvNoAyah"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/textColor"/>
+        <TextView
+            android:layout_marginTop="7dp"
+            android:text="وَإِذَا لَقُوا الَّذِينَ آمَنُوا قَالُوا آمَنَّا وَإِذَا خَلَوْا إِلَىٰ شَيَاطِينِهِمْ قَالُوا إِنَّا مَعَكُمْ إِنَّمَا نَحْنُ مُسْتَهْزِئُونَ"
+            android:padding="10dp"
+            android:textColor="@color/black"
+            android:textSize="30dp"
+            android:fontFamily="@font/scheherazade"
+            android:id="@+id/tvIsiAyah"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:textStyle="italic"
+            android:text="Dan bila mereka berjumpa dengan orang-orang yang beriman, mereka mengatakan: &quot;Kami telah beriman&quot;. Dan bila mereka kembali kepada syaitan-syaitan mereka, mereka mengatakan: &quot;Sesungguhnya kami sependirian dengan kamu, kami hanyalah berolok-olok&quot;."
+            android:padding="10dp"
+            android:layout_below="@id/tvIsiAyah"
+            android:textColor="@color/textColor"
+            android:id="@+id/tvArtiAyah"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+</RelativeLayout>

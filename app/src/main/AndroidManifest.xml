@@ -30,6 +30,7 @@
             android:resource="@array/preloaded_fonts" />
 
         <activity android:name=".activity.AlQuranActivity"></activity>
+        <activity android:name=".activity.IsiDariSurahActivity"></activity>
     </application>
 
 </manifest>
