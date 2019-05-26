@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 
 import com.afn.afnapp.R;
-import com.afn.afnapp.activity.AlQuranActivity;
+import com.afn.afnapp.activity.AlQuranFeature.AlQuranActivity;
 import com.afn.afnapp.activity.DzikirPagiDanPetangActivity;
 import com.afn.afnapp.adapter.FiturAdapter;
 import com.afn.afnapp.model.FiturModel;

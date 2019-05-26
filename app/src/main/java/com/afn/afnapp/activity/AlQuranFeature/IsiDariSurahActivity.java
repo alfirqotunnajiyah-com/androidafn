@@ -1,4 +1,4 @@
-package com.afn.afnapp.activity;
+package com.afn.afnapp.activity.AlQuranFeature;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -6,13 +6,11 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.afn.afnapp.R;
 import com.afn.afnapp.adapter.AyahAdapter;
-import com.afn.afnapp.adapter.SurahAdapter;
+import com.afn.afnapp.database.AyatDataHelper;
 import com.afn.afnapp.model.AyahModel;
-import com.afn.afnapp.model.SurahNameModel;
 import com.github.paolorotolo.expandableheightlistview.ExpandableHeightListView;
 
 import java.io.BufferedReader;
@@ -31,6 +29,7 @@ public class IsiDariSurahActivity extends AppCompatActivity {
 
     private List<AyahModel> listAyah = new ArrayList<>();
     private AyahAdapter adapter;
+    private AyatDataHelper df;
 
     private int noAyah = 0;
 
@@ -41,6 +40,7 @@ public class IsiDariSurahActivity extends AppCompatActivity {
 
         adapter = new AyahAdapter(this, listAyah);
         adapter.notifyDataSetChanged();
+        df = new AyatDataHelper(this);
 
         setLayout();
 
@@ -87,11 +87,13 @@ public class IsiDariSurahActivity extends AppCompatActivity {
                 String[] tokensIndonesia = line2.split("\\|");
 
                 if (tokensArabic[1].equalsIgnoreCase(String.valueOf(noSurah))) {
-                    AyahModel sm = new AyahModel();
+                    /*AyahModel sm = new AyahModel();
                     sm.setArabicAyah(tokensArabic[3].replace("\"", ""));
                     sm.setIndoAyah(tokensIndonesia[2]);
                     sm.setNoAyah(Integer.parseInt(tokensArabic[2]));
-                    listAyah.add(sm);
+                    sm.setNoSurah(Integer.parseInt(tokensArabic[1]));
+                    listAyah.add(sm);*/
+
                 }
 
                 // Read the data and store it in the WellData POJO.

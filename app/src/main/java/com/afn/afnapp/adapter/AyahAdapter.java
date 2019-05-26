@@ -42,8 +42,8 @@ public class AyahAdapter extends ArrayAdapter<AyahModel> {
 
         AyahModel fm = listAyah.get(position);
         tvNoAyah.setText(fm.getNoAyah() + "");
-        tvIsiAyah.setText((fm.getArabicAyah()));
-        tvArtiAyah.setText(Html.fromHtml(fm.getIndoAyah()));
+        tvIsiAyah.setText((fm.getAyah()));
+        tvArtiAyah.setText(Html.fromHtml(fm.getAyahTranslate()));
 
         return view;
     }
