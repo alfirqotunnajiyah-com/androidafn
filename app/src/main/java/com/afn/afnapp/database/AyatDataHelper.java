@@ -9,12 +9,13 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 import com.afn.afnapp.model.AyahModel;
+import com.readystatesoftware.sqliteasset.SQLiteAssetHelper;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class AyatDataHelper extends SQLiteOpenHelper {
+public class AyatDataHelper extends SQLiteAssetHelper {
 
     private static final String DATABASE_NAME = "db_alquran.sqlite";
     private static final int DATABASE_VERSION = 1;
@@ -24,22 +25,6 @@ public class AyatDataHelper extends SQLiteOpenHelper {
     private static final String KEY_AYAHID = "AyahID";
     private static final String KEY_AYAHTEXT = "AyahText";
     private static final String KEY_ARTITEXT = "ArtiText";
-
-    @Override
-    public void onCreate(SQLiteDatabase db) {
-        String CREATE_CONTACTS_TABLE = "CREATE TABLE "+KEY_TABLE_NAME+" (" +
-                KEY_DATABASEID + " INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT," +
-                KEY_SURAHID + " INTEGER," +
-                KEY_AYAHID + " INTEGER," +
-                KEY_AYAHTEXT + " TEXT," +
-                KEY_ARTITEXT + " TEXT)";
-        try{
-            db.execSQL(CREATE_CONTACTS_TABLE);
-        }catch (SQLException ex){
-            Log.e("errorNa",ex.getMessage());
-            ex.printStackTrace();
-        }
-    }
 
     public AyatDataHelper(Context context1) {
         super(context1, DATABASE_NAME, null, DATABASE_VERSION);

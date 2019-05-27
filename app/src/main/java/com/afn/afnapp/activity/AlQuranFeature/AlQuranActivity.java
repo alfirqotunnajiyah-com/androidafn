@@ -3,7 +3,6 @@ package com.afn.afnapp.activity.AlQuranFeature;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -13,17 +12,11 @@ import com.afn.afnapp.adapter.SurahAdapter;
 import com.afn.afnapp.model.SurahNameModel;
 import com.github.paolorotolo.expandableheightlistview.ExpandableHeightListView;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
 
 public class AlQuranActivity extends AppCompatActivity {
 
-    private android.widget.Button btnKlik;
     private com.github.paolorotolo.expandableheightlistview.ExpandableHeightListView lvSurah;
 
     private List<SurahNameModel> listSurah = new ArrayList<>();
@@ -160,26 +153,18 @@ public class AlQuranActivity extends AppCompatActivity {
 
     void setLayout() {
         this.lvSurah = (ExpandableHeightListView) findViewById(R.id.lvSurah);
-        this.btnKlik = (Button) findViewById(R.id.btnKlik);
 
         this.lvSurah.setExpanded(true);
     }
 
     void setKlik() {
-        btnKlik.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //readData();
-            }
-        });
-
         lvSurah.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 SurahNameModel sm = listSurah.get(position);
-                Intent i = new Intent(AlQuranActivity.this,IsiDariSurahActivity.class);
-                i.putExtra("noSurah",sm.getNoSurah());
-                i.putExtra("namaSurah",sm.getNameSurah());
+                Intent i = new Intent(AlQuranActivity.this, IsiDariSurahActivity.class);
+                i.putExtra("noSurah", sm.getNoSurah());
+                i.putExtra("namaSurah", sm.getNameSurah());
                 startActivity(i);
             }
         });
@@ -193,14 +178,6 @@ public class AlQuranActivity extends AppCompatActivity {
             ss.setNameSurah(arrNamaSurah[i]);
             listSurah.add(ss);
         }
-        lvSurah.setAdapter(adapter);
-    }
-
-    private void readData() {
-        listSurah.clear();
-
-
-
         lvSurah.setAdapter(adapter);
     }
 }

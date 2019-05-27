@@ -21,8 +21,8 @@ public class DzikirPagiDanPetangActivity extends AppCompatActivity {
     private ArrayList<FragmentIsiDzikirActivity> fragments = new ArrayList<>();
 
     private String[] judulDzikir = {
-            "Ta'awudz (1x)",
-            "Ayat Kursi (1x)",
+            "Ta'awudz (Dibaca 1x)",
+            "Ayat Kursi (Dibaca 1x)",
             "Surat Al-Ikhlas (Dibaca 3x)",
             "Surat Al-Falaq (Dibaca 3x)",
             "Surat An-Nas (Dibaca 3x)",
@@ -190,7 +190,7 @@ public class DzikirPagiDanPetangActivity extends AppCompatActivity {
 
             "HR. Ahmad III/406, 407, ad-Darimi II/292 dan Ibnus Sunni dalam Amalul Yaum wol Lailah no. 34, Misykaatul Mashaabiih no. 2415, Shahiihal-Jaami’ish Shaghiir no. 4674, shahih",
 
-            "HR. Muslim no. 2693, Ahmad V/420, Silsilah al-Ahaadiits ash-Shahiihah no. 113 dan 114, Shahiih at-Targhiib wat Tarhiib 1/416 no. 660, shaahih."+"\n"+"HR. Abu Dawud no. 5077, Ibnu Majah no. 3867, dari Ab ‘Ayyasy Azzurraqy radhiyallahu ‘anhu, Shahiih Jaami’ish Shaghiir no. 6418, Misykaatul Mashaabiih no. 2395, Shahiih at-Targhiib 1/414 no. 656, shahih.\n",
+            "HR. Muslim no. 2693, Ahmad V/420, Silsilah al-Ahaadiits ash-Shahiihah no. 113 dan 114, Shahiih at-Targhiib wat Tarhiib 1/416 no. 660, shaahih." + "\n" + "HR. Abu Dawud no. 5077, Ibnu Majah no. 3867, dari Ab ‘Ayyasy Azzurraqy radhiyallahu ‘anhu, Shahiih Jaami’ish Shaghiir no. 6418, Misykaatul Mashaabiih no. 2395, Shahiih at-Targhiib 1/414 no. 656, shahih.\n",
 
             "“Barangsiapa membacanya sebanyak 100x dalam sehari, maka baginya (pahala) seperti memerdekakan sepuluh budak, ditulis seratus kebaikan, dihapus darinya seratus keburukan, mendapat perlindungan dari syaitan pada hari itu hingga sore hari. Tidaklah seseorang itu dapat mendatangkan yang lebih baik dari apa yang dibawanya kecuali ia melakukan lebih banyak lagi dari itu.” HR. Al-Bukhari no. 3293 dan 6403, Muslim IV/2071 no. 2691 (28), at-Tirmidzi no. 3468, Ibnu Majah no. 3798, dari Sahabat Abu Hurairah رضي الله عنه. Penjelasan: Dalam riwayat an-Nasa-i (‘Amalul Yaum wal Lailah no. 580) dan Ibnus Sunni no. 75 dari ‘Amr bin Syu’aib dari ayahnya dari kakeknya dengan lafadz: “Barangsiapa membaca 100x pada pagi hari dan 100x pada sore Hari.”… Jadi, dzikir ini dibaca 100x diwaktu pagi dan 100x diwaktu sore. Lihat Silsilah al-Ahaadiits ash-Shahiihah no. 2762",
 
@@ -387,7 +387,7 @@ public class DzikirPagiDanPetangActivity extends AppCompatActivity {
 
             "HR. Ahmad III/406, 407, ad-Darimi II/292 dan Ibnus Sunni dalam Amalul Yaum wol Lailah no. 34, Misykaatul Mashaabiih no. 2415, Shahiihal-Jaami’ish Shaghiir no. 4674, shahih",
 
-            "HR. Muslim no. 2693, Ahmad V/420, Silsilah al-Ahaadiits ash-Shahiihah no. 113 dan 114, Shahiih at-Targhiib wat Tarhiib 1/416 no. 660, shaahih."+"\n"+"HR. Abu Dawud no. 5077, Ibnu Majah no. 3867, dari Ab ‘Ayyasy Azzurraqy radhiyallahu ‘anhu, Shahiih Jaami’ish Shaghiir no. 6418, Misykaatul Mashaabiih no. 2395, Shahiih at-Targhiib 1/414 no. 656, shahih.\n",
+            "HR. Muslim no. 2693, Ahmad V/420, Silsilah al-Ahaadiits ash-Shahiihah no. 113 dan 114, Shahiih at-Targhiib wat Tarhiib 1/416 no. 660, shaahih." + "\n" + "HR. Abu Dawud no. 5077, Ibnu Majah no. 3867, dari Ab ‘Ayyasy Azzurraqy radhiyallahu ‘anhu, Shahiih Jaami’ish Shaghiir no. 6418, Misykaatul Mashaabiih no. 2395, Shahiih at-Targhiib 1/414 no. 656, shahih.\n",
 
             "“Barangsiapa membacanya sebanyak 100x dalam sehari, maka baginya (pahala) seperti memerdekakan sepuluh budak, ditulis seratus kebaikan, dihapus darinya seratus keburukan, mendapat perlindungan dari syaitan pada hari itu hingga sore hari. Tidaklah seseorang itu dapat mendatangkan yang lebih baik dari apa yang dibawanya kecuali ia melakukan lebih banyak lagi dari itu.” HR. Al-Bukhari no. 3293 dan 6403, Muslim IV/2071 no. 2691 (28), at-Tirmidzi no. 3468, Ibnu Majah no. 3798, dari Sahabat Abu Hurairah رضي الله عنه. Penjelasan: Dalam riwayat an-Nasa-i (‘Amalul Yaum wal Lailah no. 580) dan Ibnus Sunni no. 75 dari ‘Amr bin Syu’aib dari ayahnya dari kakeknya dengan lafadz: “Barangsiapa membaca 100x pada pagi hari dan 100x pada sore Hari.”… Jadi, dzikir ini dibaca 100x diwaktu pagi dan 100x diwaktu sore. Lihat Silsilah al-Ahaadiits ash-Shahiihah no. 2762",
 
@@ -419,12 +419,13 @@ public class DzikirPagiDanPetangActivity extends AppCompatActivity {
     };
 
     private int waktu = 1; //1. Pagi//2. Petang
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dzikir_pagi_dan_petang);
 
-        waktu = getIntent().getIntExtra("waktu",1);
+        waktu = getIntent().getIntExtra("waktu", 1);
 
         setLayout();
         getData();
@@ -438,13 +439,13 @@ public class DzikirPagiDanPetangActivity extends AppCompatActivity {
     void getData() {
         FragmentIsiDzikirActivity ff = new FragmentIsiDzikirActivity();
         fragmentPagerAdapter = new MyPagerAdapter(getSupportFragmentManager(), fragments);
-        if (waktu == 1){
+        if (waktu == 1) {
             for (int i = 0; i < judulDzikir.length; i++) {
-                ((MyPagerAdapter) fragmentPagerAdapter).addFragment(ff, judulDzikir[i], isiBacaanDzikir[i], "\n" + isiTerjemahanDzikir[i],isiFaidahDanDalil[i]);
+                ((MyPagerAdapter) fragmentPagerAdapter).addFragment(ff, judulDzikir[i], isiBacaanDzikir[i], "\n" + isiTerjemahanDzikir[i], isiFaidahDanDalil[i]);
             }
-        }else{
+        } else {
             for (int i = 0; i < judulDzikirPetang.length; i++) {
-                ((MyPagerAdapter) fragmentPagerAdapter).addFragment(ff, judulDzikirPetang[i], isiBacaanDzikirPetang[i], "\n" + isiTerjemahanDzikirPetang[i],isiFaidahDanDalilPetang[i]);
+                ((MyPagerAdapter) fragmentPagerAdapter).addFragment(ff, judulDzikirPetang[i], isiBacaanDzikirPetang[i], "\n" + isiTerjemahanDzikirPetang[i], isiFaidahDanDalilPetang[i]);
             }
         }
         vPager.setAdapter(fragmentPagerAdapter);
@@ -479,8 +480,8 @@ public class DzikirPagiDanPetangActivity extends AppCompatActivity {
             return "Page " + position;
         }
 
-        public void addFragment(FragmentIsiDzikirActivity fragment, String judulNa, String isiNa, String terjemahanNa,String faidahDanDalil) {
-            listFragment.add(fragment.newInstance(judulNa, isiNa, terjemahanNa,faidahDanDalil));
+        public void addFragment(FragmentIsiDzikirActivity fragment, String judulNa, String isiNa, String terjemahanNa, String faidahDanDalil) {
+            listFragment.add(fragment.newInstance(judulNa, isiNa, terjemahanNa, faidahDanDalil));
         }
     }
 }

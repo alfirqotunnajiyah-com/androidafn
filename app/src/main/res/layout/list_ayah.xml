@@ -9,7 +9,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="@color/textColor"/>
+            android:background="@color/textColorSecondary"/>
         <TextView
             android:fontFamily="@font/scheherazade"
             android:text="12"

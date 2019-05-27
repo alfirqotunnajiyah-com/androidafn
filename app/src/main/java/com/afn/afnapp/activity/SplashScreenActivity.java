@@ -1,51 +1,32 @@
 package com.afn.afnapp.activity;
 
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 
 import com.afn.afnapp.MainActivity;
 import com.afn.afnapp.R;
-import com.afn.afnapp.database.AyatDataHelper;
-import com.afn.afnapp.model.AyahModel;
-import com.afn.afnapp.model.SurahNameModel;
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.nio.charset.Charset;
 
 public class SplashScreenActivity extends AppCompatActivity {
-
-    private AyatDataHelper adh;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
 
-        adh = new AyatDataHelper(this);
-
         hideSystemUI();
 
-        if (adh.apakahNull()) {
-            getData();
-        } else {
-            final Handler handler = new Handler();
-            handler.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    // Do something after 5s = 5000ms
-                    startActivity(new Intent(SplashScreenActivity.this, MainActivity.class));
-                    finish();
-                }
-            }, 3000);
-        }
+        final Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                // Do something after 5s = 5000ms
+                startActivity(new Intent(SplashScreenActivity.this, MainActivity.class));
+                finish();
+            }
+        }, 3000);
     }
 
     private void hideSystemUI() {
@@ -61,7 +42,8 @@ public class SplashScreenActivity extends AppCompatActivity {
                         | View.SYSTEM_UI_FLAG_IMMERSIVE);
     }
 
-    void getData() {
+    //initial app from csv data
+    /*void getData() {
         ProgressDialog loading = new ProgressDialog(this);
         loading.setMessage("Menyiapkan Aplikasi...\nMohon untuk tidak menutup aplikasi");
         loading.setCancelable(false);
@@ -84,15 +66,13 @@ public class SplashScreenActivity extends AppCompatActivity {
                 String[] tokensIndonesia = line2.split("\\|");
                 idNa++;
 
-                //if (tokensArabic[1].equalsIgnoreCase("1")) {
-                    AyahModel sm = new AyahModel();
-                    sm.setId(idNa);
-                    sm.setSurahId(1);
-                    sm.setNoAyah(2);
-                    sm.setAyah(tokensArabic[3]);
-                    sm.setAyahTranslate(tokensIndonesia[2]);
-                    adh.tambahAyat(sm);
-                //}
+                AyahModel sm = new AyahModel();
+                sm.setId(idNa);
+                sm.setSurahId(Integer.valueOf(tokensArabic[1]));
+                sm.setNoAyah(Integer.valueOf(tokensArabic[2]));
+                sm.setAyah(tokensArabic[3].replace("\"", ""));
+                sm.setAyahTranslate(tokensIndonesia[2]);
+                adh.tambahAyat(sm);
 
                 // Read the data and store it in the WellData POJO.
             }
@@ -116,7 +96,7 @@ public class SplashScreenActivity extends AppCompatActivity {
             Log.e("MainActivity", "Error" + line2, e1);
             e1.printStackTrace();
         }
-    }
+    }*/
 
     @Override
     protected void onPostResume() {

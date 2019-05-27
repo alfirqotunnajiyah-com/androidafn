@@ -17,17 +17,12 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
 import com.afn.afnapp.fragment.FragmentBeranda;
 import com.afn.afnapp.fragment.FragmentFeedPostingan;
 import com.afn.afnapp.fragment.FragmentProfil;
-import com.afn.afnapp.database.AyatDataHelper;
-import com.afn.afnapp.model.AyahModel;
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigation;
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigationItem;
-
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -77,10 +72,6 @@ public class MainActivity extends AppCompatActivity
 
         setNavigation();
         setKlik();
-
-        AyatDataHelper adh = new AyatDataHelper(this);
-        List<AyahModel> mm = adh.getAyahList();
-        Toast.makeText(this, mm.get(0).getAyahTranslate()+"", Toast.LENGTH_SHORT).show();
     }
 
     void setKlik() {
@@ -89,6 +80,14 @@ public class MainActivity extends AppCompatActivity
             public void onClick(View v) {
                 tampilkanFragment(0);
                 drawer.closeDrawers();
+            }
+        });
+
+        llFacebook.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent launchBrowser = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.facebook.com/alfirqotunnajiyahcom/"));
+                startActivity(launchBrowser);
             }
         });
 
