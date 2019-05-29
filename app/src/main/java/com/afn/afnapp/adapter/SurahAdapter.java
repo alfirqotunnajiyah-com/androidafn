@@ -36,10 +36,12 @@ public class SurahAdapter extends ArrayAdapter<SurahNameModel> {
 
         TextView tvNoSurah = view.findViewById(R.id.tvNoSurah);
         TextView tvNameSurah = view.findViewById(R.id.tvNamaSurah);
+        TextView tvNamaSurahIndo = view.findViewById(R.id.tvNamaSurahIndo);
 
         SurahNameModel fm = listSurahName.get(position);
         tvNoSurah.setText(fm.getNoSurah() + "");
         tvNameSurah.setText(fm.getNameSurah());
+        tvNamaSurahIndo.setText(fm.getNameSurahIndo());
 
         return view;
     }
