@@ -1,11 +1,13 @@
 package com.afn.afnapp.activity.AlQuranFeature;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.Button;
+import android.widget.TextView;
 
 import com.afn.afnapp.R;
 import com.afn.afnapp.adapter.SurahAdapter;
@@ -17,10 +19,7 @@ import java.util.List;
 
 public class AlQuranActivity extends AppCompatActivity {
 
-    private com.github.paolorotolo.expandableheightlistview.ExpandableHeightListView lvSurah;
-
-    private List<SurahNameModel> listSurah = new ArrayList<>();
-    private SurahAdapter adapter;
+    private TextView tvKalimahBasmalah;
 
     private String arrNamaSurahIndo[] = {
             "Al-Fatihah",
@@ -254,21 +253,39 @@ public class AlQuranActivity extends AppCompatActivity {
             "سورة الفلق",
             "سورة الناس"};
 
+
+    private com.github.paolorotolo.expandableheightlistview.ExpandableHeightListView lvSurah;
+
+    private List<SurahNameModel> listSurah = new ArrayList<>();
+    private SurahAdapter adapter;
+    public static ProgressDialog progress;
+    public static TextView tvMohonTunggu;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_al_quran);
+        tvKalimahBasmalah = (TextView) findViewById(R.id.tvKalimahBasmalah);
+        tvKalimahBasmalah.setVisibility(View.GONE);
 
+        //initialize adapter
         adapter = new SurahAdapter(this, listSurah);
         adapter.notifyDataSetChanged();
 
         setLayout();
         setKlik();
-        tampilkanNamaSurah();
+
+        //initialize service
+        progress = new ProgressDialog(this);
+        progress.setMessage("Loading...");
+        progress.setCancelable(false);
+        progress.show();
+        new MyasyncTask(progress).execute();
     }
 
 
     void setLayout() {
+        this.tvMohonTunggu = (TextView) findViewById(R.id.tvMohonTunggu);
         this.lvSurah = (ExpandableHeightListView) findViewById(R.id.lvSurah);
 
         this.lvSurah.setExpanded(true);
@@ -282,7 +299,7 @@ public class AlQuranActivity extends AppCompatActivity {
                 Intent i = new Intent(AlQuranActivity.this, IsiDariSurahActivity.class);
                 i.putExtra("noSurah", sm.getNoSurah());
                 i.putExtra("namaSurah", sm.getNameSurah());
-                i.putExtra("namaSurahIndo",arrNamaSurahIndo[0]);
+                i.putExtra("namaSurahIndo", sm.getNameSurahIndo());
                 startActivity(i);
             }
         });
@@ -298,5 +315,37 @@ public class AlQuranActivity extends AppCompatActivity {
             listSurah.add(ss);
         }
         lvSurah.setAdapter(adapter);
+    }
+
+    public class MyasyncTask extends AsyncTask<String, Integer, Integer> {
+        public ProgressDialog progress;
+
+        public MyasyncTask(ProgressDialog progress) {
+            this.progress = progress;
+        }
+
+        public void onPreExecute() {
+            progress.show();
+        }
+
+        @Override
+        protected Integer doInBackground(String... arg0) {
+            // TODO Auto-generated method stub
+            listSurah.clear();
+            for (int i = 0; i < arrNamaSurah.length; i++) {
+                SurahNameModel ss = new SurahNameModel();
+                ss.setNoSurah(i + 1);
+                ss.setNameSurah(arrNamaSurah[i]);
+                ss.setNameSurahIndo(arrNamaSurahIndo[i]);
+                listSurah.add(ss);
+            }
+            return 1;
+        }
+
+        protected void onPostExecute(Integer result) {
+            progress.dismiss();
+            tvMohonTunggu.setVisibility(View.GONE);
+            lvSurah.setAdapter(adapter);
+        }
     }
 }

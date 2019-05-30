@@ -79,6 +79,30 @@ public class AyatDataHelper extends SQLiteAssetHelper {
         return data;
     }
 
+    public List<AyahModel> getAyahListFromSurah(int surahId) {
+        List<AyahModel> data = new ArrayList<>();
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM " + KEY_TABLE_NAME + " WHERE SurahID =" + surahId, null);
+
+        if (cursor.moveToFirst()) {
+            while (!cursor.isAfterLast()) {
+                AyahModel u = new AyahModel();
+
+                u.setSurahId(cursor.getInt(1));
+                u.setNoAyah(cursor.getInt(2));
+                u.setAyah(cursor.getString(3));
+                u.setAyahTranslate(cursor.getString(4));
+
+                data.add(u);
+                cursor.moveToNext();
+            }
+        }
+
+        db.close();
+        return data;
+    }
+
     @Override
     public void onUpgrade(SQLiteDatabase arg0, int arg1, int arg2) {
         arg0.execSQL("DROP TABLE IF EXISTS " + KEY_TABLE_NAME);
