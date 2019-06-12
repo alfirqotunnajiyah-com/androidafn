@@ -33,6 +33,7 @@
 
         <activity android:name=".activity.AlQuranFeature.AlQuranActivity"></activity>
         <activity android:name=".activity.AlQuranFeature.IsiDariSurahActivity"></activity>
+        <activity android:name=".activity.ArahKiblat"></activity>
     </application>
 
 </manifest>
