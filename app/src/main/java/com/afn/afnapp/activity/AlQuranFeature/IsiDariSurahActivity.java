@@ -7,15 +7,18 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
 import com.afn.afnapp.R;
 import com.afn.afnapp.adapter.AyahAdapter;
+import com.afn.afnapp.adapter.AyahRAdapter;
 import com.afn.afnapp.database.AyatDataHelper;
 import com.afn.afnapp.model.AyahModel;
 import com.github.paolorotolo.expandableheightlistview.ExpandableHeightListView;
+import com.mlsdev.animatedrv.AnimatedRecyclerView;
 
 import org.w3c.dom.Text;
 
@@ -24,12 +27,12 @@ import java.util.List;
 
 public class IsiDariSurahActivity extends AppCompatActivity {
     private TextView tvTitle;
-    private ExpandableHeightListView lvSurah;
+    private RecyclerView lvSurah;
     public static TextView tvMohonTunggu;
 
     private List<AyahModel> listAyahFromDb = new ArrayList<>();
     private List<AyahModel> listAyah = new ArrayList<>();
-    private AyahAdapter adapter;
+    private AyahRAdapter adapter;
     public static AyatDataHelper df;
 
     //dll
@@ -40,7 +43,7 @@ public class IsiDariSurahActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_al_quran);
+        setContentView(R.layout.activity_isi_dari_surah);
         this.tvKalimahBasmalah = (TextView) findViewById(R.id.tvKalimahBasmalah);
         //getDataFromIntent
         surahId = getIntent().getIntExtra("noSurah", 0);
@@ -54,13 +57,17 @@ public class IsiDariSurahActivity extends AppCompatActivity {
         df = new AyatDataHelper(this);
 
         //initialize
-        this.adapter = new AyahAdapter(IsiDariSurahActivity.this, listAyah);
+        this.adapter = new AyahRAdapter(IsiDariSurahActivity.this, listAyah);
         this.adapter.notifyDataSetChanged();
 
         this.tvTitle = (TextView) findViewById(R.id.tvTitle);
         this.tvMohonTunggu = (TextView) findViewById(R.id.tvMohonTunggu);
-        this.lvSurah = (ExpandableHeightListView) findViewById(R.id.lvSurah);
-        this.lvSurah.setExpanded(true);
+
+        this.lvSurah = (AnimatedRecyclerView) findViewById(R.id.lvSurah);
+        this.lvSurah.scheduleLayoutAnimation();
+        this.lvSurah.setNestedScrollingEnabled(false);
+        this.lvSurah.setHasFixedSize(false);
+        //this.lvSurah.setExpanded(true);
 
         this.progress = new ProgressDialog(this);
         //end initialize

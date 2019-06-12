@@ -5,14 +5,18 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.TextView;
 
 import com.afn.afnapp.R;
 import com.afn.afnapp.adapter.SurahAdapter;
+import com.afn.afnapp.adapter.SurahRAdapter;
 import com.afn.afnapp.model.SurahNameModel;
 import com.github.paolorotolo.expandableheightlistview.ExpandableHeightListView;
+import com.mlsdev.animatedrv.AnimatedRecyclerView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -254,10 +258,10 @@ public class AlQuranActivity extends AppCompatActivity {
             "سورة الناس"};
 
 
-    private com.github.paolorotolo.expandableheightlistview.ExpandableHeightListView lvSurah;
+    private RecyclerView lvSurah;
 
     private List<SurahNameModel> listSurah = new ArrayList<>();
-    private SurahAdapter adapter;
+    private SurahRAdapter adapter;
     public static ProgressDialog progress;
     public static TextView tvMohonTunggu;
 
@@ -269,7 +273,7 @@ public class AlQuranActivity extends AppCompatActivity {
         tvKalimahBasmalah.setVisibility(View.GONE);
 
         //initialize adapter
-        adapter = new SurahAdapter(this, listSurah);
+        adapter = new SurahRAdapter(this,listSurah);
         adapter.notifyDataSetChanged();
 
         setLayout();
@@ -286,13 +290,26 @@ public class AlQuranActivity extends AppCompatActivity {
 
     void setLayout() {
         this.tvMohonTunggu = (TextView) findViewById(R.id.tvMohonTunggu);
-        this.lvSurah = (ExpandableHeightListView) findViewById(R.id.lvSurah);
+        this.lvSurah = (AnimatedRecyclerView) findViewById(R.id.lvSurah);
+        lvSurah.scheduleLayoutAnimation();
+        lvSurah.setNestedScrollingEnabled(false);
 
-        this.lvSurah.setExpanded(true);
+        /*AnimatedRecyclerView recyclerView = new AnimatedRecyclerView.Builder(this)
+                .orientation(LinearLayoutManager.VERTICAL)
+                .layoutManagerType(AnimatedRecyclerView.LayoutManagerType.LINEAR)
+                .animation(R.anim.layout_animation_from_bottom)
+                .animationDuration(600)
+                .reverse(false)
+                .build();
+
+        recyclerView.setAdapter(adapter);
+        recyclerView.notifyDataSetChanged();*/
+
+        //this.lvSurah.setExpanded(true);
     }
 
     void setKlik() {
-        lvSurah.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        /*lvSurah.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 SurahNameModel sm = listSurah.get(position);
@@ -302,7 +319,7 @@ public class AlQuranActivity extends AppCompatActivity {
                 i.putExtra("namaSurahIndo", sm.getNameSurahIndo());
                 startActivity(i);
             }
-        });
+        });*/
     }
 
     void tampilkanNamaSurah() {

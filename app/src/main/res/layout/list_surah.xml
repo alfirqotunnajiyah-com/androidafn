@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:id="@+id/rlMain">
     <LinearLayout
+        android:theme="@style/AppTheme.AppBarOverlay"
+        android:elevation="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
@@ -26,6 +29,7 @@
             android:gravity="center_vertical"
             android:orientation="horizontal">
             <TextView
+                android:textColor="@color/textColor"
                 android:gravity="left"
                 android:padding="10dp"
                 android:id="@+id/tvNamaSurahIndo"
@@ -35,6 +39,7 @@
                 android:fontFamily="@font/scheherazade"
                 android:textSize="20dp" />
             <TextView
+                android:textColor="@color/textColor"
                 android:gravity="right"
                 android:padding="10dp"
                 android:id="@+id/tvNamaSurah"
@@ -42,7 +47,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="0.5"
                 android:fontFamily="@font/scheherazade"
-                android:textSize="20dp" />
+                android:textSize="25dp" />
         </LinearLayout>
     </LinearLayout>
 </RelativeLayout>
