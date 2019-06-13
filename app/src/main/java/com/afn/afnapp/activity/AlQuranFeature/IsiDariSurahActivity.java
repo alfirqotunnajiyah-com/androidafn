@@ -48,11 +48,6 @@ public class IsiDariSurahActivity extends AppCompatActivity {
         //getDataFromIntent
         surahId = getIntent().getIntExtra("noSurah", 0);
 
-        //if
-        if (surahId == 1 || surahId == 9) {
-            tvKalimahBasmalah.setVisibility(View.GONE);
-        }
-
         //getData
         df = new AyatDataHelper(this);
 
@@ -96,13 +91,21 @@ public class IsiDariSurahActivity extends AppCompatActivity {
         @Override
         protected Integer doInBackground(String... arg0) {
             listAyahFromDb = df.getAyahListFromSurah(surahId);
+            if (surahId == 1 || surahId == 9) {}else{
+                AyahModel qq = new AyahModel();
+                qq.setSurahId(surahId);
+                qq.setAyahTranslate("");
+                qq.setAyah("بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيم");
+                qq.setNoAyah(0);
+                qq.setId(0);
+                listAyah.add(qq);
+            }
             for (int i = 0; i < listAyahFromDb.size(); i++) {
                 AyahModel am = listAyahFromDb.get(i);
                 AyahModel qq = new AyahModel();
                 qq.setSurahId(am.getSurahId());
                 qq.setAyahTranslate(am.getAyahTranslate());
                 qq.setAyah(am.getAyah());
-                qq.setSurahId(am.getSurahId());
                 qq.setNoAyah(am.getNoAyah());
                 qq.setId(am.getId());
                 listAyah.add(qq);

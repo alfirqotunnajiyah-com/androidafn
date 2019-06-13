@@ -27,13 +27,15 @@ public class AyahRAdapter extends RecyclerView.Adapter<AyahRAdapter.MyViewHolder
     public static class MyViewHolder extends RecyclerView.ViewHolder {
         // each data item is just a string in this case
         public TextView tvNoAyah, tvIsiAyah, tvArtiAyah;
-        public RelativeLayout rlMain;
+        public RelativeLayout rlMain,rl1,rl2;
 
         public MyViewHolder(View v) {
             super(v);
             tvNoAyah = v.findViewById(R.id.tvNoAyah);
             tvIsiAyah = v.findViewById(R.id.tvIsiAyah);
             tvArtiAyah = v.findViewById(R.id.tvArtiAyah);
+            rl1 = v.findViewById(R.id.rl1);
+            rl2 = v.findViewById(R.id.rl2);
 
             rlMain = v.findViewById(R.id.rlMain);
         }
@@ -62,14 +64,19 @@ public class AyahRAdapter extends RecyclerView.Adapter<AyahRAdapter.MyViewHolder
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
         final AyahModel fm = mDataset.get(position);
-        if ((fm.getNoAyah() % 2) == 0) {
-            holder.rlMain.setBackgroundColor(actNa.getResources().getColor(R.color.color1));
-        } else {
-            holder.rlMain.setBackgroundColor(actNa.getResources().getColor(R.color.color2));
+        if (fm.getNoAyah() == 0){
+            holder.rl1.setVisibility(View.VISIBLE);
+        }else{
+            holder.rl2.setVisibility(View.VISIBLE);
+            if ((fm.getNoAyah() % 2) == 0) {
+                holder.rlMain.setBackgroundColor(actNa.getResources().getColor(R.color.color1));
+            } else {
+                holder.rlMain.setBackgroundColor(actNa.getResources().getColor(R.color.color2));
+            }
+            holder.tvNoAyah.setText(fm.getNoAyah() + "");
+            holder.tvIsiAyah.setText((fm.getAyah()));
+            holder.tvArtiAyah.setText(Html.fromHtml(fm.getAyahTranslate()));
         }
-        holder.tvNoAyah.setText(fm.getNoAyah() + "");
-        holder.tvIsiAyah.setText((fm.getAyah()));
-        holder.tvArtiAyah.setText(Html.fromHtml(fm.getAyahTranslate()));
     }
 
     // Return the size of your dataset (invoked by the layout manager)
