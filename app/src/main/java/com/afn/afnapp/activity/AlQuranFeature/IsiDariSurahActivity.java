@@ -1,26 +1,27 @@
 package com.afn.afnapp.activity.AlQuranFeature;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.v7.app.AlertDialog;
+import android.support.design.widget.AppBarLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.afn.afnapp.R;
-import com.afn.afnapp.adapter.AyahAdapter;
 import com.afn.afnapp.adapter.AyahRAdapter;
 import com.afn.afnapp.database.AyatDataHelper;
 import com.afn.afnapp.model.AyahModel;
-import com.github.paolorotolo.expandableheightlistview.ExpandableHeightListView;
 import com.mlsdev.animatedrv.AnimatedRecyclerView;
-
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,6 +29,12 @@ import java.util.List;
 public class IsiDariSurahActivity extends AppCompatActivity {
     private TextView tvTitle;
     private RecyclerView lvSurah;
+    private TextView tvKalimahBasmalah;
+    private android.widget.ImageView ivLeft;
+    private android.widget.ImageView ivRight;
+    private android.support.design.widget.AppBarLayout appbar;
+    private android.widget.Button btnKlik;
+
     public static TextView tvMohonTunggu;
 
     private List<AyahModel> listAyahFromDb = new ArrayList<>();
@@ -38,7 +45,6 @@ public class IsiDariSurahActivity extends AppCompatActivity {
     //dll
     public static ProgressDialog progress;
     private int surahId = 0;
-    private TextView tvKalimahBasmalah;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +63,10 @@ public class IsiDariSurahActivity extends AppCompatActivity {
 
         this.tvTitle = (TextView) findViewById(R.id.tvTitle);
         this.tvMohonTunggu = (TextView) findViewById(R.id.tvMohonTunggu);
+        this.btnKlik = (Button) findViewById(R.id.btnKlik);
+        this.appbar = (AppBarLayout) findViewById(R.id.appbar);
+        this.ivRight = (ImageView) findViewById(R.id.ivRight);
+        this.ivLeft = (ImageView) findViewById(R.id.ivLeft);
 
         this.lvSurah = (AnimatedRecyclerView) findViewById(R.id.lvSurah);
         this.lvSurah.scheduleLayoutAnimation();
@@ -70,10 +80,31 @@ public class IsiDariSurahActivity extends AppCompatActivity {
         //startServiceTask
         progress.setMessage("Loading...");
         progress.setCancelable(false);
-        progress.show();
+        //progress.show();
         new AsyncTaskSaya(progress).execute();
 
+        ivLeft.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final AlertDialog.Builder dialog = new AlertDialog.Builder(IsiDariSurahActivity.this);
+                LayoutInflater inflater = getLayoutInflater();
+                View dialogView = inflater.inflate(R.layout.dialog_to_ayah, null);
+                dialog.setView(dialogView);
+                dialog.setCancelable(true);
 
+                final EditText etAyah = dialogView.findViewById(R.id.etAyahSearch);
+
+                dialog.setTitle("Ke Ayat :");
+                dialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        lvSurah.scrollToPosition(Integer.parseInt(etAyah.getText().toString()));
+                        dialog.dismiss();
+                    }
+                });
+                dialog.show();
+            }
+        });
         tvTitle.setText(getIntent().getStringExtra("namaSurahIndo"));
     }
 
@@ -91,7 +122,8 @@ public class IsiDariSurahActivity extends AppCompatActivity {
         @Override
         protected Integer doInBackground(String... arg0) {
             listAyahFromDb = df.getAyahListFromSurah(surahId);
-            if (surahId == 1 || surahId == 9) {}else{
+            if (surahId == 1 || surahId == 9) {
+            } else {
                 AyahModel qq = new AyahModel();
                 qq.setSurahId(surahId);
                 qq.setAyahTranslate("");

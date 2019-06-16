@@ -7,6 +7,7 @@ import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -28,6 +29,7 @@ public class AyahRAdapter extends RecyclerView.Adapter<AyahRAdapter.MyViewHolder
         // each data item is just a string in this case
         public TextView tvNoAyah, tvIsiAyah, tvArtiAyah;
         public RelativeLayout rlMain,rl1,rl2;
+        public ImageView btnPlayAndPause;
 
         public MyViewHolder(View v) {
             super(v);
@@ -36,6 +38,7 @@ public class AyahRAdapter extends RecyclerView.Adapter<AyahRAdapter.MyViewHolder
             tvArtiAyah = v.findViewById(R.id.tvArtiAyah);
             rl1 = v.findViewById(R.id.rl1);
             rl2 = v.findViewById(R.id.rl2);
+            btnPlayAndPause= v.findViewById(R.id.btnPlayAndPause);
 
             rlMain = v.findViewById(R.id.rlMain);
         }
@@ -58,15 +61,20 @@ public class AyahRAdapter extends RecyclerView.Adapter<AyahRAdapter.MyViewHolder
         return vh;
     }
 
+    boolean isPlay = false;
+
     // Replace the contents of a view (invoked by the layout manager)
     @Override
-    public void onBindViewHolder(MyViewHolder holder, int position) {
+    public void onBindViewHolder(final MyViewHolder holder, int position) {
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
+
         final AyahModel fm = mDataset.get(position);
         if (fm.getNoAyah() == 0){
             holder.rl1.setVisibility(View.VISIBLE);
+            holder.rl2.setVisibility(View.GONE);
         }else{
+            holder.rl1.setVisibility(View.GONE);
             holder.rl2.setVisibility(View.VISIBLE);
             if ((fm.getNoAyah() % 2) == 0) {
                 holder.rlMain.setBackgroundColor(actNa.getResources().getColor(R.color.color1));
@@ -77,6 +85,18 @@ public class AyahRAdapter extends RecyclerView.Adapter<AyahRAdapter.MyViewHolder
             holder.tvIsiAyah.setText((fm.getAyah()));
             holder.tvArtiAyah.setText(Html.fromHtml(fm.getAyahTranslate()));
         }
+
+        holder.btnPlayAndPause.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (isPlay){
+                    holder.btnPlayAndPause.setImageResource(R.drawable.ic_btn_play);
+                }else{
+                    holder.btnPlayAndPause.setImageResource(R.drawable.ic_btn_pause);
+                }
+                isPlay = !isPlay;
+            }
+        });
     }
 
     // Return the size of your dataset (invoked by the layout manager)

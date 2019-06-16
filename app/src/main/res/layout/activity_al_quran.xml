@@ -76,7 +76,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="10dp"
-            android:textSize="35dp"
+            android:textSize="35sp"
             android:text="بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ"
             android:gravity="center"
             android:fontFamily="@font/scheherazade"/>

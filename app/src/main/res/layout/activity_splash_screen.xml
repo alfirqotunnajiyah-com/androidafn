@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="اهلاوسهلا"
-        android:textSize="35dp"
+        android:textSize="35sp"
         android:fontFamily="@font/scheherazade"/>
     <ImageView
         android:id="@+id/logo"
