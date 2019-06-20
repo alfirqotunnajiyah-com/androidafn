@@ -54,11 +54,19 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
                 <ImageView
-                    android:id="@+id/btnPlayAndPause"
+                    android:id="@+id/btnPlay"
                     android:layout_marginTop="5dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/ic_btn_play"
+                    android:tint="@color/colorPrimary"/>
+                <ImageView
+                    android:visibility="gone"
+                    android:id="@+id/btnPause"
+                    android:layout_marginTop="5dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_btn_pause"
                     android:tint="@color/colorPrimary"/>
             </LinearLayout>
             <LinearLayout

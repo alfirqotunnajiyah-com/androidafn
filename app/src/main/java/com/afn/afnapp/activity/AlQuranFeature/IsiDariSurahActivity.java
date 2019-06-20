@@ -2,8 +2,15 @@ package com.afn.afnapp.activity.AlQuranFeature;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.app.DownloadManager;
 import android.app.ProgressDialog;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.database.Cursor;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
@@ -106,6 +113,40 @@ public class IsiDariSurahActivity extends AppCompatActivity {
             }
         });
         tvTitle.setText(getIntent().getStringExtra("namaSurahIndo"));
+
+        BroadcastReceiver receiver = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                String action = intent.getAction();
+                if (DownloadManager.ACTION_DOWNLOAD_COMPLETE.equals(action)) {
+                    long downloadId = intent.getLongExtra(
+                            DownloadManager.EXTRA_DOWNLOAD_ID, 0);
+                    DownloadManager.Query query = new DownloadManager.Query();
+                    query.setFilterById(enqueue);
+                    Cursor c = dm.query(query);
+                    if (c.moveToFirst()) {
+                        int columnIndex = c
+                                .getColumnIndex(DownloadManager.COLUMN_STATUS);
+                        if (DownloadManager.STATUS_SUCCESSFUL == c
+                                .getInt(columnIndex)) {
+
+                            ivRight.setVisibility(View.GONE);
+
+                                    /*ImageView view = (ImageView) findViewById(R.id.imageView1);
+                                    String uriString = c
+                                            .getString(c
+                                                    .getColumnIndex(DownloadManager.COLUMN_LOCAL_URI));
+                                    view.setImageURI(Uri.parse(uriString));*/
+                        }
+                    }
+                }
+            }
+        };
+
+        registerReceiver(receiver, new IntentFilter(
+                DownloadManager.ACTION_DOWNLOAD_COMPLETE));
+
+        onClick(ivRight);
     }
 
     public class AsyncTaskSaya extends AsyncTask<String, Integer, Integer> {
@@ -140,6 +181,26 @@ public class IsiDariSurahActivity extends AppCompatActivity {
                 qq.setAyah(am.getAyah());
                 qq.setNoAyah(am.getNoAyah());
                 qq.setId(am.getId());
+
+                String noSurahStr;
+                String noAyahStr;
+                if (qq.getSurahId() < 10) {
+                    noSurahStr = "00" + qq.getSurahId();
+                } else if (qq.getSurahId() < 100) {
+                    noSurahStr = "0" + qq.getSurahId();
+                } else {
+                    noSurahStr = "" + qq.getSurahId();
+                }
+
+                if (qq.getNoAyah() < 10) {
+                    noAyahStr = "00" + qq.getNoAyah();
+                } else if (qq.getNoAyah() < 100) {
+                    noAyahStr = "0" + qq.getNoAyah();
+                } else {
+                    noAyahStr = "" + qq.getNoAyah();
+                }
+                qq.setStrLink("http://www.everyayah.com/data/Alafasy_64kbps/" + noSurahStr + noAyahStr + ".mp3");
+
                 listAyah.add(qq);
                 Log.i("isiSurah", am.getAyahTranslate() + "");
             }
@@ -152,6 +213,22 @@ public class IsiDariSurahActivity extends AppCompatActivity {
             progress.dismiss();
         }
 
+    }
+
+    private long enqueue;
+    private DownloadManager dm;
+
+    public void onClick(View view) {
+        dm = (DownloadManager) getSystemService(DOWNLOAD_SERVICE);
+        DownloadManager.Request request = new DownloadManager.Request(
+                Uri.parse("http://www.everyayah.com/data/Alafasy_64kbps/001005.mp3"));
+        enqueue = dm.enqueue(request);
+    }
+
+    public void showDownload(View view) {
+        Intent i = new Intent();
+        i.setAction(DownloadManager.ACTION_VIEW_DOWNLOADS);
+        startActivity(i);
     }
 }
 

@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.afn.afnapp.R;
 import com.afn.afnapp.activity.AlQuranFeature.IsiDariSurahActivity;
@@ -28,8 +29,10 @@ public class AyahRAdapter extends RecyclerView.Adapter<AyahRAdapter.MyViewHolder
     public static class MyViewHolder extends RecyclerView.ViewHolder {
         // each data item is just a string in this case
         public TextView tvNoAyah, tvIsiAyah, tvArtiAyah;
-        public RelativeLayout rlMain,rl1,rl2;
-        public ImageView btnPlayAndPause;
+        public RelativeLayout rlMain, rl1, rl2;
+        public ImageView btnPlay;
+        public ImageView btnPause;
+        boolean isPlay;
 
         public MyViewHolder(View v) {
             super(v);
@@ -38,7 +41,8 @@ public class AyahRAdapter extends RecyclerView.Adapter<AyahRAdapter.MyViewHolder
             tvArtiAyah = v.findViewById(R.id.tvArtiAyah);
             rl1 = v.findViewById(R.id.rl1);
             rl2 = v.findViewById(R.id.rl2);
-            btnPlayAndPause= v.findViewById(R.id.btnPlayAndPause);
+            btnPlay = v.findViewById(R.id.btnPlay);
+            btnPause = v.findViewById(R.id.btnPause);
 
             rlMain = v.findViewById(R.id.rlMain);
         }
@@ -61,8 +65,6 @@ public class AyahRAdapter extends RecyclerView.Adapter<AyahRAdapter.MyViewHolder
         return vh;
     }
 
-    boolean isPlay = false;
-
     // Replace the contents of a view (invoked by the layout manager)
     @Override
     public void onBindViewHolder(final MyViewHolder holder, int position) {
@@ -70,10 +72,10 @@ public class AyahRAdapter extends RecyclerView.Adapter<AyahRAdapter.MyViewHolder
         // - replace the contents of the view with that element
 
         final AyahModel fm = mDataset.get(position);
-        if (fm.getNoAyah() == 0){
+        if (fm.getNoAyah() == 0) {
             holder.rl1.setVisibility(View.VISIBLE);
             holder.rl2.setVisibility(View.GONE);
-        }else{
+        } else {
             holder.rl1.setVisibility(View.GONE);
             holder.rl2.setVisibility(View.VISIBLE);
             if ((fm.getNoAyah() % 2) == 0) {
@@ -86,15 +88,29 @@ public class AyahRAdapter extends RecyclerView.Adapter<AyahRAdapter.MyViewHolder
             holder.tvArtiAyah.setText(Html.fromHtml(fm.getAyahTranslate()));
         }
 
-        holder.btnPlayAndPause.setOnClickListener(new View.OnClickListener() {
+        if (fm.getIsPlaying()==1){
+            holder.btnPlay.setVisibility(View.GONE);
+            holder.btnPause.setVisibility(View.VISIBLE);
+        }else{
+            holder.btnPlay.setVisibility(View.VISIBLE);
+            holder.btnPause.setVisibility(View.GONE);
+        }
+
+        holder.btnPlay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (isPlay){
-                    holder.btnPlayAndPause.setImageResource(R.drawable.ic_btn_play);
-                }else{
-                    holder.btnPlayAndPause.setImageResource(R.drawable.ic_btn_pause);
-                }
-                isPlay = !isPlay;
+                holder.btnPlay.setVisibility(View.GONE);
+                holder.btnPause.setVisibility(View.VISIBLE);
+                Toast.makeText(actNa, fm.getStrLink() + "", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        holder.btnPause.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                holder.btnPlay.setVisibility(View.VISIBLE);
+                holder.btnPause.setVisibility(View.GONE);
+                Toast.makeText(actNa, fm.getStrLink() + "", Toast.LENGTH_SHORT).show();
             }
         });
     }

@@ -3,7 +3,25 @@ package com.afn.afnapp.model;
 public class AyahModel {
 
     private int id, noAyah, surahId;
-    private String ayah;
+    private String ayah,strLink;
+
+    private int isPlaying;
+
+    public int getIsPlaying() {
+        return isPlaying;
+    }
+
+    public void setIsPlaying(int isPlaying) {
+        this.isPlaying = isPlaying;
+    }
+
+    public void setStrLink(String strLink) {
+        this.strLink = strLink;
+    }
+
+    public String getStrLink() {
+        return strLink;
+    }
 
     public int getId() {
         return id;
