@@ -42,5 +42,7 @@ dependencies {
     implementation 'com.tbuonomo.andrui:viewpagerdotsindicator:3.0.3'
     implementation 'com.readystatesoftware.sqliteasset:sqliteassethelper:+'
 
+    //Easy permissions for handling Run time permissions
+    implementation 'pub.devrel:easypermissions:0.2.0'
     implementation "com.mlsdev.animatedrv:library:1.0.1"
 }

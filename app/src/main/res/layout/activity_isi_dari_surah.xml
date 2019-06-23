@@ -18,7 +18,6 @@
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
             android:orientation="horizontal">
-            <!--android:layout_height="?attr/actionBarSize"-->
             <TextView
                 android:id="@+id/tvTitle"
                 android:layout_width="0dp"
@@ -63,29 +62,6 @@
         android:layout_below="@id/appbar"
         android:text="Klik Disini"
         android:visibility="gone" />
-    <LinearLayout
-        android:visibility="gone"
-        android:layout_below="@id/appbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-        <TextView
-            android:visibility="gone"
-            android:id="@+id/tvKalimahBasmalah"
-            android:textColor="@color/textColor"
-            android:background="#e3f4ff"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:textSize="35sp"
-            android:text="بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ"
-            android:gravity="center"
-            android:fontFamily="@font/scheherazade"/>
-        <!--<com.github.paolorotolo.expandableheightlistview.ExpandableHeightListView-->
-        <!--android:id="@+id/lvSurah"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"></com.github.paolorotolo.expandableheightlistview.ExpandableHeightListView>-->
-    </LinearLayout>
     <com.mlsdev.animatedrv.AnimatedRecyclerView
         android:id="@+id/lvSurah"
         android:layout_below="@id/appbar"
@@ -96,11 +72,4 @@
         app:layoutManagerOrientation="vertical"
         app:layoutManagerReverse="false"
         app:layoutManagerType="linear" />
-    <!--<android.support.v4.widget.NestedScrollView
-        android:fillViewport="true"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/appbar">
-
-    </android.support.v4.widget.NestedScrollView>-->
 </RelativeLayout>
