@@ -62,9 +62,20 @@
         android:layout_below="@id/appbar"
         android:text="Klik Disini"
         android:visibility="gone" />
+    <com.daimajia.numberprogressbar.NumberProgressBar
+        android:visibility="gone"
+        android:id="@+id/number_progress_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:layout_below="@id/appbar"
+        app:progress_text_color="@color/white"
+        app:progress_reached_color="@color/white"
+        android:padding="2dp"
+        />
     <com.mlsdev.animatedrv.AnimatedRecyclerView
         android:id="@+id/lvSurah"
-        android:layout_below="@id/appbar"
+        android:layout_below="@id/number_progress_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:animationDuration="200"

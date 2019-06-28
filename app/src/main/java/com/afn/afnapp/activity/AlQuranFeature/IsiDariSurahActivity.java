@@ -11,6 +11,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.database.Cursor;
+import android.media.AudioManager;
+import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -34,11 +36,13 @@ import com.afn.afnapp.adapter.AyahRAdapter;
 import com.afn.afnapp.classfungsi.CheckForSDCard;
 import com.afn.afnapp.database.AyatDataHelper;
 import com.afn.afnapp.model.AyahModel;
+import com.daimajia.numberprogressbar.NumberProgressBar;
 import com.mlsdev.animatedrv.AnimatedRecyclerView;
 
 import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.URL;
@@ -57,6 +61,7 @@ public class IsiDariSurahActivity extends AppCompatActivity implements EasyPermi
     private android.widget.ImageView ivRight;
     private android.support.design.widget.AppBarLayout appbar;
     private android.widget.Button btnKlik;
+    private NumberProgressBar number_progress_bar;
 
     public static TextView tvMohonTunggu;
 
@@ -75,6 +80,8 @@ public class IsiDariSurahActivity extends AppCompatActivity implements EasyPermi
     private int jumlahAyat = 0;
     private int currentIndex = 0;
     private String noSurahStr;
+
+    private int jumlahPersen;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -109,6 +116,7 @@ public class IsiDariSurahActivity extends AppCompatActivity implements EasyPermi
         tvTitle.setText(getIntent().getStringExtra("namaSurahIndo"));
 
         setOnClik();
+        number_progress_bar.setMax(jumlahPersen);
     }
 
     void setUI() {
@@ -118,6 +126,7 @@ public class IsiDariSurahActivity extends AppCompatActivity implements EasyPermi
         this.appbar = (AppBarLayout) findViewById(R.id.appbar);
         this.ivRight = (ImageView) findViewById(R.id.ivRight);
         this.ivLeft = (ImageView) findViewById(R.id.ivLeft);
+        this.number_progress_bar = (NumberProgressBar) findViewById(R.id.number_progress_bar);
 
         //RecyclerView
         this.lvSurah = (AnimatedRecyclerView) findViewById(R.id.lvSurah);
@@ -143,7 +152,11 @@ public class IsiDariSurahActivity extends AppCompatActivity implements EasyPermi
                 dialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        lvSurah.scrollToPosition(Integer.parseInt(etAyah.getText().toString()));
+                        if (Integer.parseInt(etAyah.getText().toString()) > jumlahAyat){
+                            lvSurah.scrollToPosition(jumlahAyat);
+                        }else{
+                            lvSurah.scrollToPosition(Integer.parseInt(etAyah.getText().toString()));
+                        }
                         dialog.dismiss();
                     }
                 });
@@ -162,6 +175,7 @@ public class IsiDariSurahActivity extends AppCompatActivity implements EasyPermi
                         currentIndex = 1;
                         String urlNa = url + noSurahStr + "001" + ".mp3";
                         new DownloadFile().execute(urlNa);
+                        number_progress_bar.setVisibility(View.VISIBLE);
                     } else {
                         //If permission is not present request for the same.
                         EasyPermissions.requestPermissions(IsiDariSurahActivity.this, "Memeriksa akses penyimpanan", WRITE_REQUEST_CODE, Manifest.permission.READ_EXTERNAL_STORAGE);
@@ -217,11 +231,14 @@ public class IsiDariSurahActivity extends AppCompatActivity implements EasyPermi
                 } else {
                     noAyahStr = "" + qq.getNoAyah();
                 }
-                qq.setStrLink("http://www.everyayah.com/data/Alafasy_64kbps/" + noSurahStr + noAyahStr + ".mp3");
+                qq.setStrLink(Environment.getExternalStorageDirectory() + File.separator + "AFNFile/" + surahId + "/" + noSurahStr + noAyahStr + ".mp3");
 
                 listAyah.add(qq);
                 Log.i("isiSurah", am.getAyahTranslate() + "");
             }
+
+            jumlahPersen = jumlahAyat * 100 / jumlahAyat;
+
             return 1;
         }
 
@@ -270,7 +287,7 @@ public class IsiDariSurahActivity extends AppCompatActivity implements EasyPermi
             this.progressDialog = new ProgressDialog(IsiDariSurahActivity.this);
             this.progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
             this.progressDialog.setCancelable(false);
-            this.progressDialog.show();
+            //this.progressDialog.show();
         }
 
         /**
@@ -358,8 +375,8 @@ public class IsiDariSurahActivity extends AppCompatActivity implements EasyPermi
             this.progressDialog.dismiss();
 
             // Display File path after downloading
-            Toast.makeText(getApplicationContext(),
-                    currentIndex + " dari " + jumlahAyat, Toast.LENGTH_LONG).show();
+            /*Toast.makeText(getApplicationContext(),
+                    currentIndex + " dari " + jumlahAyat, Toast.LENGTH_LONG).show();*/
             nextProccess();
         }
     }
@@ -367,6 +384,8 @@ public class IsiDariSurahActivity extends AppCompatActivity implements EasyPermi
     void nextProccess() {
         currentIndex++;
         if (currentIndex <= jumlahAyat) {
+            int persenSekarang = currentIndex * 100 / jumlahAyat;
+            number_progress_bar.setProgress(persenSekarang);
             String noAyahStr;
             if (currentIndex < 10) {
                 noAyahStr = "00" + currentIndex;
@@ -377,7 +396,26 @@ public class IsiDariSurahActivity extends AppCompatActivity implements EasyPermi
             }
             String urlNa = url + noSurahStr + noAyahStr + ".mp3";
             new DownloadFile().execute(urlNa);
+        } else {
+            ivRight.setVisibility(View.GONE);
+            Intent i = getIntent();
+            startActivity(i);
         }
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
     }
 }
 

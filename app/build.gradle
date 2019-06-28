@@ -45,4 +45,5 @@ dependencies {
     //Easy permissions for handling Run time permissions
     implementation 'pub.devrel:easypermissions:0.2.0'
     implementation "com.mlsdev.animatedrv:library:1.0.1"
+    implementation 'com.daimajia.numberprogressbar:library:1.4@aar'
 }

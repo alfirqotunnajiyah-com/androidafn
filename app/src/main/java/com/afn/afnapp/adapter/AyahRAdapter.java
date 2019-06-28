@@ -2,11 +2,16 @@ package com.afn.afnapp.adapter;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.media.AudioManager;
+import android.media.MediaPlayer;
+import android.os.Environment;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -17,6 +22,8 @@ import com.afn.afnapp.activity.AlQuranFeature.IsiDariSurahActivity;
 import com.afn.afnapp.model.AyahModel;
 import com.afn.afnapp.model.SurahNameModel;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 public class AyahRAdapter extends RecyclerView.Adapter<AyahRAdapter.MyViewHolder> {
@@ -88,20 +95,36 @@ public class AyahRAdapter extends RecyclerView.Adapter<AyahRAdapter.MyViewHolder
             holder.tvArtiAyah.setText(Html.fromHtml(fm.getAyahTranslate()));
         }
 
-        if (fm.getIsPlaying()==1){
+        if (fm.getIsPlaying() == 1) {
             holder.btnPlay.setVisibility(View.GONE);
             holder.btnPause.setVisibility(View.VISIBLE);
-        }else{
+        } else {
             holder.btnPlay.setVisibility(View.VISIBLE);
             holder.btnPause.setVisibility(View.GONE);
         }
-
+        final MediaPlayer mp = new MediaPlayer();
+        try {
+            mp.setAudioStreamType(AudioManager.STREAM_MUSIC);
+            Log.d("testUrl", fm.getStrLink() + " ");
+            mp.setDataSource(fm.getStrLink());
+            mp.prepare();
+        } catch (NullPointerException ex) {
+            ex.printStackTrace();
+            Log.d("isiError", ex.getMessage());
+        } catch (IllegalStateException ex) {
+            ex.printStackTrace();
+            Log.d("isiError", ex.getMessage());
+        } catch (IOException ex) {
+            ex.printStackTrace();
+            Log.d("isiError", ex.getMessage());
+        }
         holder.btnPlay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 holder.btnPlay.setVisibility(View.GONE);
                 holder.btnPause.setVisibility(View.VISIBLE);
-                Toast.makeText(actNa, fm.getStrLink() + "", Toast.LENGTH_SHORT).show();
+                mp.start();
+                //Toast.makeText(actNa, fm.getStrLink() + "", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -110,7 +133,8 @@ public class AyahRAdapter extends RecyclerView.Adapter<AyahRAdapter.MyViewHolder
             public void onClick(View v) {
                 holder.btnPlay.setVisibility(View.VISIBLE);
                 holder.btnPause.setVisibility(View.GONE);
-                Toast.makeText(actNa, fm.getStrLink() + "", Toast.LENGTH_SHORT).show();
+                mp.pause();
+                //Toast.makeText(actNa, fm.getStrLink() + "", Toast.LENGTH_SHORT).show();
             }
         });
     }
