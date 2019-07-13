@@ -16,6 +16,7 @@ import com.afn.afnapp.activity.ArahKiblat;
 import com.afn.afnapp.activity.DzikirPagiDanPetangActivity;
 import com.afn.afnapp.adapter.FiturAdapter;
 import com.afn.afnapp.model.FiturModel;
+import com.afn.afnapp.ui.jadwalsholat.JadwalSholat;
 import com.daimajia.slider.library.Indicators.PagerIndicator;
 import com.daimajia.slider.library.SliderLayout;
 import com.daimajia.slider.library.SliderTypes.BaseSliderView;
@@ -48,13 +49,15 @@ public class FragmentBeranda extends Fragment {
             "Dzikir Pagi",
             "Dzikir Petang",
             "Al-Quran",
-            "Arah Kiblat"
+            "Arah Kiblat",
+            "Jadwal Sholat"
     };
     private int[] listGambarFitur = {
             R.drawable.ic_dzikir_pagi,
             R.drawable.ic_dzikir_petang,
             R.drawable.ic_quran,
-            R.drawable.kompas_logo
+            R.drawable.kompas_logo,
+            R.drawable.mosque
     };
 
     @Override
@@ -100,6 +103,9 @@ public class FragmentBeranda extends Fragment {
                     startActivity(i);
                 } else if (ff.getFiturNama().equalsIgnoreCase("Arah Kiblat")) {
                     Intent i = new Intent(getActivity(), ArahKiblat.class);
+                    startActivity(i);
+                } else if (ff.getFiturNama().equalsIgnoreCase("Jadwal Sholat")) {
+                    Intent i = new Intent(getActivity(), JadwalSholat.class);
                     startActivity(i);
                 }
             }
