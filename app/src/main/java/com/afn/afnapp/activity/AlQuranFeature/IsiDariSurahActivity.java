@@ -56,7 +56,7 @@ import pub.devrel.easypermissions.EasyPermissions;
 
 public class IsiDariSurahActivity extends AppCompatActivity implements EasyPermissions.PermissionCallbacks {
     private TextView tvTitle;
-    private RecyclerView lvSurah;
+    public static RecyclerView lvSurah;
     private android.widget.ImageView ivLeft;
     private android.widget.ImageView ivRight;
     private android.support.design.widget.AppBarLayout appbar;
@@ -67,7 +67,7 @@ public class IsiDariSurahActivity extends AppCompatActivity implements EasyPermi
 
     private List<AyahModel> listAyahFromDb = new ArrayList<>();
     private List<AyahModel> listAyah = new ArrayList<>();
-    private AyahRAdapter adapter;
+    public static AyahRAdapter adapter;
     public static AyatDataHelper df;
 
     //audio
@@ -152,9 +152,9 @@ public class IsiDariSurahActivity extends AppCompatActivity implements EasyPermi
                 dialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        if (Integer.parseInt(etAyah.getText().toString()) > jumlahAyat){
+                        if (Integer.parseInt(etAyah.getText().toString()) > jumlahAyat) {
                             lvSurah.scrollToPosition(jumlahAyat);
-                        }else{
+                        } else {
                             lvSurah.scrollToPosition(Integer.parseInt(etAyah.getText().toString()));
                         }
                         dialog.dismiss();
@@ -190,6 +190,11 @@ public class IsiDariSurahActivity extends AppCompatActivity implements EasyPermi
             }
         });
 
+    }
+
+    public static void jump(final int nextPosition,MediaPlayer mp) {
+            mp.start();
+            lvSurah.scrollToPosition(nextPosition);
     }
 
     public class AsyncTaskSaya extends AsyncTask<String, Integer, Integer> {

@@ -126,16 +126,16 @@ public class FragmentBeranda extends Fragment {
 
     void setGambarNa() {
         ArrayList<String> listIsian = new ArrayList<>();
-        listIsian.add("Belajar Agama Islam");
+        listIsian.add("Ahlan Wa Sahlan!");
+        listIsian.add("Follow Us");
         listIsian.add("Jasa Design Gratis!");
         listIsian.add("Belajar Agama Islam");
-        listIsian.add("Jasa Design Gratis!");
 
         ArrayList<String> listUrl = new ArrayList<>();
-        listUrl.add("https://i.imgur.com/Dc1wR9l.png");
-        listUrl.add("https://i.imgur.com/MKFjG3L.png");
-        listUrl.add("https://i.imgur.com/Dc1wR9l.png");
-        listUrl.add("https://i.imgur.com/MKFjG3L.png");
+        listUrl.add("http://webforimage.000webhostapp.com/img/1.jpeg");
+        listUrl.add("http://webforimage.000webhostapp.com/img/2.jpeg");
+        listUrl.add("http://webforimage.000webhostapp.com/img/3.jpeg");
+        listUrl.add("http://webforimage.000webhostapp.com/img/4.jpeg");
 
 
         for (int i = 0; i < listIsian.size(); i++) {
@@ -150,13 +150,24 @@ public class FragmentBeranda extends Fragment {
                         @Override
                         public void onSliderClick(BaseSliderView slider) {
                             Uri uriNa;
-                            if (indexNa == 0 || indexNa == 2) {
-                                uriNa = Uri.parse("https://www.alfirqotunnajiyah.com/belajar/");
-                            } else {
+                            if (indexNa == 0) {
+                                uriNa = Uri.parse("https://www.alfirqotunnajiyah.com/");
+                                Intent launchBrowser = new Intent(Intent.ACTION_VIEW, uriNa);
+                                startActivity(launchBrowser);
+                            } else if (indexNa == 1) {
                                 uriNa = Uri.parse("https://www.alfirqotunnajiyah.com/fitur-gratis/");
+                                Intent launchBrowser = new Intent(Intent.ACTION_VIEW, uriNa);
+                                startActivity(launchBrowser);
+                            } else if (indexNa == 2) {
+                                uriNa = Uri.parse("https://www.alfirqotunnajiyah.com/fitur-gratis/");
+                                Intent launchBrowser = new Intent(Intent.ACTION_VIEW, uriNa);
+                                startActivity(launchBrowser);
+                            } else  {
+                                uriNa = Uri.parse("http://www.alfirqotunnajiyah.com/belajar-islam/");
+                                Intent launchBrowser = new Intent(Intent.ACTION_VIEW, uriNa);
+                                startActivity(launchBrowser);
                             }
-                            Intent launchBrowser = new Intent(Intent.ACTION_VIEW, uriNa);
-                            startActivity(launchBrowser);
+
                         }
                     });
 

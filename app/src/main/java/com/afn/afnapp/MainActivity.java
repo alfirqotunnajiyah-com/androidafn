@@ -36,6 +36,8 @@ public class MainActivity extends AppCompatActivity
     private LinearLayout llInstagram;
     private LinearLayout llFacebook;
     private LinearLayout llTwitter;
+    private LinearLayout llTelegram;
+    private LinearLayout llYoutube;
     private LinearLayout llBeranda;
 
     @Override
@@ -67,6 +69,8 @@ public class MainActivity extends AppCompatActivity
         llFacebook = headerView.findViewById(R.id.llFacebook);
         llTwitter = headerView.findViewById(R.id.llTwitter);
         llInstagram = headerView.findViewById(R.id.llInstagram);
+        llYoutube = headerView.findViewById(R.id.llYoutube);
+        llTelegram = headerView.findViewById(R.id.llTelegram);
 
         tampilkanFragment(0);
 
@@ -102,10 +106,28 @@ public class MainActivity extends AppCompatActivity
         llTwitter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent launchBrowser = new Intent(Intent.ACTION_VIEW, Uri.parse(""));
+                Intent launchBrowser = new Intent(Intent.ACTION_VIEW, Uri.parse("https://twitter.com/alfirqotunnjyh"));
                 startActivity(launchBrowser);
             }
         });
+
+        llTelegram.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent launchBrowser = new Intent(Intent.ACTION_VIEW, Uri.parse("https://t.me/al_firqotunnajiyah"));
+                startActivity(launchBrowser);
+            }
+        });
+
+        llYoutube.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent launchBrowser = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.youtube.com/channel/UCB2Q857sapIb-Xuj9r36EnA"));
+                startActivity(launchBrowser);
+            }
+        });
+
+
     }
 
     void setNavigation() {
@@ -197,9 +219,9 @@ public class MainActivity extends AppCompatActivity
             ft.replace(R.id.frameLayout, new FragmentBeranda());
         } else if (isiNa == 1) {
             ft.replace(R.id.frameLayout, new FragmentFeedPostingan());
-        } else {
+        }/* else {
             ft.replace(R.id.frameLayout, new FragmentProfil());
-        }
+        }*/
         // atau ft.add(R.id.your_placeholder, new FooFragment());
         // mulai melakukan hal di atas (jika belum di commit maka proses di atas belum dimulai)
         ft.commit();
