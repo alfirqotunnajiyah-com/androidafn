@@ -6,10 +6,11 @@
     tools:context=".fragment.FragmentFeedPostingan">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:text="InsyaAllah Segera" />
+        android:layout_height="match_parent">
+
+
+    </LinearLayout>
 
 </FrameLayout>

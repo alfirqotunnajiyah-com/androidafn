@@ -219,9 +219,9 @@ public class MainActivity extends AppCompatActivity
             ft.replace(R.id.frameLayout, new FragmentBeranda());
         } else if (isiNa == 1) {
             ft.replace(R.id.frameLayout, new FragmentFeedPostingan());
-        }/* else {
+        } else {
             ft.replace(R.id.frameLayout, new FragmentProfil());
-        }*/
+        }
         // atau ft.add(R.id.your_placeholder, new FooFragment());
         // mulai melakukan hal di atas (jika belum di commit maka proses di atas belum dimulai)
         ft.commit();
