@@ -50,14 +50,16 @@ public class FragmentBeranda extends Fragment {
             "Dzikir Petang",
             "Al-Quran",
             "Arah Kiblat",
-            "Jadwal Sholat"
+            "Jadwal Sholat",
+            "Kalender Hijriah"
     };
     private int[] listGambarFitur = {
             R.drawable.ic_dzikir_pagi,
             R.drawable.ic_dzikir_petang,
             R.drawable.ic_quran,
-            R.drawable.kompas_logo,
-            R.drawable.mosque
+            R.drawable.ic_compass,
+            R.drawable.ic_mosque,
+            R.drawable.ic_calendar
     };
 
     @Override
@@ -162,7 +164,7 @@ public class FragmentBeranda extends Fragment {
                                 uriNa = Uri.parse("https://www.alfirqotunnajiyah.com/fitur-gratis/");
                                 Intent launchBrowser = new Intent(Intent.ACTION_VIEW, uriNa);
                                 startActivity(launchBrowser);
-                            } else  {
+                            } else {
                                 uriNa = Uri.parse("http://www.alfirqotunnajiyah.com/belajar-islam/");
                                 Intent launchBrowser = new Intent(Intent.ACTION_VIEW, uriNa);
                                 startActivity(launchBrowser);

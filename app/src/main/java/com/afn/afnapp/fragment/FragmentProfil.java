@@ -43,7 +43,6 @@ public class FragmentProfil extends Fragment {
         LocalDate todayIso = new LocalDate(2019, 8, 2, iso);
         LocalDate todayHijri = new LocalDate(todayIso.toDateTimeAtCurrentTime(),
                 hijri);
-        Toast.makeText(getActivity(), todayHijri + "", Toast.LENGTH_SHORT).show();
         return view;
     }
 
