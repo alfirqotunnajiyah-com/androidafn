@@ -1,6 +1,7 @@
 package com.afn.afnapp.ui.jadwalsholat;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
@@ -117,16 +118,23 @@ public class JadwalSholat extends AppCompatActivity {
 
                 //Get date system today
                 Calendar calendar = Calendar.getInstance();
-                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                @SuppressLint("SimpleDateFormat") SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
                 String strdate = simpleDateFormat.format(calendar.getTime());
                 Log.d("Tgl",strdate);
 
                 mViewModel.JadwalSholatData(kode_kota, strdate).observe(JadwalSholat.this, new Observer<ResponseJadwalSholat>() {
+                    @SuppressLint("SetTextI18n")
                     @Override
                     public void onChanged(@Nullable ResponseJadwalSholat responseJadwalSholat) {
                         Log.d("Jadwal Sholat", responseJadwalSholat.getJadwal().toString());
 
-                        tgl.setText(responseJadwalSholat.getJadwal().getData().getTanggal());
+                        String[] ahad = responseJadwalSholat.getJadwal().getData().getTanggal().split(",");
+                        if (ahad[0].equals("Minggu")){
+                            tgl.setText("Ahad,"+ahad[1]);
+                        } else {
+                            tgl.setText(ahad[0]+","+ahad[1]);
+                        }
+
                         subuh.setText(responseJadwalSholat.getJadwal().getData().getSubuh());
                         terbit.setText(responseJadwalSholat.getJadwal().getData().getTerbit());
                         dhuha.setText(responseJadwalSholat.getJadwal().getData().getDhuha());
