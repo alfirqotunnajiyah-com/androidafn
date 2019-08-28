@@ -13,6 +13,7 @@ import android.widget.AdapterView;
 import com.afn.afnapp.R;
 import com.afn.afnapp.activity.AlQuranFeature.AlQuranActivity;
 import com.afn.afnapp.activity.ArahKiblat;
+import com.afn.afnapp.activity.CalendarActivity;
 import com.afn.afnapp.activity.DzikirPagiDanPetangActivity;
 import com.afn.afnapp.adapter.FiturAdapter;
 import com.afn.afnapp.model.FiturModel;
@@ -108,6 +109,9 @@ public class FragmentBeranda extends Fragment {
                     startActivity(i);
                 } else if (ff.getFiturNama().equalsIgnoreCase("Jadwal Sholat")) {
                     Intent i = new Intent(getActivity(), JadwalSholat.class);
+                    startActivity(i);
+                } else if (ff.getFiturNama().equalsIgnoreCase("Kalender Hijriah")) {
+                    Intent i = new Intent(getActivity(), CalendarActivity.class);
                     startActivity(i);
                 }
             }
