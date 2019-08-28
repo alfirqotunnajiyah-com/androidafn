@@ -1,33 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/gradient_splash_screen">
+
     <TextView
-        android:layout_marginBottom="50dp"
-        android:textColor="@color/white"
-        android:layout_above="@id/logo"
-        android:gravity="center"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_above="@id/logo"
+        android:layout_marginBottom="50dp"
+        android:fontFamily="@font/scheherazade"
+        android:gravity="center"
         android:text="اهلاوسهلا"
+        android:textColor="@color/white"
         android:textSize="35sp"
-        android:fontFamily="@font/scheherazade"/>
+        android:visibility="gone" />
+
     <ImageView
         android:id="@+id/logo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/logo_afn"
-        android:layout_centerInParent="true"/>
-    <com.github.ybq.android.spinkit.SpinKitView
-        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_centerInParent="true"
+        android:src="@drawable/logo_afn" />
+
+    <com.github.ybq.android.spinkit.SpinKitView xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/spin_kit"
-        android:layout_below="@id/logo"
         style="@style/SpinKitView.Wave"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@id/logo"
+        android:layout_centerInParent="true"
         android:layout_gravity="center"
-        app:SpinKit_Color="@color/white"
-        android:layout_centerInParent="true"/>
+        android:visibility="gone"
+        app:SpinKit_Color="@color/white" />
 </RelativeLayout>

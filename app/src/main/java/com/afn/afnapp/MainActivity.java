@@ -5,10 +5,9 @@ import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentTransaction;
-import android.view.View;
-import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -16,6 +15,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.LinearLayout;
 
 import com.afn.afnapp.fragment.FragmentBeranda;
@@ -219,9 +219,9 @@ public class MainActivity extends AppCompatActivity
             ft.replace(R.id.frameLayout, new FragmentBeranda());
         } else if (isiNa == 1) {
             ft.replace(R.id.frameLayout, new FragmentFeedPostingan());
-        }/* else {
+        } else {
             ft.replace(R.id.frameLayout, new FragmentProfil());
-        }*/
+        }
         // atau ft.add(R.id.your_placeholder, new FooFragment());
         // mulai melakukan hal di atas (jika belum di commit maka proses di atas belum dimulai)
         ft.commit();
