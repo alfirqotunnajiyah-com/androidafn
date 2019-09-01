@@ -10,6 +10,7 @@ import com.afn.afnapp.widget.CalendarView;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashSet;
 
 public class CalendarActivity extends AppCompatActivity {
 
@@ -18,8 +19,10 @@ public class CalendarActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calendar);
 
+        HashSet<Date> events = new HashSet<>();
+
         CalendarView cv = ((CalendarView)findViewById(R.id.calendar_view));
-        cv.updateCalendar();
+        cv.updateCalendar(events);
 
         cv.setEventHandler(new CalendarView.EventHandler()
         {

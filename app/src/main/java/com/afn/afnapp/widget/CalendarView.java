@@ -64,7 +64,9 @@ public class CalendarView extends LinearLayout
     private ArrayList<String> textPuasa = new ArrayList<String>();
     private ArrayList<Integer> colorPuasa = new ArrayList<Integer>();
 
-    private String tmp = "";
+    private boolean puasa1, puasa2, puasa3, puasa4, puasa5;
+
+    private String tmp;
 
     private int iMonth = currentDate.get(Calendar.MONTH);
 
@@ -139,10 +141,6 @@ public class CalendarView extends LinearLayout
             @Override
             public void onClick(View v)
             {
-                //reset puasa
-                textPuasa.clear();
-                colorPuasa.clear();
-
                 currentDate.add(Calendar.MONTH, 1);
                 iMonth++;
                 updateCalendar();
@@ -156,10 +154,6 @@ public class CalendarView extends LinearLayout
             public void onClick(View v)
             {
                 if (iMonth >= 1) {
-                    //reset puasa
-                    textPuasa.clear();
-                    colorPuasa.clear();
-
                     currentDate.add(Calendar.MONTH, -1);
                     iMonth--;
                     updateCalendar();
@@ -199,6 +193,10 @@ public class CalendarView extends LinearLayout
     {
         //reset title
         tmp = "";
+
+        //reset puasa
+        textPuasa.clear();
+        colorPuasa.clear();
 
         ArrayList<Date> cells = new ArrayList<>();
         Calendar calendar = (Calendar)currentDate.clone();
@@ -315,7 +313,7 @@ public class CalendarView extends LinearLayout
                 }
             }
 
-            adapter.notifyDataSetChanged();
+//            adapter.notifyDataSetChanged();
 
             if (month != iMonth % 12)
             {
@@ -332,14 +330,12 @@ public class CalendarView extends LinearLayout
 
             if (date.getDay() == 0) ((TextView)view).setTextColor(getResources().getColor(R.color.ahad));
 
-            //todo betulin bulan hijriahnya
             if (month == iMonth % 12) {
-                if (!tmp.contains(sMonth[todayHijri.getMonthOfYear()-1]))
+                if (!tmp.contains(sMonth[todayHijri.getMonthOfYear()-1])) {
+                    if (!tmp.isEmpty())
+                        tmp = tmp.concat(" -\n");
                     tmp = tmp.concat(sMonth[todayHijri.getMonthOfYear()-1] + " " + todayHijri.getYear());
-                if (!tmp.contains("-"))
-                    tmp = tmp.concat(" -\n");
-                if (!tmp.contains(sMonth[todayHijri.getMonthOfYear()-1]))
-                    tmp = tmp.concat(sMonth[todayHijri.getMonthOfYear()-1] + " " + todayHijri.getYear());
+                }
             }
             txtDate.setText(tmp);
 

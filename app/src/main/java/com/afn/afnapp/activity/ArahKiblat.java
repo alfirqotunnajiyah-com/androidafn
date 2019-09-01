@@ -1,14 +1,16 @@
 package com.afn.afnapp.activity;
 
+import android.annotation.SuppressLint;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.animation.Animation;
 import android.view.animation.RotateAnimation;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.afn.afnapp.R;
 
@@ -16,6 +18,7 @@ public class ArahKiblat extends AppCompatActivity implements SensorEventListener
 
     // define the display assembly compass picture
     private ImageView image;
+    private TextView derajat;
 
     // record the compass picture angle turned
     private float currentDegree = 0f;
@@ -30,6 +33,7 @@ public class ArahKiblat extends AppCompatActivity implements SensorEventListener
 
         // our compass image
         image = (ImageView) findViewById(R.id.kompas);
+        derajat = (TextView) findViewById(R.id.tvDerajat);
 
         // initialize your android device sensor capabilities
         mSensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
@@ -53,11 +57,14 @@ public class ArahKiblat extends AppCompatActivity implements SensorEventListener
         mSensorManager.unregisterListener(this);
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onSensorChanged(SensorEvent event) {
 
         // get the angle around the z-axis rotated
         float degree = Math.round(event.values[0]);
+
+        derajat.setText("Derajat " + Float.toString(degree) + "°");
 
         // create a rotation animation (reverse turn degree degrees)
         RotateAnimation ra = new RotateAnimation(
