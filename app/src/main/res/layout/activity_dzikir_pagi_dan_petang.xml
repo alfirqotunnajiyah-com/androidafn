@@ -6,22 +6,24 @@
     android:layout_height="match_parent"
     android:background="@color/white"
     tools:context=".activity.DzikirPagiDanPetangActivity">
+
     <android.support.v4.view.ViewPager
         android:id="@+id/vPager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@id/ll">
-    </android.support.v4.view.ViewPager>
+        android:layout_above="@id/ll"></android.support.v4.view.ViewPager>
+
     <LinearLayout
-        android:visibility="gone"
         android:id="@+id/ll"
-        android:gravity="left"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerInParent="true"
+        android:background="@color/colorPrimary"
+        android:gravity="left"
         android:padding="10dp"
-        android:background="@color/colorPrimary">
+        android:visibility="gone">
+
         <com.tbuonomo.viewpagerdotsindicator.SpringDotsIndicator
             android:id="@+id/spring_dots_indicator"
             android:layout_width="wrap_content"

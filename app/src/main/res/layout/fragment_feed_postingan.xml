@@ -6,16 +6,17 @@
     tools:context=".fragment.FragmentFeedPostingan">
 
     <WebView
-        android:visibility="gone"
         android:id="@+id/web_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-    <GridView
-        android:padding="3dp"
-        android:horizontalSpacing="3dp"
-        android:verticalSpacing="3dp"
-        android:numColumns="2"
+        android:layout_height="match_parent"
+        android:visibility="gone" />
+
+    <com.github.paolorotolo.expandableheightlistview.ExpandableHeightGridView
         android:id="@+id/lvFeed"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"></GridView>
+        android:layout_height="match_parent"
+        android:horizontalSpacing="3dp"
+        android:numColumns="2"
+        android:padding="3dp"
+        android:verticalSpacing="3dp"></com.github.paolorotolo.expandableheightlistview.ExpandableHeightGridView>
 </FrameLayout>

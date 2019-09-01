@@ -9,10 +9,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.TextView;
 
 import com.afn.afnapp.R;
 import com.afn.afnapp.activity.AlQuranFeature.AlQuranActivity;
 import com.afn.afnapp.activity.ArahKiblat;
+import com.afn.afnapp.activity.CalendarActivity;
 import com.afn.afnapp.activity.DzikirPagiDanPetangActivity;
 import com.afn.afnapp.adapter.FiturAdapter;
 import com.afn.afnapp.model.FiturModel;
@@ -31,6 +33,8 @@ import java.util.List;
  */
 public class FragmentBeranda extends Fragment {
 
+    //muslim.or.id
+    private String haditsToday = "“Barangsiapa yang menempuh jalan untuk menuntut ilmu, Allah Ta’ala akan mudahkan baginya jalan menuju surga.” (HR. Muslim no. 2699)";
 
     public FragmentBeranda() {
         // Required empty public constructor
@@ -44,6 +48,7 @@ public class FragmentBeranda extends Fragment {
 
     private List<FiturModel> listFitur = new ArrayList<>();
     private FiturAdapter fiturAdapter;
+    private TextView tvHaditsToday;
 
     private String[] listNamaFitur = {
             "Dzikir Pagi",
@@ -80,11 +85,14 @@ public class FragmentBeranda extends Fragment {
     }
 
     void layoutNa() {
+        tvHaditsToday = view.findViewById(R.id.tvHaditsToday);
         slider = view.findViewById(R.id.slider);
         pagerIndicator = view.findViewById(R.id.custom_indicator);
         gvFitur = view.findViewById(R.id.gvFitur);
 
         gvFitur.setExpanded(true);
+        tvHaditsToday.setText(haditsToday);
+        tvHaditsToday.setSelected(true);
     }
 
     void setKLik() {
@@ -108,6 +116,9 @@ public class FragmentBeranda extends Fragment {
                     startActivity(i);
                 } else if (ff.getFiturNama().equalsIgnoreCase("Jadwal Sholat")) {
                     Intent i = new Intent(getActivity(), JadwalSholat.class);
+                    startActivity(i);
+                } else if (ff.getFiturNama().equalsIgnoreCase("Kalender Hijriah")) {
+                    Intent i = new Intent(getActivity(), CalendarActivity.class);
                     startActivity(i);
                 }
             }

@@ -37,12 +37,12 @@ public class FragmentProfil extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_profil, container, false);
-        Chronology iso = ISOChronology.getInstance(DateTimeZone.forTimeZone(TimeZone.getTimeZone("Asia/Jakarta")));
+        /*Chronology iso = ISOChronology.getInstance(DateTimeZone.forTimeZone(TimeZone.getTimeZone("Asia/Jakarta")));
         Chronology hijri = IslamicChronology.getInstance(DateTimeZone.forTimeZone(TimeZone.getTimeZone("Asia/Makkah")), IslamicChronology.LEAP_YEAR_15_BASED);
 
         LocalDate todayIso = new LocalDate(2019, 8, 2, iso);
         LocalDate todayHijri = new LocalDate(todayIso.toDateTimeAtCurrentTime(),
-                hijri);
+                hijri);*/
         return view;
     }
 

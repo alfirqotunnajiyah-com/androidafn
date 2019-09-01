@@ -9,25 +9,25 @@
     <android.support.design.widget.AppBarLayout
         android:id="@+id/appbar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="?attr/actionBarSize"
+        android:gravity="center"
         android:theme="@style/AppTheme.AppBarOverlay">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center_vertical"
             android:orientation="horizontal">
+
             <ImageView
-                android:visibility="gone"
                 android:id="@+id/ivLeft"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.1"
                 android:src="@drawable/ic_keyboard_arrow_left"
-                android:tint="@color/white" />
+                android:tint="@color/white"
+                android:visibility="gone" />
             <!--android:layout_height="?attr/actionBarSize"-->
             <TextView
-                android:singleLine="true"
-                android:padding="10dp"
                 android:id="@+id/tvTitle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -36,26 +36,29 @@
                 android:background="?attr/colorPrimary"
                 android:ellipsize="marquee"
                 android:gravity="left|center_vertical"
+                android:padding="10dp"
+                android:singleLine="true"
                 android:text="Arah Kiblat"
                 android:textColor="@color/white"
                 android:textSize="17sp" />
+
             <ImageView
-                android:visibility="gone"
                 android:id="@+id/ivRight"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.1"
                 android:src="@drawable/ic_keyboard_arrow_right"
-                android:tint="@color/white" />
+                android:tint="@color/white"
+                android:visibility="gone" />
         </LinearLayout>
     </android.support.design.widget.AppBarLayout>
 
     <ImageView
         android:id="@+id/kompas"
-        android:padding="30dp"
-        android:layout_centerInParent="true"
-        android:src="@drawable/kompas_new"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:padding="30dp"
+        android:src="@drawable/kompas_new" />
 
 </RelativeLayout>

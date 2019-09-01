@@ -1,358 +1,393 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
-<LinearLayout
-    android:id="@+id/jadwalsholat"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".ui.jadwalsholat.JadwalSholat">
 
-    <android.support.v7.widget.CardView
+    <LinearLayout
+        android:id="@+id/jadwalsholat"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Waktu Sholat"
-            android:background="@color/colorPrimary"
-            android:textSize="20sp"
-            android:padding="10dp"
-            android:textColor="@color/white"
-            android:fontFamily="sans-serif-light"/>
-    </android.support.v7.widget.CardView>
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".ui.jadwalsholat.JadwalSholat">
 
-    <android.support.v7.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp">
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/colorPrimary"
+            android:gravity="center_vertical">
+
             <TextView
-                android:id="@+id/txtTanggal"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Tanggal"
-                android:textSize="20sp"
+                android:fontFamily="sans-serif-light"
                 android:padding="10dp"
-                android:layout_gravity="end"
-                android:layout_marginRight="10dp"
-                android:textColor="@color/black"
-                android:layout_marginTop="5dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginBottom="10dp"
-                android:fontFamily="sans-serif-light"/>
+                android:text="Waktu Sholat"
+                android:textColor="@color/white"
+                android:textSize="20sp" />
+        </LinearLayout>
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
-                <android.support.v7.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:cardBackgroundColor="@color/colorAccent"
-                    android:layout_weight="1">
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Subuh"
-                            android:textSize="20sp"
-                            android:textColor="@color/white"
-                            android:layout_marginTop="20dp"
-                            android:textAlignment="center"
-                            android:fontFamily="sans-serif-light"/>
-                        <TextView
-                            android:id="@+id/txtSubuh"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Subuh"
-                            android:textStyle="bold"
-                            android:layout_marginTop="5dp"
-                            android:textSize="20sp"
-                            android:layout_marginBottom="20dp"
-                            android:textAlignment="center"
-                            android:textColor="@color/white"
-                            android:fontFamily="monospace"/>
-                    </LinearLayout>
-                </android.support.v7.widget.CardView>
-                <android.support.v7.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:cardBackgroundColor="@color/colorPrimary"
-                    android:layout_weight="1">
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Terbit"
-                            android:textSize="20sp"
-                            android:textColor="@color/white"
-                            android:layout_marginTop="20dp"
-                            android:textAlignment="center"
-                            android:fontFamily="sans-serif-light"/>
-                        <TextView
-                            android:id="@+id/txtTerbit"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Terbit"
-                            android:textStyle="bold"
-                            android:layout_marginTop="5dp"
-                            android:textSize="20sp"
-                            android:layout_marginBottom="20dp"
-                            android:textAlignment="center"
-                            android:textColor="@color/white"
-                            android:fontFamily="monospace"/>
-                    </LinearLayout>
-                </android.support.v7.widget.CardView>
-            </LinearLayout>
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-                <android.support.v7.widget.CardView
-                    android:layout_width="match_parent"
+                <TextView
+                    android:id="@+id/txtTanggal"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:cardBackgroundColor="@color/colorPrimary"
-                    android:layout_weight="1">
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Dhuha"
-                            android:textSize="20sp"
-                            android:textColor="@color/white"
-                            android:layout_marginTop="20dp"
-                            android:textAlignment="center"
-                            android:fontFamily="sans-serif-light"/>
-                        <TextView
-                            android:id="@+id/txtDhuha"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Dhuha"
-                            android:textStyle="bold"
-                            android:layout_marginTop="5dp"
-                            android:textSize="20sp"
-                            android:layout_marginBottom="20dp"
-                            android:textAlignment="center"
-                            android:textColor="@color/white"
-                            android:fontFamily="monospace"/>
-                    </LinearLayout>
-                </android.support.v7.widget.CardView>
-                <android.support.v7.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:cardBackgroundColor="@color/colorAccent"
-                    android:layout_weight="1">
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Dzuhur"
-                            android:textSize="20sp"
-                            android:textColor="@color/white"
-                            android:layout_marginTop="20dp"
-                            android:textAlignment="center"
-                            android:fontFamily="sans-serif-light"/>
-                        <TextView
-                            android:id="@+id/txtDzuhur"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Dzuhur"
-                            android:textStyle="bold"
-                            android:layout_marginTop="5dp"
-                            android:textSize="20sp"
-                            android:layout_marginBottom="20dp"
-                            android:textAlignment="center"
-                            android:textColor="@color/white"
-                            android:fontFamily="monospace"/>
-                    </LinearLayout>
-                </android.support.v7.widget.CardView>
-            </LinearLayout>
+                    android:layout_gravity="end"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:fontFamily="sans-serif-light"
+                    android:padding="10dp"
+                    android:text="Kamis, 15 Agustus 2019"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-                <android.support.v7.widget.CardView
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:cardBackgroundColor="@color/colorAccent"
-                    android:layout_weight="1">
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Ashar"
-                            android:textSize="20sp"
-                            android:textColor="@color/white"
-                            android:layout_marginTop="20dp"
-                            android:textAlignment="center"
-                            android:fontFamily="sans-serif-light"/>
-                        <TextView
-                            android:id="@+id/txtAshar"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Ashar"
-                            android:textStyle="bold"
-                            android:layout_marginTop="5dp"
-                            android:textSize="20sp"
-                            android:layout_marginBottom="20dp"
-                            android:textAlignment="center"
-                            android:textColor="@color/white"
-                            android:fontFamily="monospace"/>
-                    </LinearLayout>
-                </android.support.v7.widget.CardView>
-                <android.support.v7.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:cardBackgroundColor="@color/colorPrimary"
-                    android:layout_weight="1">
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Maghrib"
-                            android:textSize="20sp"
-                            android:textColor="@color/white"
-                            android:layout_marginTop="20dp"
-                            android:textAlignment="center"
-                            android:fontFamily="sans-serif-light"/>
-                        <TextView
-                            android:id="@+id/txtMaghrib"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Maghrib"
-                            android:textStyle="bold"
-                            android:layout_marginTop="5dp"
-                            android:textSize="20sp"
-                            android:layout_marginBottom="20dp"
-                            android:textAlignment="center"
-                            android:textColor="@color/white"
-                            android:fontFamily="monospace"/>
-                    </LinearLayout>
-                </android.support.v7.widget.CardView>
-            </LinearLayout>
+                    android:layout_height="match_parent">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-                <android.support.v7.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:cardBackgroundColor="@color/colorPrimary"
-                    android:layout_weight="1">
-                    <LinearLayout
+                    <android.support.v7.widget.CardView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical">
-                        <TextView
+                        android:layout_weight="1"
+                        app:cardBackgroundColor="@color/colorAccent">
+
+                        <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Isya"
-                            android:textSize="20sp"
-                            android:textColor="@color/white"
-                            android:layout_marginTop="20dp"
-                            android:textAlignment="center"
-                            android:fontFamily="sans-serif-light"/>
-                        <TextView
-                            android:id="@+id/txtIsya"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="20dp"
+                                android:fontFamily="sans-serif-light"
+                                android:text="Subuh"
+                                android:textAlignment="center"
+                                android:textColor="@color/white"
+                                android:textSize="20sp" />
+
+                            <TextView
+                                android:id="@+id/txtSubuh"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="5dp"
+                                android:layout_marginBottom="20dp"
+                                android:fontFamily="monospace"
+                                android:text="04.36"
+                                android:textAlignment="center"
+                                android:textColor="@color/white"
+                                android:textSize="20sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+                    </android.support.v7.widget.CardView>
+
+                    <android.support.v7.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        app:cardBackgroundColor="@color/colorPrimary">
+
+                        <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Isya"
-                            android:textStyle="bold"
-                            android:layout_marginTop="5dp"
-                            android:textSize="20sp"
-                            android:layout_marginBottom="20dp"
-                            android:textAlignment="center"
-                            android:textColor="@color/white"
-                            android:fontFamily="monospace"/>
-                    </LinearLayout>
-                </android.support.v7.widget.CardView>
-                <android.support.v7.widget.CardView
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="20dp"
+                                android:fontFamily="sans-serif-light"
+                                android:text="Terbit"
+                                android:textAlignment="center"
+                                android:textColor="@color/white"
+                                android:textSize="20sp" />
+
+                            <TextView
+                                android:id="@+id/txtTerbit"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="5dp"
+                                android:layout_marginBottom="20dp"
+                                android:fontFamily="monospace"
+                                android:text="05.56"
+                                android:textAlignment="center"
+                                android:textColor="@color/white"
+                                android:textSize="20sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+                    </android.support.v7.widget.CardView>
+                </LinearLayout>
+
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    app:cardBackgroundColor="@color/colorAccent"
-                    android:layout_weight="1">
-                    <LinearLayout
+                    android:layout_height="match_parent">
+
+                    <android.support.v7.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        app:cardBackgroundColor="@color/colorPrimary">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="20dp"
+                                android:fontFamily="sans-serif-light"
+                                android:text="Dhuha"
+                                android:textAlignment="center"
+                                android:textColor="@color/white"
+                                android:textSize="20sp" />
+
+                            <TextView
+                                android:id="@+id/txtDhuha"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="5dp"
+                                android:layout_marginBottom="20dp"
+                                android:fontFamily="monospace"
+                                android:text="06.20"
+                                android:textAlignment="center"
+                                android:textColor="@color/white"
+                                android:textSize="20sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+                    </android.support.v7.widget.CardView>
+
+                    <android.support.v7.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        app:cardBackgroundColor="@color/colorAccent">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="20dp"
+                                android:fontFamily="sans-serif-light"
+                                android:text="Dzuhur"
+                                android:textAlignment="center"
+                                android:textColor="@color/white"
+                                android:textSize="20sp" />
+
+                            <TextView
+                                android:id="@+id/txtDzuhur"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="5dp"
+                                android:layout_marginBottom="20dp"
+                                android:fontFamily="monospace"
+                                android:text="11.52"
+                                android:textAlignment="center"
+                                android:textColor="@color/white"
+                                android:textSize="20sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+                    </android.support.v7.widget.CardView>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <android.support.v7.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        app:cardBackgroundColor="@color/colorAccent">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="20dp"
+                                android:fontFamily="sans-serif-light"
+                                android:text="Ashar"
+                                android:textAlignment="center"
+                                android:textColor="@color/white"
+                                android:textSize="20sp" />
+
+                            <TextView
+                                android:id="@+id/txtAshar"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="5dp"
+                                android:layout_marginBottom="20dp"
+                                android:fontFamily="monospace"
+                                android:text="15.13"
+                                android:textAlignment="center"
+                                android:textColor="@color/white"
+                                android:textSize="20sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+                    </android.support.v7.widget.CardView>
+
+                    <android.support.v7.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        app:cardBackgroundColor="@color/colorPrimary">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="20dp"
+                                android:fontFamily="sans-serif-light"
+                                android:text="Maghrib"
+                                android:textAlignment="center"
+                                android:textColor="@color/white"
+                                android:textSize="20sp" />
+
+                            <TextView
+                                android:id="@+id/txtMaghrib"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="5dp"
+                                android:layout_marginBottom="20dp"
+                                android:fontFamily="monospace"
+                                android:text="17.48"
+                                android:textAlignment="center"
+                                android:textColor="@color/white"
+                                android:textSize="20sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+                    </android.support.v7.widget.CardView>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <android.support.v7.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        app:cardBackgroundColor="@color/colorPrimary">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="20dp"
+                                android:fontFamily="sans-serif-light"
+                                android:text="Isya"
+                                android:textAlignment="center"
+                                android:textColor="@color/white"
+                                android:textSize="20sp" />
+
+                            <TextView
+                                android:id="@+id/txtIsya"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="5dp"
+                                android:layout_marginBottom="20dp"
+                                android:fontFamily="monospace"
+                                android:text="18.59"
+                                android:textAlignment="center"
+                                android:textColor="@color/white"
+                                android:textSize="20sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+                    </android.support.v7.widget.CardView>
+
+                    <android.support.v7.widget.CardView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:orientation="vertical">
-                        <!--<TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Maghrib"
-                            android:textSize="20sp"
-                            android:textColor="@color/white"
-                            android:layout_marginTop="10dp"
-                            android:textAlignment="center"
-                            android:fontFamily="sans-serif-light"/>
-                        <TextView
-                            android:id="@+id/txtMaghrib"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Maghrib"
-                            android:textStyle="bold"
-                            android:layout_marginTop="5dp"
-                            android:textSize="20sp"
-                            android:layout_marginBottom="10dp"
-                            android:textAlignment="center"
-                            android:textColor="@color/white"
-                            android:fontFamily="monospace"/>-->
-                    </LinearLayout>
-                </android.support.v7.widget.CardView>
-            </LinearLayout>
-            <TextView
-                android:id="@+id/txtLokasi"
-                android:textStyle="bold"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Lokasi"
-                android:textAlignment="center"
-                android:layout_marginRight="10dp"
-                android:textSize="20sp"
-                android:padding="10dp"
-                android:textColor="@color/black"
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="10dp"
-                android:fontFamily="sans-serif-light"/>
+                        android:layout_weight="1"
+                        app:cardBackgroundColor="@color/colorAccent">
 
-            <TextView
-                android:id="@+id/txtLokasiLengkap"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Alamat Lengkap"
-                android:textAlignment="center"
-                android:layout_marginRight="10dp"
-                android:textSize="15sp"
-                android:padding="10dp"
-                android:textColor="@color/black"
-                android:layout_marginLeft="10dp"
-                android:layout_marginBottom="15dp"
-                android:fontFamily="sans-serif-light"/>
-        </LinearLayout>
-    </android.support.v7.widget.CardView>
-</LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical">
+                            <!--<TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Maghrib"
+                                android:textSize="20sp"
+                                android:textColor="@color/white"
+                                android:layout_marginTop="10dp"
+                                android:textAlignment="center"
+                                android:fontFamily="sans-serif-light"/>
+                            <TextView
+                                android:id="@+id/txtMaghrib"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Maghrib"
+                                android:textStyle="bold"
+                                android:layout_marginTop="5dp"
+                                android:textSize="20sp"
+                                android:layout_marginBottom="10dp"
+                                android:textAlignment="center"
+                                android:textColor="@color/white"
+                                android:fontFamily="monospace"/>-->
+                        </LinearLayout>
+                    </android.support.v7.widget.CardView>
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/txtLokasi"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="10dp"
+                    android:fontFamily="sans-serif-light"
+                    android:padding="10dp"
+                    android:text="Lokasi"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/txtLokasiLengkap"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginBottom="15dp"
+                    android:fontFamily="sans-serif-light"
+                    android:padding="10dp"
+                    android:text="Tasikmalaya"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    android:textSize="15sp" />
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+    </LinearLayout>
 </ScrollView>

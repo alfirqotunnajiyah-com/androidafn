@@ -30,10 +30,18 @@ public class FragmentFeedPostingan extends Fragment {
 
     private WebView web_view;
     private View view;
-    private GridView lvFeed;
+    private com.github.paolorotolo.expandableheightlistview.ExpandableHeightGridView lvFeed;
 
     private FeedAdapter adapter;
     private List<FeedModel> listNa = new ArrayList<>();
+
+    private int isi[] = {
+            R.drawable.afn1,
+            R.drawable.afn2,
+            R.drawable.afn3,
+            R.drawable.afn4,
+            R.drawable.afn5,
+    };
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -59,9 +67,9 @@ public class FragmentFeedPostingan extends Fragment {
     }
 
     void pullData() {
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 5; i++) {
             FeedModel mm = new FeedModel();
-            mm.setIdResource(R.drawable.img_nav_header);
+            mm.setIdResource(isi[i]);
             listNa.add(mm);
         }
 
