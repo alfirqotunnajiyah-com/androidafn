@@ -31,4 +31,7 @@
     <color name="dilarang">#E4C478</color>
     <color name="syawwal">#E1B49B</color>
     <color name="ayyamul_bidh">#CDCDCD</color>
+
+    <color name="light_blue">#00A9F4</color>
+    <color name="pink">#FF005F</color>
 </resources>

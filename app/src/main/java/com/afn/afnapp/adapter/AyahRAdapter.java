@@ -126,7 +126,7 @@ public class AyahRAdapter extends RecyclerView.Adapter<AyahRAdapter.MyViewHolder
                 holder.btnPause.setVisibility(View.GONE);
                 fm.setIsPlaying(0);
                 Log.d("masukSini?","Ya");
-                IsiDariSurahActivity.jump(position+1,mp);
+                //IsiDariSurahActivity.jump(position+1,mp);
             }
         });
 

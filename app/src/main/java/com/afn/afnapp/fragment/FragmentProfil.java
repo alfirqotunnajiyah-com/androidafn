@@ -11,15 +11,6 @@ import android.widget.Toast;
 
 import com.afn.afnapp.R;
 
-import org.joda.time.Chronology;
-import org.joda.time.DateTimeZone;
-import org.joda.time.LocalDate;
-import org.joda.time.chrono.ISOChronology;
-import org.joda.time.chrono.IslamicChronology;
-
-import java.net.IDN;
-import java.util.TimeZone;
-
 /**
  * A simple {@link Fragment} subclass.
  */

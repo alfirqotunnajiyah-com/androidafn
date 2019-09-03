@@ -9,15 +9,16 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
-        android:usesCleartextTraffic="true"
         android:allowBackup="true"
         android:hardwareAccelerated="true"
         android:icon="@drawable/ic_logo_rect"
         android:label="@string/app_name"
         android:roundIcon="@drawable/ic_logo_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".activity.CalendarActivity"></activity>
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true">
+        <activity android:name=".activity.JadwalKajianFeature.JadwalKajianMainActivity"></activity>
+        <activity android:name=".activity.CalendarActivity" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"

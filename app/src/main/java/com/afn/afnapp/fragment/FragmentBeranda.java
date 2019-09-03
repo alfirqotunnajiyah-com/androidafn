@@ -16,6 +16,7 @@ import com.afn.afnapp.activity.AlQuranFeature.AlQuranActivity;
 import com.afn.afnapp.activity.ArahKiblat;
 import com.afn.afnapp.activity.CalendarActivity;
 import com.afn.afnapp.activity.DzikirPagiDanPetangActivity;
+import com.afn.afnapp.activity.JadwalKajianFeature.JadwalKajianMainActivity;
 import com.afn.afnapp.adapter.FiturAdapter;
 import com.afn.afnapp.model.FiturModel;
 import com.afn.afnapp.ui.jadwalsholat.JadwalSholat;
@@ -56,7 +57,8 @@ public class FragmentBeranda extends Fragment {
             "Al-Quran",
             "Arah Kiblat",
             "Jadwal Sholat",
-            "Kalender Hijriah"
+            "Kalender Hijriah",
+            "Jadwal Kajian",
     };
     private int[] listGambarFitur = {
             R.drawable.ic_dzikir_pagi,
@@ -64,7 +66,8 @@ public class FragmentBeranda extends Fragment {
             R.drawable.ic_quran,
             R.drawable.ic_compass,
             R.drawable.ic_mosque,
-            R.drawable.ic_calendar
+            R.drawable.ic_calendar,
+            R.drawable.ic_mosque,
     };
 
     @Override
@@ -119,6 +122,9 @@ public class FragmentBeranda extends Fragment {
                     startActivity(i);
                 } else if (ff.getFiturNama().equalsIgnoreCase("Kalender Hijriah")) {
                     Intent i = new Intent(getActivity(), CalendarActivity.class);
+                    startActivity(i);
+                }else if (ff.getFiturNama().equalsIgnoreCase("Jadwal Kajian")) {
+                    Intent i = new Intent(getActivity(), JadwalKajianMainActivity.class);
                     startActivity(i);
                 }
             }
