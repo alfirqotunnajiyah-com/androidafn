@@ -17,11 +17,11 @@ import android.widget.TextView;
 
 import com.afn.afnapp.R;
 
-/*import org.joda.time.Chronology;
+import org.joda.time.Chronology;
 import org.joda.time.DateTimeZone;
 import org.joda.time.LocalDate;
 import org.joda.time.chrono.ISOChronology;
-import org.joda.time.chrono.IslamicChronology;*/
+import org.joda.time.chrono.IslamicChronology;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -57,8 +57,8 @@ public class CalendarView extends LinearLayout
     private ListView listView;
     private ListAdapter adapter;
 
-    //Chronology iso = ISOChronology.getInstanceUTC();
-    //Chronology hijri = IslamicChronology.getInstance(DateTimeZone.getDefault(), IslamicChronology.LEAP_YEAR_16_BASED);
+    Chronology iso = ISOChronology.getInstanceUTC();
+    Chronology hijri = IslamicChronology.getInstance(DateTimeZone.getDefault(), IslamicChronology.LEAP_YEAR_16_BASED);
 
     private String[] sMonth = {"Muharram", "Safar", "Rabiul awal", "Rabiul akhir", "Jumadil awal", "Jumadil akhir", "Rajab", "Sya'ban", "Ramadhan", "Syawal", "Dzulkaidah", "Dzulhijjah"};
     private ArrayList<String> textPuasa = new ArrayList<String>();
@@ -274,7 +274,7 @@ public class CalendarView extends LinearLayout
             ((TextView)view).setText("");
 
             // set text
-            /*LocalDate todayIso = new LocalDate(LocalDate.fromDateFields(date), iso);
+            LocalDate todayIso = new LocalDate(LocalDate.fromDateFields(date), iso);
             LocalDate todayHijri = new LocalDate(todayIso.toDateTimeAtStartOfDay(), hijri);
             ((TextView)view).setText(String.valueOf(todayHijri.getDayOfMonth()));
 
@@ -337,7 +337,7 @@ public class CalendarView extends LinearLayout
                     tmp = tmp.concat(sMonth[todayHijri.getMonthOfYear()-1] + " " + todayHijri.getYear());
                 }
             }
-            txtDate.setText(tmp);*/
+            txtDate.setText(tmp);
 
             return view;
         }
