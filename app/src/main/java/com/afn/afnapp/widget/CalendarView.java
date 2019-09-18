@@ -15,6 +15,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.afn.afnapp.R;
+import com.afn.afnapp.utils.Constans;
 
 import org.joda.time.Chronology;
 import org.joda.time.DateTimeZone;
@@ -117,11 +118,11 @@ public class CalendarView extends LinearLayout
     private void assignUiElements()
     {
         // layout is inflated, assign local variables to components
-        header = (LinearLayout)findViewById(R.id.calendar_header);
-        btnPrev = (ImageView)findViewById(R.id.calendar_prev_button);
-        btnNext = (ImageView)findViewById(R.id.calendar_next_button);
-        txtDate = (TextView)findViewById(R.id.calendar_date_display);
-        grid = (GridView)findViewById(R.id.calendar_grid);
+        header = findViewById(R.id.calendar_header);
+        btnPrev = findViewById(R.id.calendar_prev_button);
+        btnNext = findViewById(R.id.calendar_next_button);
+        txtDate = findViewById(R.id.calendar_date_display);
+        grid = findViewById(R.id.calendar_grid);
     }
 
     private void assignClickHandlers()
@@ -184,18 +185,18 @@ public class CalendarView extends LinearLayout
                     if ((todayHijri.getMonthOfYear() == 10 && todayHijri.getDayOfMonth() == 1) ||
                             (todayHijri.getMonthOfYear() == 12 && todayHijri.getDayOfMonth() == 10) ||
                                 (todayHijri.getMonthOfYear() == 12 && (todayHijri.getDayOfMonth() >= 11 && todayHijri.getDayOfMonth() <= 13))) {
-                        eventHandler.onDayPress("Hari yang dilarang Puasa");
+                        eventHandler.onDayPress(Constans.PUASA_DILARANG);
                     } else if (todayHijri.getMonthOfYear() == 10 && (todayHijri.getDayOfMonth() >= 2 && todayHijri.getDayOfMonth() <= 7)) {
-                        eventHandler.onDayPress("Puasa 6 hari dibulan Syawwal");
+                        eventHandler.onDayPress(Constans.PUASA_SYAWWAL);
                     } else if (todayHijri.getMonthOfYear() == 9) {
-                        eventHandler.onDayPress("Puasa Ramadhan");
+                        eventHandler.onDayPress(Constans.PUASA_RAMADHAN);
                     } else if (todayHijri.getMonthOfYear() == 12 && todayHijri.getDayOfMonth() == 9) {
-                        eventHandler.onDayPress("Puasa Arafah");
+                        eventHandler.onDayPress(Constans.PUASA_ARAFAH);
                     } else if ((todayHijri.getDayOfMonth() >= 13 && todayHijri.getDayOfMonth() <= 15) ||
                             (todayHijri.getMonthOfYear() == 12 && (todayHijri.getDayOfMonth() >= 14 && todayHijri.getDayOfMonth() <= 16))) {
-                        eventHandler.onDayPress("Puasa Ayyamul Bidh");
+                        eventHandler.onDayPress(Constans.PUASA_AYYAMUL_BIDH);
                     } else if (date.getDay() == 1 || date.getDay() == 4) {
-                        eventHandler.onDayPress("Puasa Senin dan Kamis");
+                        eventHandler.onDayPress(Constans.PUASA_SENIN_KAMIS);
                     } else {
                         eventHandler.onDayPress("");
                     }
@@ -308,41 +309,41 @@ public class CalendarView extends LinearLayout
                 if ((todayHijri.getMonthOfYear() == 10 && todayHijri.getDayOfMonth() == 1) ||
                         (todayHijri.getMonthOfYear() == 12 && todayHijri.getDayOfMonth() == 10) ||
                             (todayHijri.getMonthOfYear() == 12 && (todayHijri.getDayOfMonth() >= 11 && todayHijri.getDayOfMonth() <= 13))) {
-                    ((TextView)view).setBackgroundColor(getResources().getColor(R.color.dilarang));
+                    view.setBackgroundColor(getResources().getColor(R.color.dilarang));
                     if (!colorPuasa.contains(R.color.dilarang)) {
                         colorPuasa.add(R.color.dilarang);
-                        eventHandler.passData(R.color.dilarang, "Hari yang dilarang Puasa", "Iedul Fitri, Iedul Adha, Hari Tasyriq dalam HR. Bukhari 1990 dan Muslim 1141");
+                        eventHandler.passData(R.color.dilarang, Constans.PUASA_DILARANG, Constans.PUASA_DILARANG_INFO);
                     }
                 } else if (todayHijri.getMonthOfYear() == 10 && (todayHijri.getDayOfMonth() >= 2 && todayHijri.getDayOfMonth() <= 7)) {
-                    ((TextView)view).setBackgroundColor(getResources().getColor(R.color.syawwal));
+                    view.setBackgroundColor(getResources().getColor(R.color.syawwal));
                     if (!colorPuasa.contains(R.color.syawwal)) {
                         colorPuasa.add(R.color.syawwal);
-                        eventHandler.passData(R.color.syawwal, "Puasa 6 hari dibulan Syawwal", "HR. Muslim 1164");
+                        eventHandler.passData(R.color.syawwal, Constans.PUASA_SYAWWAL, Constans.PUASA_SYAWWAL_INFO);
                     }
                 } else if (todayHijri.getMonthOfYear() == 9) {
-                    ((TextView)view).setBackgroundColor(getResources().getColor(R.color.ramadhan));
+                    view.setBackgroundColor(getResources().getColor(R.color.ramadhan));
                     if (!colorPuasa.contains(R.color.ramadhan)) {
                         colorPuasa.add(R.color.ramadhan);
-                        eventHandler.passData(R.color.ramadhan, "Puasa Ramadhan", "QS. Al-Baqarah: 185");
+                        eventHandler.passData(R.color.ramadhan, Constans.PUASA_RAMADHAN, Constans.PUASA_RAMADHAN_INFO);
                     }
                 } else if (todayHijri.getMonthOfYear() == 12 && todayHijri.getDayOfMonth() == 9) {
-                    ((TextView)view).setBackgroundColor(getResources().getColor(R.color.arafah));
+                    view.setBackgroundColor(getResources().getColor(R.color.arafah));
                     if (!colorPuasa.contains(R.color.arafah)) {
                         colorPuasa.add(R.color.arafah);
-                        eventHandler.passData(R.color.arafah, "Puasa Arafah", "HR. Muslim 1162");
+                        eventHandler.passData(R.color.arafah, Constans.PUASA_ARAFAH, Constans.PUASA_ARAFAH_INFO);
                     }
                 } else if ((todayHijri.getDayOfMonth() >= 13 && todayHijri.getDayOfMonth() <= 15) ||
                         (todayHijri.getMonthOfYear() == 12 && (todayHijri.getDayOfMonth() >= 14 && todayHijri.getDayOfMonth() <= 16))) {
-                    ((TextView)view).setBackgroundColor(getResources().getColor(R.color.ayyamul_bidh));
+                    view.setBackgroundColor(getResources().getColor(R.color.ayyamul_bidh));
                     if (!colorPuasa.contains(R.color.ayyamul_bidh)) {
                         colorPuasa.add(R.color.ayyamul_bidh);
-                        eventHandler.passData(R.color.ayyamul_bidh, "Puasa Ayyamul Bidh", "HR. Abu Daud 2449");
+                        eventHandler.passData(R.color.ayyamul_bidh, Constans.PUASA_AYYAMUL_BIDH, Constans.PUASA_AYYAMUL_BIDH_INFO);
                     }
                 } else if (date.getDay() == 1 || date.getDay() == 4) {
-                    ((TextView)view).setBackgroundColor(getResources().getColor(R.color.senin_kamis));
+                    view.setBackgroundColor(getResources().getColor(R.color.senin_kamis));
                     if (!colorPuasa.contains(R.color.senin_kamis)) {
                         colorPuasa.add(R.color.senin_kamis);
-                        eventHandler.passData(R.color.senin_kamis, "Puasa Senin dan Kamis", "HR. Tirmidzi 747");
+                        eventHandler.passData(R.color.senin_kamis, Constans.PUASA_SENIN_KAMIS, Constans.PUASA_SENIN_KAMIS_INFO);
                     }
                 }
             }
@@ -351,7 +352,7 @@ public class CalendarView extends LinearLayout
             {
                 // if this day is outside current month, ngga usah di tampilin
                 ((TextView)view).setText("");
-                ((TextView)view).setBackgroundColor(0);
+                view.setBackgroundColor(0);
             }
             else if (day == today.getDate() && month == today.getMonth() && year == today.getYear())
             {
