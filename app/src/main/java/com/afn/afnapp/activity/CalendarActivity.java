@@ -23,6 +23,7 @@ public class CalendarActivity extends AppCompatActivity {
     private SwipeRefreshLayout srl;
     private ArrayList<String> textPuasa = new ArrayList<String>();
     private ArrayList<Integer> colorPuasa = new ArrayList<Integer>();
+    private ArrayList<String> infoPuasa = new ArrayList<String>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +36,7 @@ public class CalendarActivity extends AppCompatActivity {
         srl.setEnabled(false);
 
         listView = (ListView)findViewById(R.id.lvPuasa);
-        adapter = new ListAdapter(this, textPuasa, colorPuasa);
+        adapter = new ListAdapter(this, textPuasa, colorPuasa, infoPuasa);
         listView.setAdapter(adapter);
 
         CalendarView cv = ((CalendarView)findViewById(R.id.calendar_view));
@@ -50,15 +51,16 @@ public class CalendarActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onDayPress(int color, String text) {
+            public void onDayPress(String text) {
                 if (!text.isEmpty())
                     Toast.makeText(getApplicationContext(), text, Toast.LENGTH_SHORT).show();
             }
 
             @Override
-            public void passData(int color, String text) {
+            public void passData(int color, String text, String info) {
                 textPuasa.add(text);
                 colorPuasa.add(color);
+                infoPuasa.add(info);
                 adapter.notifyDataSetChanged();
             }
 
@@ -66,6 +68,7 @@ public class CalendarActivity extends AppCompatActivity {
             public void deleteData() {
                 textPuasa.clear();
                 colorPuasa.clear();
+                infoPuasa.clear();
                 adapter.notifyDataSetChanged();
             }
         });

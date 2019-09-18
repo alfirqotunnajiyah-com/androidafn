@@ -16,13 +16,15 @@ public class ListAdapter extends ArrayAdapter<String> {
     private final Context context;
     private final ArrayList<String> content;
     private final ArrayList<Integer> color;
+    private final ArrayList<String> info;
 
-    public ListAdapter(Context context, ArrayList<String> content, ArrayList<Integer> color) {
+    public ListAdapter(Context context, ArrayList<String> content, ArrayList<Integer> color, ArrayList<String> info) {
         super(context, R.layout.item_puasa, content);
 
         this.context = context;
         this.content = content;
         this.color = color;
+        this.info = info;
     }
 
     public View getView(int position, View view, ViewGroup parent) {
@@ -30,9 +32,11 @@ public class ListAdapter extends ArrayAdapter<String> {
         View rowView = inflater.inflate(R.layout.item_puasa, null,true);
 
         TextView contentText = (TextView) rowView.findViewById(R.id.textView);
+        TextView infoText = (TextView) rowView.findViewById(R.id.textView2);
 
         contentText.setText(content.get(position));
         rowView.setBackgroundColor(context.getResources().getColor(color.get(position)));
+        infoText.setText(info.get(position));
 
         return rowView;
     }
