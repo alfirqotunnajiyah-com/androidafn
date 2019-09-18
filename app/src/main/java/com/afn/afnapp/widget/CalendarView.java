@@ -181,13 +181,18 @@ public class CalendarView extends LinearLayout
 
                 // pewarnaan puasa -- sort by priority
                 if (month == iMonth % 12) {
-                    if (todayHijri.getMonthOfYear() - 1 == 9 && todayHijri.getDayOfMonth() == 1) {
+                    if ((todayHijri.getMonthOfYear() == 10 && todayHijri.getDayOfMonth() == 1) ||
+                            (todayHijri.getMonthOfYear() == 12 && todayHijri.getDayOfMonth() == 10) ||
+                                (todayHijri.getMonthOfYear() == 12 && (todayHijri.getDayOfMonth() >= 11 && todayHijri.getDayOfMonth() <= 13))) {
                         eventHandler.onDayPress(R.color.dilarang, "Hari yang dilarang Puasa");
-                    } else if (todayHijri.getMonthOfYear() - 1 == 9 && (todayHijri.getDayOfMonth() >= 2 && todayHijri.getDayOfMonth() <= 7)) {
+                    } else if (todayHijri.getMonthOfYear() == 10 && (todayHijri.getDayOfMonth() >= 2 && todayHijri.getDayOfMonth() <= 7)) {
                         eventHandler.onDayPress(R.color.syawwal, "Puasa 6 hari dibulan Syawwal");
-                    } else if (todayHijri.getMonthOfYear() - 1 == 8) {
+                    } else if (todayHijri.getMonthOfYear() == 9) {
                         eventHandler.onDayPress(R.color.ramadhan, "Puasa Ramadhan");
-                    } else if (todayHijri.getDayOfMonth() >= 13 && todayHijri.getDayOfMonth() <= 15) {
+                    } else if (todayHijri.getMonthOfYear() == 12 && todayHijri.getDayOfMonth() == 9) {
+                        eventHandler.onDayPress(R.color.arafah, "Puasa Arafah");
+                    } else if ((todayHijri.getDayOfMonth() >= 13 && todayHijri.getDayOfMonth() <= 15) ||
+                            (todayHijri.getMonthOfYear() == 12 && (todayHijri.getDayOfMonth() >= 14 && todayHijri.getDayOfMonth() <= 16))) {
                         eventHandler.onDayPress(R.color.ayyamul_bidh, "Puasa Ayyamul Bidh");
                     } else if (date.getDay() == 1 || date.getDay() == 4) {
                         eventHandler.onDayPress(R.color.senin_kamis, "Puasa Senin dan Kamis");
@@ -300,25 +305,34 @@ public class CalendarView extends LinearLayout
 
             // pewarnaan puasa -- sort by priority
             if (month == iMonth % 12) {
-                if (todayHijri.getMonthOfYear()-1 == 9 && todayHijri.getDayOfMonth() == 1) {
+                if ((todayHijri.getMonthOfYear() == 10 && todayHijri.getDayOfMonth() == 1) ||
+                        (todayHijri.getMonthOfYear() == 12 && todayHijri.getDayOfMonth() == 10) ||
+                            (todayHijri.getMonthOfYear() == 12 && (todayHijri.getDayOfMonth() >= 11 && todayHijri.getDayOfMonth() <= 13))) {
                     ((TextView)view).setBackgroundColor(getResources().getColor(R.color.dilarang));
                     if (!colorPuasa.contains(R.color.dilarang)) {
                         colorPuasa.add(R.color.dilarang);
                         eventHandler.passData(R.color.dilarang, "Hari yang dilarang Puasa");
                     }
-                } else if (todayHijri.getMonthOfYear()-1 == 9 && (todayHijri.getDayOfMonth() >= 2 && todayHijri.getDayOfMonth() <= 7)) {
+                } else if (todayHijri.getMonthOfYear() == 10 && (todayHijri.getDayOfMonth() >= 2 && todayHijri.getDayOfMonth() <= 7)) {
                     ((TextView)view).setBackgroundColor(getResources().getColor(R.color.syawwal));
                     if (!colorPuasa.contains(R.color.syawwal)) {
                         colorPuasa.add(R.color.syawwal);
                         eventHandler.passData(R.color.syawwal, "Puasa 6 hari dibulan Syawwal");
                     }
-                } else if (todayHijri.getMonthOfYear()-1 == 8) {
+                } else if (todayHijri.getMonthOfYear() == 9) {
                     ((TextView)view).setBackgroundColor(getResources().getColor(R.color.ramadhan));
                     if (!colorPuasa.contains(R.color.ramadhan)) {
                         colorPuasa.add(R.color.ramadhan);
                         eventHandler.passData(R.color.ramadhan, "Puasa Ramadhan");
                     }
-                } else if (todayHijri.getDayOfMonth() >= 13 && todayHijri.getDayOfMonth() <= 15) {
+                } else if (todayHijri.getMonthOfYear() == 12 && todayHijri.getDayOfMonth() == 9) {
+                    ((TextView)view).setBackgroundColor(getResources().getColor(R.color.arafah));
+                    if (!colorPuasa.contains(R.color.arafah)) {
+                        colorPuasa.add(R.color.arafah);
+                        eventHandler.passData(R.color.arafah, "Puasa Arafah");
+                    }
+                } else if ((todayHijri.getDayOfMonth() >= 13 && todayHijri.getDayOfMonth() <= 15) ||
+                        (todayHijri.getMonthOfYear() == 12 && (todayHijri.getDayOfMonth() >= 14 && todayHijri.getDayOfMonth() <= 16))) {
                     ((TextView)view).setBackgroundColor(getResources().getColor(R.color.ayyamul_bidh));
                     if (!colorPuasa.contains(R.color.ayyamul_bidh)) {
                         colorPuasa.add(R.color.ayyamul_bidh);
