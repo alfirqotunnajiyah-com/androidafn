@@ -365,10 +365,17 @@ public class CalendarView extends LinearLayout
 
             if (month == iMonth % 12) {
                 if (!tmp.contains(sMonth[todayHijri.getMonthOfYear()-1])) {
-                    if (!tmp.isEmpty())
-                        tmp = tmp.concat(" -\n");
-                    tmp = tmp.concat(sMonth[todayHijri.getMonthOfYear()-1] + " " + todayHijri.getYear());
+                    if (!tmp.isEmpty()) {
+                        tmp = tmp.concat(" - " + sMonth[todayHijri.getMonthOfYear()-1] + " " + todayHijri.getYear());
+                    } else {
+                        tmp = tmp.concat(sMonth[todayHijri.getMonthOfYear()-1]);
+                        if (todayHijri.getMonthOfYear() == 12)
+                            tmp = tmp.concat(" " + todayHijri.getYear());
+                    }
                 }
+            } else if (month == (iMonth % 12) + 1) {
+                if (!tmp.contains(String.valueOf(todayHijri.minusDays(day).getYear())))
+                    tmp = tmp.concat(" " + todayHijri.getYear());
             }
             txtDate.setText(tmp);
 
