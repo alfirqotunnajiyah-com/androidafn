@@ -26,12 +26,13 @@
     <color name="today">#4b82ff</color>
     <color name="greyed_out">#c7c7c7</color>
     <color name="ahad">#830000</color>
-    <color name="senin_kamis">#bfd2a7</color>
-    <color name="ramadhan">#abd6cf</color>
-    <color name="dilarang">#e5c578</color>
-    <color name="syawwal">#e2b59c</color>
-    <color name="ayyamul_bidh">#cecece</color>
-    <color name="arafah">#bcabe1</color>
+    <color name="senin_kamis_header">#618779</color>
+    <color name="senin_kamis">#BFA2E2CA</color>
+    <color name="ramadhan">#BFAA9ACC</color>
+    <color name="dilarang">#BFE48590</color>
+    <color name="syawwal">#BFA5ECBB</color>
+    <color name="ayyamul_bidh">#BF74A6C1</color>
+    <color name="arafah">#BFF9F871</color>
 
     <color name="light_blue">#00A9F4</color>
     <color name="pink">#FF005F</color>

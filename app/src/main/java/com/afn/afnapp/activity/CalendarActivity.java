@@ -18,12 +18,10 @@ import java.util.HashSet;
 
 public class CalendarActivity extends AppCompatActivity {
 
-    private ListView listView;
     private ListAdapter adapter;
-    private SwipeRefreshLayout srl;
-    private ArrayList<String> textPuasa = new ArrayList<String>();
-    private ArrayList<Integer> colorPuasa = new ArrayList<Integer>();
-    private ArrayList<String> infoPuasa = new ArrayList<String>();
+    private ArrayList<String> textPuasa = new ArrayList<>();
+    private ArrayList<Integer> colorPuasa = new ArrayList<>();
+    private ArrayList<String> infoPuasa = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,14 +30,19 @@ public class CalendarActivity extends AppCompatActivity {
 
         HashSet<Date> events = new HashSet<>();
 
-        srl = findViewById(R.id.srl);
+        SwipeRefreshLayout srl = findViewById(R.id.srl);
         srl.setEnabled(false);
 
-        listView = (ListView)findViewById(R.id.lvPuasa);
+        ListView listView = findViewById(R.id.lvPuasa);
         adapter = new ListAdapter(this, textPuasa, colorPuasa, infoPuasa);
         listView.setAdapter(adapter);
 
-        CalendarView cv = ((CalendarView)findViewById(R.id.calendar_view));
+        textPuasa.add("Setiap hari Jum'at baca Al Kahfi Yuk!");
+        colorPuasa.add(R.color.white);
+        infoPuasa.add("HR. AnNasa'i dan Baihaqi");
+        adapter.notifyDataSetChanged();
+
+        CalendarView cv = findViewById(R.id.calendar_view);
         cv.updateCalendar(events);
 
         cv.setEventHandler(new CalendarView.EventHandler() {
@@ -69,6 +72,9 @@ public class CalendarActivity extends AppCompatActivity {
                 textPuasa.clear();
                 colorPuasa.clear();
                 infoPuasa.clear();
+                textPuasa.add("Setiap hari Jum'at baca Al Kahfi Yuk!");
+                colorPuasa.add(R.color.white);
+                infoPuasa.add("HR. AnNasa'i dan Baihaqi");
                 adapter.notifyDataSetChanged();
             }
         });
