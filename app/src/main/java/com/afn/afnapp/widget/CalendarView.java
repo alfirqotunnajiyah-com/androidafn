@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
+import android.graphics.drawable.LayerDrawable;
 import android.support.v4.graphics.drawable.DrawableCompat;
 import android.support.v7.content.res.AppCompatResources;
 import android.util.AttributeSet;
@@ -69,7 +70,13 @@ public class CalendarView extends LinearLayout {
     private String[] sMonthGregorian = {"Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"};
     private ArrayList<String> textPuasa = new ArrayList<>();
     private ArrayList<Integer> colorPuasa = new ArrayList<>();
-    private boolean senin = false, kamis = false, ayyamulBidh = false;
+    private boolean senin = false, kamis = false;
+    private Drawable wrappedDrawable = AppCompatResources.getDrawable(getContext(), R.drawable.kosong);
+    private Drawable wrappedDrawable1 = AppCompatResources.getDrawable(getContext(), R.drawable.kosong);
+    private Drawable wrappedDrawable2 = AppCompatResources.getDrawable(getContext(), R.drawable.kosong);
+    private Drawable wrappedDrawable3 = AppCompatResources.getDrawable(getContext(), R.drawable.kosong);
+    private Drawable wrappedDrawable4 = AppCompatResources.getDrawable(getContext(), R.drawable.kosong);
+    private Drawable wrappedDrawable5 = AppCompatResources.getDrawable(getContext(), R.drawable.kosong);
 
     private String tmp;
 
@@ -224,7 +231,6 @@ public class CalendarView extends LinearLayout {
         textPuasa.clear();
         colorPuasa.clear();
         senin = kamis = false;
-        ayyamulBidh = false;
 
         // change header title
         if (today.toString().contains(String.valueOf(currentDate.get(Calendar.YEAR))))
@@ -269,7 +275,12 @@ public class CalendarView extends LinearLayout {
         public View getView(int position, View view, ViewGroup parent) {
 
             Drawable unwrappedDrawable = null;
-            Drawable wrappedDrawable = null;
+            wrappedDrawable = AppCompatResources.getDrawable(getContext(), R.drawable.kosong);
+            wrappedDrawable1 = AppCompatResources.getDrawable(getContext(), R.drawable.kosong);
+            wrappedDrawable2 = AppCompatResources.getDrawable(getContext(), R.drawable.kosong);
+            wrappedDrawable3 = AppCompatResources.getDrawable(getContext(), R.drawable.kosong);
+            wrappedDrawable4 = AppCompatResources.getDrawable(getContext(), R.drawable.kosong);
+            wrappedDrawable5 = AppCompatResources.getDrawable(getContext(), R.drawable.kosong);
 
             // day in question
             Date date = getItem(position);
@@ -315,30 +326,15 @@ public class CalendarView extends LinearLayout {
             if (month == iMonth % 12) {
                 if ((todayHijri.getMonthOfYear() == 10 && todayHijri.getDayOfMonth() == 1) ||
                         (todayHijri.getMonthOfYear() == 12 && todayHijri.getDayOfMonth() == 10) ||
-                            (todayHijri.getMonthOfYear() == 12 && (todayHijri.getDayOfMonth() >= 11 && todayHijri.getDayOfMonth() <= 13))) {
+                        (todayHijri.getMonthOfYear() == 12 && (todayHijri.getDayOfMonth() >= 11 && todayHijri.getDayOfMonth() <= 13))) {
                     unwrappedDrawable = AppCompatResources.getDrawable(getContext(), R.drawable.shape_circle);
                     wrappedDrawable = DrawableCompat.wrap(unwrappedDrawable);
                     DrawableCompat.setTint(wrappedDrawable, getContext().getResources().getColor(R.color.dilarang));
+                    view.setBackground(wrappedDrawable);
 
                     if (!colorPuasa.contains(R.color.dilarang)) {
                         colorPuasa.add(R.color.dilarang);
                         eventHandler.passData(R.color.dilarang, Constans.PUASA_DILARANG, Constans.PUASA_DILARANG_INFO);
-                    }
-                } else if (todayHijri.getMonthOfYear() == 10 && (todayHijri.getDayOfMonth() >= 2 && todayHijri.getDayOfMonth() <= 7)) {
-                    if (todayHijri.getDayOfMonth() == 2) {
-                        unwrappedDrawable = AppCompatResources.getDrawable(getContext(), R.drawable.shape_left);
-                    } else if (todayHijri.getDayOfMonth() == 7) {
-                        unwrappedDrawable = AppCompatResources.getDrawable(getContext(), R.drawable.shape_right);
-                    } else {
-                        unwrappedDrawable = AppCompatResources.getDrawable(getContext(), R.drawable.shape_square_hor);
-                    }
-
-                    wrappedDrawable = DrawableCompat.wrap(unwrappedDrawable);
-                    DrawableCompat.setTint(wrappedDrawable, getContext().getResources().getColor(R.color.syawwal));
-
-                    if (!colorPuasa.contains(R.color.syawwal)) {
-                        colorPuasa.add(R.color.syawwal);
-                        eventHandler.passData(R.color.syawwal, Constans.PUASA_SYAWWAL, Constans.PUASA_SYAWWAL_INFO);
                     }
                 } else if (todayHijri.getMonthOfYear() == 9) {
                     if (todayHijri.getDayOfMonth() == 1) {
@@ -351,87 +347,114 @@ public class CalendarView extends LinearLayout {
 
                     wrappedDrawable = DrawableCompat.wrap(unwrappedDrawable);
                     DrawableCompat.setTint(wrappedDrawable, getContext().getResources().getColor(R.color.ramadhan));
+                    view.setBackground(wrappedDrawable);
 
                     if (!colorPuasa.contains(R.color.ramadhan)) {
                         colorPuasa.add(R.color.ramadhan);
                         eventHandler.passData(R.color.ramadhan, Constans.PUASA_RAMADHAN, Constans.PUASA_RAMADHAN_INFO);
                     }
-                } else if (todayHijri.getMonthOfYear() == 12 && todayHijri.getDayOfMonth() == 9) {
-                    unwrappedDrawable = AppCompatResources.getDrawable(getContext(), R.drawable.shape_circle);
-                    wrappedDrawable = DrawableCompat.wrap(unwrappedDrawable);
-                    DrawableCompat.setTint(wrappedDrawable, getContext().getResources().getColor(R.color.arafah));
+                } else {
+                    if (date.getDay() == 1) { // puasa senin
+                        if (lastDay - day <= 6) {
+                            if (senin)
+                                unwrappedDrawable = AppCompatResources.getDrawable(getContext(), R.drawable.shape_bot);
+                            else
+                                unwrappedDrawable = AppCompatResources.getDrawable(getContext(), R.drawable.shape_circle);
+                        } else if (senin) {
+                            unwrappedDrawable = AppCompatResources.getDrawable(getContext(), R.drawable.shape_square_ver);
+                        } else {
+                            unwrappedDrawable = AppCompatResources.getDrawable(getContext(), R.drawable.shape_top);
+                            senin = true;
+                        }
 
-                    if (!colorPuasa.contains(R.color.arafah)) {
-                        colorPuasa.add(R.color.arafah);
-                        eventHandler.passData(R.color.arafah, Constans.PUASA_ARAFAH, Constans.PUASA_ARAFAH_INFO);
+                        wrappedDrawable5 = DrawableCompat.wrap(unwrappedDrawable);
+                        DrawableCompat.setTint(wrappedDrawable5, getContext().getResources().getColor(R.color.senin_kamis));
+
+                        if (!colorPuasa.contains(R.color.senin_kamis)) {
+                            colorPuasa.add(R.color.senin_kamis);
+                            eventHandler.passData(R.color.senin_kamis, Constans.PUASA_SENIN_KAMIS, Constans.PUASA_SENIN_KAMIS_INFO);
+                        }
+                    } if (date.getDay() == 4) { // puasa kamis
+                        if (lastDay - day <= 6) {
+                            if (kamis)
+                                unwrappedDrawable = AppCompatResources.getDrawable(getContext(), R.drawable.shape_bot);
+                            else
+                                unwrappedDrawable = AppCompatResources.getDrawable(getContext(), R.drawable.shape_circle);
+                        } else if (kamis) {
+                            unwrappedDrawable = AppCompatResources.getDrawable(getContext(), R.drawable.shape_square_ver);
+                        } else {
+                            unwrappedDrawable = AppCompatResources.getDrawable(getContext(), R.drawable.shape_top);
+                            kamis = true;
+                        }
+
+                        wrappedDrawable5 = DrawableCompat.wrap(unwrappedDrawable);
+                        DrawableCompat.setTint(wrappedDrawable5, getContext().getResources().getColor(R.color.senin_kamis));
+
+                        if (!colorPuasa.contains(R.color.senin_kamis)) {
+                            colorPuasa.add(R.color.senin_kamis);
+                            eventHandler.passData(R.color.senin_kamis, Constans.PUASA_SENIN_KAMIS, Constans.PUASA_SENIN_KAMIS_INFO);
+                        }
+                    } if ((todayHijri.getMonthOfYear() != 12 && (todayHijri.getDayOfMonth() >= 13 && todayHijri.getDayOfMonth() <= 15))) { // puasa ayyamul bidh
+                        if (todayHijri.getDayOfMonth() == 13)
+                            unwrappedDrawable = AppCompatResources.getDrawable(getContext(), R.drawable.shape_left);
+                        else if (todayHijri.getDayOfMonth() == 15)
+                            unwrappedDrawable = AppCompatResources.getDrawable(getContext(), R.drawable.shape_right);
+                        else
+                            unwrappedDrawable = AppCompatResources.getDrawable(getContext(), R.drawable.shape_square_hor);
+
+                        wrappedDrawable4 = DrawableCompat.wrap(unwrappedDrawable);
+                        DrawableCompat.setTint(wrappedDrawable4, getContext().getResources().getColor(R.color.ayyamul_bidh));
+
+                        if (!colorPuasa.contains(R.color.ayyamul_bidh)) {
+                            colorPuasa.add(R.color.ayyamul_bidh);
+                            eventHandler.passData(R.color.ayyamul_bidh, Constans.PUASA_AYYAMUL_BIDH, Constans.PUASA_AYYAMUL_BIDH_INFO);
+                        }
+                    } if ((todayHijri.getMonthOfYear() == 12 && (todayHijri.getDayOfMonth() >= 14 && todayHijri.getDayOfMonth() <= 16))) { // puasa ayyamul bidh
+                        if (todayHijri.getDayOfMonth() == 14)
+                            unwrappedDrawable = AppCompatResources.getDrawable(getContext(), R.drawable.shape_left);
+                        else if (todayHijri.getDayOfMonth() == 16)
+                            unwrappedDrawable = AppCompatResources.getDrawable(getContext(), R.drawable.shape_right);
+                        else
+                            unwrappedDrawable = AppCompatResources.getDrawable(getContext(), R.drawable.shape_square_hor);
+
+                        wrappedDrawable3 = DrawableCompat.wrap(unwrappedDrawable);
+                        DrawableCompat.setTint(wrappedDrawable3, getContext().getResources().getColor(R.color.ayyamul_bidh));
+
+                        if (!colorPuasa.contains(R.color.ayyamul_bidh)) {
+                            colorPuasa.add(R.color.ayyamul_bidh);
+                            eventHandler.passData(R.color.ayyamul_bidh, Constans.PUASA_AYYAMUL_BIDH, Constans.PUASA_AYYAMUL_BIDH_INFO);
+                        }
+                    } if (todayHijri.getMonthOfYear() == 12 && todayHijri.getDayOfMonth() == 9) { // puasa arafah
+                        unwrappedDrawable = AppCompatResources.getDrawable(getContext(), R.drawable.shape_circle);
+                        wrappedDrawable2 = DrawableCompat.wrap(unwrappedDrawable);
+                        DrawableCompat.setTint(wrappedDrawable2, getContext().getResources().getColor(R.color.arafah));
+
+                        if (!colorPuasa.contains(R.color.arafah)) {
+                            colorPuasa.add(R.color.arafah);
+                            eventHandler.passData(R.color.arafah, Constans.PUASA_ARAFAH, Constans.PUASA_ARAFAH_INFO);
+                        }
+                    } if (todayHijri.getMonthOfYear() == 10 && (todayHijri.getDayOfMonth() >= 2 && todayHijri.getDayOfMonth() <= 7)) { // puasa syawwal
+                        if (todayHijri.getDayOfMonth() == 2) {
+                            unwrappedDrawable = AppCompatResources.getDrawable(getContext(), R.drawable.shape_left);
+                        } else if (todayHijri.getDayOfMonth() == 7) {
+                            unwrappedDrawable = AppCompatResources.getDrawable(getContext(), R.drawable.shape_right);
+                        } else {
+                            unwrappedDrawable = AppCompatResources.getDrawable(getContext(), R.drawable.shape_square_hor);
+                        }
+
+                        wrappedDrawable1 = DrawableCompat.wrap(unwrappedDrawable);
+                        DrawableCompat.setTint(wrappedDrawable1, getContext().getResources().getColor(R.color.syawwal));
+
+                        if (!colorPuasa.contains(R.color.syawwal)) {
+                            colorPuasa.add(R.color.syawwal);
+                            eventHandler.passData(R.color.syawwal, Constans.PUASA_SYAWWAL, Constans.PUASA_SYAWWAL_INFO);
+                        }
                     }
-                } else if ((todayHijri.getMonthOfYear() == 12 && (todayHijri.getDayOfMonth() >= 14 && todayHijri.getDayOfMonth() <= 16))) {
-                    if (todayHijri.getDayOfMonth() == 14)
-                        unwrappedDrawable = AppCompatResources.getDrawable(getContext(), R.drawable.shape_left);
-                    else if (todayHijri.getDayOfMonth() == 16)
-                        unwrappedDrawable = AppCompatResources.getDrawable(getContext(), R.drawable.shape_right);
-                    else
-                        unwrappedDrawable = AppCompatResources.getDrawable(getContext(), R.drawable.shape_square_hor);
 
-                    wrappedDrawable = DrawableCompat.wrap(unwrappedDrawable);
-                    DrawableCompat.setTint(wrappedDrawable, getContext().getResources().getColor(R.color.ayyamul_bidh));
-
-                    if (!colorPuasa.contains(R.color.ayyamul_bidh)) {
-                        colorPuasa.add(R.color.ayyamul_bidh);
-                        eventHandler.passData(R.color.ayyamul_bidh, Constans.PUASA_AYYAMUL_BIDH, Constans.PUASA_AYYAMUL_BIDH_INFO);
-                    }
-                } else if ((todayHijri.getDayOfMonth() >= 13 && todayHijri.getDayOfMonth() <= 15)) {
-                    if (todayHijri.getDayOfMonth() == 13)
-                        unwrappedDrawable = AppCompatResources.getDrawable(getContext(), R.drawable.shape_left);
-                    else if (todayHijri.getDayOfMonth() == 15)
-                        unwrappedDrawable = AppCompatResources.getDrawable(getContext(), R.drawable.shape_right);
-                    else
-                        unwrappedDrawable = AppCompatResources.getDrawable(getContext(), R.drawable.shape_square_hor);
-
-                    wrappedDrawable = DrawableCompat.wrap(unwrappedDrawable);
-                    DrawableCompat.setTint(wrappedDrawable, getContext().getResources().getColor(R.color.ayyamul_bidh));
-
-                    if (!colorPuasa.contains(R.color.ayyamul_bidh)) {
-                        colorPuasa.add(R.color.ayyamul_bidh);
-                        eventHandler.passData(R.color.ayyamul_bidh, Constans.PUASA_AYYAMUL_BIDH, Constans.PUASA_AYYAMUL_BIDH_INFO);
-                    }
-                } else if (date.getDay() == 1) {
-                    if (lastDay - day <= 6) {
-                        unwrappedDrawable = AppCompatResources.getDrawable(getContext(), R.drawable.shape_bot);
-                    } else if (senin) {
-                        unwrappedDrawable = AppCompatResources.getDrawable(getContext(), R.drawable.shape_square_ver);
-                    } else {
-                        unwrappedDrawable = AppCompatResources.getDrawable(getContext(), R.drawable.shape_top);
-                        senin = true;
-                    }
-
-                    wrappedDrawable = DrawableCompat.wrap(unwrappedDrawable);
-                    DrawableCompat.setTint(wrappedDrawable, getContext().getResources().getColor(R.color.senin_kamis));
-
-                    if (!colorPuasa.contains(R.color.senin_kamis)) {
-                        colorPuasa.add(R.color.senin_kamis);
-                        eventHandler.passData(R.color.senin_kamis, Constans.PUASA_SENIN_KAMIS, Constans.PUASA_SENIN_KAMIS_INFO);
-                    }
-                } else if (date.getDay() == 4) {
-                    if (lastDay - day <= 6) {
-                        unwrappedDrawable = AppCompatResources.getDrawable(getContext(), R.drawable.shape_bot);
-                    } else if (kamis) {
-                        unwrappedDrawable = AppCompatResources.getDrawable(getContext(), R.drawable.shape_square_ver);
-                    } else {
-                        unwrappedDrawable = AppCompatResources.getDrawable(getContext(), R.drawable.shape_top);
-                        kamis = true;
-                    }
-
-                    wrappedDrawable = DrawableCompat.wrap(unwrappedDrawable);
-                    DrawableCompat.setTint(wrappedDrawable, getContext().getResources().getColor(R.color.senin_kamis));
-
-                    if (!colorPuasa.contains(R.color.senin_kamis)) {
-                        colorPuasa.add(R.color.senin_kamis);
-                        eventHandler.passData(R.color.senin_kamis, Constans.PUASA_SENIN_KAMIS, Constans.PUASA_SENIN_KAMIS_INFO);
-                    }
+                    Drawable[] layers = {wrappedDrawable5, wrappedDrawable4, wrappedDrawable3, wrappedDrawable2, wrappedDrawable1};
+                    LayerDrawable layer = new LayerDrawable(layers);
+                    view.setBackground(layer);
                 }
-
-                view.setBackground(wrappedDrawable);
             }
 
             if (month != iMonth % 12) {
