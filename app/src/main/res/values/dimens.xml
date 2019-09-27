@@ -10,4 +10,6 @@
     <dimen name="font_h2">17sp</dimen>
     <dimen name="font_h1">18sp</dimen>
     <dimen name="default_padding_view">7dp</dimen>
+    <dimen name="padding_row">4dp</dimen>
+    <dimen name="radius_row">24dp</dimen>
 </resources>
