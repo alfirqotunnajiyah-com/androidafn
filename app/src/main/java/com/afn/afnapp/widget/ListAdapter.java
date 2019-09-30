@@ -1,14 +1,10 @@
 package com.afn.afnapp.widget;
 
 import android.content.Context;
-import android.graphics.drawable.Drawable;
-import android.support.v4.graphics.drawable.DrawableCompat;
-import android.support.v7.content.res.AppCompatResources;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.afn.afnapp.R;
@@ -20,13 +16,15 @@ public class ListAdapter extends ArrayAdapter<String> {
     private final Context context;
     private final ArrayList<String> content;
     private final ArrayList<Integer> color;
+    private final ArrayList<String> info;
 
-    public ListAdapter(Context context, ArrayList<String> content, ArrayList<Integer> color) {
+    public ListAdapter(Context context, ArrayList<String> content, ArrayList<Integer> color, ArrayList<String> info) {
         super(context, R.layout.item_puasa, content);
 
         this.context = context;
         this.content = content;
         this.color = color;
+        this.info = info;
     }
 
     public View getView(int position, View view, ViewGroup parent) {
@@ -34,14 +32,11 @@ public class ListAdapter extends ArrayAdapter<String> {
         View rowView = inflater.inflate(R.layout.item_puasa, null,true);
 
         TextView contentText = (TextView) rowView.findViewById(R.id.textView);
-        ImageView imageView = (ImageView) rowView.findViewById(R.id.imageView);
-
-        Drawable unwrappedDrawable = AppCompatResources.getDrawable(context, R.drawable.circle_shape);
-        Drawable wrappedDrawable = DrawableCompat.wrap(unwrappedDrawable);
-        DrawableCompat.setTint(wrappedDrawable, context.getResources().getColor(color.get(position)));
+        TextView infoText = (TextView) rowView.findViewById(R.id.textView2);
 
         contentText.setText(content.get(position));
-        imageView.setImageDrawable(wrappedDrawable);
+        rowView.setBackgroundColor(context.getResources().getColor(color.get(position)));
+        infoText.setText(info.get(position));
 
         return rowView;
     }
