@@ -17,7 +17,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".activity.JadwalKajianFeature.JadwalKajianMainActivity"></activity>
+        <activity android:name=".activity.JadwalKajianFeature.JadwalKajianDetailActivity"></activity>
+        <activity android:name=".activity.JadwalKajianFeature.JadwalKajianMainActivity" />
         <activity android:name=".activity.CalendarActivity" />
 
         <meta-data
