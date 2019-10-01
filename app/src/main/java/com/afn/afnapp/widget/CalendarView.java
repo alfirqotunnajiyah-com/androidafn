@@ -20,7 +20,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.afn.afnapp.R;
-import com.afn.afnapp.utils.Constans;
+import com.afn.afnapp.utils.Helper;
+import com.afn.afnapp.utils.Helper.Constans;
 
 import org.joda.time.Chronology;
 import org.joda.time.DateTimeZone;
@@ -190,24 +191,7 @@ public class CalendarView extends LinearLayout {
 
                 // pewarnaan puasa -- sort by priority
                 if (month == iMonth % 12) {
-                    if ((todayHijri.getMonthOfYear() == 10 && todayHijri.getDayOfMonth() == 1) ||
-                            (todayHijri.getMonthOfYear() == 12 && todayHijri.getDayOfMonth() == 10) ||
-                                (todayHijri.getMonthOfYear() == 12 && (todayHijri.getDayOfMonth() >= 11 && todayHijri.getDayOfMonth() <= 13))) {
-                        eventHandler.onDayPress(Constans.PUASA_DILARANG);
-                    } else if (todayHijri.getMonthOfYear() == 10 && (todayHijri.getDayOfMonth() >= 2 && todayHijri.getDayOfMonth() <= 7)) {
-                        eventHandler.onDayPress(Constans.PUASA_SYAWWAL);
-                    } else if (todayHijri.getMonthOfYear() == 9) {
-                        eventHandler.onDayPress(Constans.PUASA_RAMADHAN);
-                    } else if (todayHijri.getMonthOfYear() == 12 && todayHijri.getDayOfMonth() == 9) {
-                        eventHandler.onDayPress(Constans.PUASA_ARAFAH);
-                    } else if ((todayHijri.getDayOfMonth() >= 13 && todayHijri.getDayOfMonth() <= 15) ||
-                            (todayHijri.getMonthOfYear() == 12 && (todayHijri.getDayOfMonth() >= 14 && todayHijri.getDayOfMonth() <= 16))) {
-                        eventHandler.onDayPress(Constans.PUASA_AYYAMUL_BIDH);
-                    } else if (date.getDay() == 1 || date.getDay() == 4) {
-                        eventHandler.onDayPress(Constans.PUASA_SENIN_KAMIS);
-                    } else {
-                        eventHandler.onDayPress("");
-                    }
+                    eventHandler.onDayPress(Helper.getPuasa(todayHijri, date.getDay()));
                 }
             }
         });
@@ -355,14 +339,18 @@ public class CalendarView extends LinearLayout {
                     }
                 } else {
                     if (date.getDay() == 1) { // puasa senin
-                        if (lastDay - day <= 6) {
-                            if (senin)
-                                unwrappedDrawable = AppCompatResources.getDrawable(getContext(), R.drawable.shape_bot);
-                            else
+                        if (Helper.getPuasa(todayHijri.plusWeeks(1), date.getDay()).equals(Constans.PUASA_DILARANG) ||
+                                Helper.getPuasa(todayHijri.plusWeeks(1), date.getDay()).equals(Constans.PUASA_RAMADHAN) ||
+                                    lastDay - day <= 6) {
+                            if (day <= 6 || !senin)
                                 unwrappedDrawable = AppCompatResources.getDrawable(getContext(), R.drawable.shape_circle);
-                        } else if (senin) {
+                            else
+                                unwrappedDrawable = AppCompatResources.getDrawable(getContext(), R.drawable.shape_bot);
+
+                            senin = false;
+                        } else if (senin)
                             unwrappedDrawable = AppCompatResources.getDrawable(getContext(), R.drawable.shape_square_ver);
-                        } else {
+                        else {
                             unwrappedDrawable = AppCompatResources.getDrawable(getContext(), R.drawable.shape_top);
                             senin = true;
                         }
@@ -375,14 +363,18 @@ public class CalendarView extends LinearLayout {
                             eventHandler.passData(R.color.senin_kamis, Constans.PUASA_SENIN_KAMIS, Constans.PUASA_SENIN_KAMIS_INFO);
                         }
                     } if (date.getDay() == 4) { // puasa kamis
-                        if (lastDay - day <= 6) {
-                            if (kamis)
-                                unwrappedDrawable = AppCompatResources.getDrawable(getContext(), R.drawable.shape_bot);
-                            else
+                        if (Helper.getPuasa(todayHijri.plusWeeks(1), date.getDay()).equals(Constans.PUASA_DILARANG) ||
+                                Helper.getPuasa(todayHijri.plusWeeks(1), date.getDay()).equals(Constans.PUASA_RAMADHAN) ||
+                                lastDay - day <= 6) {
+                            if (day <= 6 || !kamis)
                                 unwrappedDrawable = AppCompatResources.getDrawable(getContext(), R.drawable.shape_circle);
-                        } else if (kamis) {
+                            else
+                                unwrappedDrawable = AppCompatResources.getDrawable(getContext(), R.drawable.shape_bot);
+
+                            kamis = false;
+                        } else if (kamis)
                             unwrappedDrawable = AppCompatResources.getDrawable(getContext(), R.drawable.shape_square_ver);
-                        } else {
+                        else {
                             unwrappedDrawable = AppCompatResources.getDrawable(getContext(), R.drawable.shape_top);
                             kamis = true;
                         }
