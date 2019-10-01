@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:right="@dimen/padding_row"
+        android:bottom="@dimen/padding_row"
+        android:left="@dimen/padding_row">
+
+        <shape
+            android:shape="rectangle">
+
+            <corners
+                android:bottomLeftRadius="@dimen/radius_row"
+                android:bottomRightRadius="@dimen/radius_row" />
+
+            <solid
+                android:color="@color/dasar" />
+
+        </shape>
+
+    </item>
+
+</layer-list>

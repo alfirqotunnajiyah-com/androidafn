@@ -1,6 +1,7 @@
 package com.afn.afnapp.widget;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,12 +28,13 @@ public class ListAdapter extends ArrayAdapter<String> {
         this.info = info;
     }
 
-    public View getView(int position, View view, ViewGroup parent) {
+    @NonNull
+    public View getView(int position, View view, @NonNull ViewGroup parent) {
         LayoutInflater inflater = LayoutInflater.from(context);
         View rowView = inflater.inflate(R.layout.item_puasa, null,true);
 
-        TextView contentText = (TextView) rowView.findViewById(R.id.textView);
-        TextView infoText = (TextView) rowView.findViewById(R.id.textView2);
+        TextView contentText = rowView.findViewById(R.id.textView);
+        TextView infoText = rowView.findViewById(R.id.textView2);
 
         contentText.setText(content.get(position));
         rowView.setBackgroundColor(context.getResources().getColor(color.get(position)));
