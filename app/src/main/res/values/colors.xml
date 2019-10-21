@@ -4,16 +4,16 @@
     <color name="colorPrimaryDark">#000000</color>
     <color name="colorAccent">#383838</color>-->
 
-    <color name="colorPrimary">#ff7052</color>
-    <color name="colorPrimaryDark">#c63f28</color>
-    <color name="colorAccent">#ffa27f</color>
+    <color name="colorPrimary">#3498db</color>
+    <color name="colorPrimaryDark">#006aa9</color>
+    <color name="colorAccent">#73c9ff</color>
 
     <color name="color1">#0fff2e00</color>
     <color name="color2">#0fff8600</color>
 
-    <color name="tab_1">#ff7052</color>
-    <color name="tab_2">#ff7052</color>
-    <color name="tab_3">#ff7052</color>
+    <color name="tab_1">#3498db</color>
+    <color name="tab_2">#3498db</color>
+    <color name="tab_3">#3498db</color>
 
     <color name="white">#ffffff</color>
     <color name="black">#000000</color>

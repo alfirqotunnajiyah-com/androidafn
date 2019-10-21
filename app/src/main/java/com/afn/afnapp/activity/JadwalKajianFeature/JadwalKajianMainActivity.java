@@ -99,7 +99,7 @@ public class JadwalKajianMainActivity extends AppCompatActivity {
         for (int i = 0; i < 6; i++) {
             JadwalKajianModel l = new JadwalKajianModel();
             if ((i % 2) == 0) {
-                l.setJudulKajian("Jadilah Salafi Sejati");
+                l.setJudulKajian("Tematik");
             } else {
                 l.setJudulKajian("Riyadhus Shalihin");
             }

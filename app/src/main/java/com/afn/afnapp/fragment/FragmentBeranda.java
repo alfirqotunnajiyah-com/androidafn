@@ -3,6 +3,7 @@ package com.afn.afnapp.fragment;
 
 import android.content.Intent;
 import android.net.Uri;
+import android.opengl.Visibility;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -25,6 +26,7 @@ import com.daimajia.slider.library.SliderLayout;
 import com.daimajia.slider.library.SliderTypes.BaseSliderView;
 import com.daimajia.slider.library.SliderTypes.TextSliderView;
 import com.github.paolorotolo.expandableheightlistview.ExpandableHeightGridView;
+import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -197,6 +199,8 @@ public class FragmentBeranda extends Fragment {
 
             slider.addSlider(textSliderView);
         }
+        slider.setCustomIndicator(pagerIndicator);
+//        slider.setIndicatorVisibility(null);
         slider.setDuration(4000);
     }
 }
