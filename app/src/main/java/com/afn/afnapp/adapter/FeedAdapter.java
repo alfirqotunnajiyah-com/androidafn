@@ -3,17 +3,14 @@ package com.afn.afnapp.adapter;
 import android.app.Activity;
 import android.content.Context;
 import android.content.res.Resources;
-import android.text.Html;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.afn.afnapp.R;
-import com.afn.afnapp.model.AyahModel;
 import com.afn.afnapp.model.FeedModel;
 import com.afn.afnapp.utils.ScreenSize;
 

@@ -7,9 +7,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
-import android.webkit.WebViewClient;
-import android.widget.GridView;
-import android.widget.ListView;
 
 import com.afn.afnapp.R;
 import com.afn.afnapp.adapter.FeedAdapter;

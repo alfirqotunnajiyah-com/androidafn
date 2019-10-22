@@ -13,7 +13,6 @@ import android.widget.TextView;
 import com.afn.afnapp.R;
 import com.afn.afnapp.model.JadwalKajianModel;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class JadwalKajianAdapter extends ArrayAdapter<JadwalKajianModel> {

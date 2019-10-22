@@ -13,7 +13,6 @@ import android.widget.Toast;
 import com.afn.afnapp.R;
 import com.afn.afnapp.adapter.JadwalKajianAdapter;
 import com.afn.afnapp.model.JadwalKajianModel;
-import com.afn.afnapp.model.JadwalSholat.Jadwal;
 import com.github.paolorotolo.expandableheightlistview.ExpandableHeightGridView;
 
 import java.util.ArrayList;

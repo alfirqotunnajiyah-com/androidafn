@@ -1,28 +1,20 @@
 package com.afn.afnapp.adapter;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
-import android.os.Environment;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.afn.afnapp.R;
-import com.afn.afnapp.activity.AlQuranFeature.IsiDariSurahActivity;
 import com.afn.afnapp.model.AyahModel;
-import com.afn.afnapp.model.SurahNameModel;
-
-import java.io.File;
 import java.io.IOException;
 import java.util.List;
 

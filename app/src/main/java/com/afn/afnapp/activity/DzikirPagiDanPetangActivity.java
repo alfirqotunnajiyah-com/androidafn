@@ -9,14 +9,12 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.afn.afnapp.R;
 import com.afn.afnapp.fragment.FragmentIsiDzikirActivity;
-import com.tbuonomo.viewpagerdotsindicator.SpringDotsIndicator;
 
 import java.util.ArrayList;
 
 public class DzikirPagiDanPetangActivity extends AppCompatActivity {
 
     private android.support.v4.view.ViewPager vPager;
-    private SpringDotsIndicator dotsIndicator;
     private FragmentPagerAdapter fragmentPagerAdapter;
     private ArrayList<FragmentIsiDzikirActivity> fragments = new ArrayList<>();
 
@@ -43,30 +41,6 @@ public class DzikirPagiDanPetangActivity extends AppCompatActivity {
             "Dibaca 100x",
             "Dibaca setiap hari 100x"
     };
-
-    /*private String[] judulDzikir = {
-            "Membaca Ta'awudz (1x)",
-            "Membaca Ayat Kursi (1x)",
-            "Membaca Surat Al-Ikhlas (Dibaca Pagi 3x)",
-            "Membaca Surat Al-Falaq (Dibaca Pagi 3x)",
-            "Membaca Surat An-Nass (Dibaca Pagi 3x)",
-            "Membaca (Dibaca Pagi 1x)",
-            "Membaca (Dibaca Pagi 1x)",
-            "Membaca Sayyidul Istighfar (Dibaca Pagi 1x)",
-            "Membaca (Dibaca Pagi 3x)",
-            "Membaca (Dibaca Pagi 1x)",
-            "Membaca (Dibaca Pagi 1x)",
-            "Membaca (Dibaca Pagi 3x)",
-            "Membaca (Dibaca Pagi 3x)",
-            "Membaca (Dibaca Pagi 1x)",
-            "Membaca (Dibaca Pagi 1x)",
-            "Membaca (Dibaca Pagi 10x atau 1x)",
-            "Membaca (Dibaca Pagi 100x)",
-            "Membaca (Dibaca Pagi 3x)",
-            "Membaca (Dibaca Pagi 1x)",
-            "Membaca (Dibaca Pagi 100x)",
-            "Membaca (Dibaca setiap hari 100x)"
-    };*/
 
     private String[] isiBacaanDzikir = {
             "أَعُوذُ بِاللَّهِ مِنْ الشَّيْطَانِ الرَّجِيمِ",
@@ -246,29 +220,6 @@ public class DzikirPagiDanPetangActivity extends AppCompatActivity {
             "Dibaca 3x"
     };
 
-    /*private String[] judulDzikirPetang = {
-            "Membaca Ta'awudz (1x)",
-            "Membaca Ayat Kursi (1x)",
-            "Membaca Surat Al-Ikhlas (Dibaca Sore 3x)",
-            "Membaca Surat Al-Falaq (Dibaca Sore 3x)",
-            "Membaca Surat An-Nass (Dibaca Sore 3x)",
-            "Membaca (Dibaca Sore 1x)",
-            "Membaca (Dibaca Sore 1x)",
-            "Membaca Sayyidul Istighfar (Dibaca Sore 1x)",
-            "Membaca (Dibaca Sore 3x)",
-            "Membaca (Dibaca Sore 1x)",
-            "Membaca (Dibaca Sore 1x)",
-            "Membaca (Dibaca Sore 3x)",
-            "Membaca (Dibaca Sore 3x)",
-            "Membaca (Dibaca Sore 1x)",
-            "Membaca (Dibaca Sore 1x)",
-            "Membaca (Dibaca Sore 10x atau 1x)",
-            "Membaca (Dibaca Sore 100x)",
-            "Membaca (Dibaca Sore 100x)",
-            "Membaca (Dibaca setiap hari 100x)",
-            "Membaca (Dibaca Sore 3x)"
-    };*/
-
     private String[] isiBacaanDzikirPetang = {
             "أَعُوذُ بِاللَّهِ مِنْ الشَّيْطَانِ الرَّجِيمِ",
 
@@ -433,7 +384,6 @@ public class DzikirPagiDanPetangActivity extends AppCompatActivity {
 
     void setLayout() {
         this.vPager = (ViewPager) findViewById(R.id.vPager);
-        this.dotsIndicator = (SpringDotsIndicator) findViewById(R.id.spring_dots_indicator);
     }
 
     void getData() {
@@ -449,7 +399,6 @@ public class DzikirPagiDanPetangActivity extends AppCompatActivity {
             }
         }
         vPager.setAdapter(fragmentPagerAdapter);
-        dotsIndicator.setViewPager(vPager);
     }
 
 

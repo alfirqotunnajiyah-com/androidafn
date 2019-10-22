@@ -11,8 +11,6 @@ import android.widget.TextView;
 import com.afn.afnapp.R;
 import com.xw.repo.BubbleSeekBar;
 
-import org.w3c.dom.Text;
-
 /**
  * A simple {@link Fragment} subclass.
  */

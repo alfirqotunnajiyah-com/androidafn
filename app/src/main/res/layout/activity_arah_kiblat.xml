@@ -56,10 +56,9 @@
         android:id="@+id/tvDerajat"
         android:layout_below="@+id/appbar"
         android:text="0"
-        android:textSize="30dp"
-        android:fontFamily="sans-serif-condensed-light"
+        android:textSize="27sp"
         android:textColor="@color/black"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="25dp"
         android:layout_centerHorizontal="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
