@@ -8,6 +8,7 @@
     tools:context=".activity.DzikirPagiDanPetangActivity">
 
     <ProgressBar
+        android:progress="1"
         android:id="@+id/progressBar"
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="match_parent"
