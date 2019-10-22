@@ -6,6 +6,8 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.afn.afnapp.R;
 import com.afn.afnapp.fragment.FragmentIsiDzikirActivity;
@@ -369,6 +371,8 @@ public class DzikirPagiDanPetangActivity extends AppCompatActivity {
             "HR. Ahmad 11/290, an-Nasa-i dalam ‘Amalul Yaum wal Lailah no. 596, Shahiih at-Targhiib wat Tarhiib 1/412 no. 652, Shahiih al-Jaami ‘ish Shaghiir no. 6427"
     };
 
+    private TextView tvTitle;
+    private ProgressBar progressBar;
     private int waktu = 1; //1. Pagi//2. Petang
 
     @Override
@@ -383,6 +387,8 @@ public class DzikirPagiDanPetangActivity extends AppCompatActivity {
     }
 
     void setLayout() {
+        this.progressBar = (ProgressBar)findViewById(R.id.progressBar);
+        this.tvTitle = (TextView)findViewById(R.id.tvTitle);
         this.vPager = (ViewPager) findViewById(R.id.vPager);
     }
 
@@ -390,15 +396,38 @@ public class DzikirPagiDanPetangActivity extends AppCompatActivity {
         FragmentIsiDzikirActivity ff = new FragmentIsiDzikirActivity();
         fragmentPagerAdapter = new MyPagerAdapter(getSupportFragmentManager(), fragments);
         if (waktu == 1) {
+            tvTitle.setText(getString(R.string.str_dzikir_pagi));
             for (int i = 0; i < judulDzikir.length; i++) {
                 ((MyPagerAdapter) fragmentPagerAdapter).addFragment(ff, judulDzikir[i], isiBacaanDzikir[i], "\n" + isiTerjemahanDzikir[i], isiFaidahDanDalil[i]);
             }
+
+            progressBar.setMax(judulDzikir.length);
         } else {
+            tvTitle.setText(getString(R.string.str_dzikir_petang));
             for (int i = 0; i < judulDzikirPetang.length; i++) {
                 ((MyPagerAdapter) fragmentPagerAdapter).addFragment(ff, judulDzikirPetang[i], isiBacaanDzikirPetang[i], "\n" + isiTerjemahanDzikirPetang[i], isiFaidahDanDalilPetang[i]);
             }
+
+            progressBar.setMax(judulDzikirPetang.length);
         }
         vPager.setAdapter(fragmentPagerAdapter);
+
+        vPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int i, float v, int i1) {
+
+            }
+
+            @Override
+            public void onPageSelected(int i) {
+                progressBar.setProgress(i+1);
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int i) {
+
+            }
+        });
     }
 
 
