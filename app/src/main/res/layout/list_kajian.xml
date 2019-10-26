@@ -23,7 +23,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="200dp"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/afn5" />
+                    android:src="@drawable/afn1" />
 
                 <TextView
                     android:layout_width="wrap_content"

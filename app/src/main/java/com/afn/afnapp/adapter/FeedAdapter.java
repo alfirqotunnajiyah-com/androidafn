@@ -2,13 +2,17 @@ package com.afn.afnapp.adapter;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Resources;
+import android.net.Uri;
+import android.support.v7.widget.CardView;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.afn.afnapp.R;
 import com.afn.afnapp.model.FeedModel;
@@ -37,13 +41,30 @@ public class FeedAdapter extends ArrayAdapter<FeedModel> {
         view = inflater.inflate(R.layout.list_image_feed, parent, false);
 
         ss = new ScreenSize(context);
+
+        TextView tvAkun = view.findViewById(R.id.tvAkun);
+        TextView tvNamaAkun = view.findViewById(R.id.tvNamaAkun);
+
+        CardView cvNa = view.findViewById(R.id.cvNa);
         ImageView ivGambar = view.findViewById(R.id.ivGambar);
 
-        FeedModel fm = listAyah.get(position);
+        final FeedModel fm = listAyah.get(position);
 
         ivGambar.setImageResource(fm.getIdResource());
-        ivGambar.getLayoutParams().width = ss.getWidth()/2;
-        ivGambar.getLayoutParams().height = ss.getWidth();
+        ivGambar.getLayoutParams().width = ss.getWidth() / 9;
+        ivGambar.getLayoutParams().height = ss.getWidth() / 9;
+
+        tvNamaAkun.setText(fm.getTitle());
+        tvAkun.setText(fm.getCaption());
+
+        cvNa.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent launchBrowser = new Intent(Intent.ACTION_VIEW, Uri.parse(fm.getLinkImage()));
+                context.startActivity(launchBrowser);
+            }
+        });
+
 
         return view;
     }

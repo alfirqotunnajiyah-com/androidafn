@@ -50,7 +50,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="200dp"
                             android:scaleType="centerCrop"
-                            android:src="@drawable/afn5" />
+                            android:src="@drawable/afn1" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -107,7 +107,7 @@
                                 android:layout_width="40dp"
                                 android:layout_height="40dp"
                                 android:layout_margin="4dp"
-                                android:src="@drawable/ic_btn_pause"
+                                android:src="@drawable/ic_user"
                                 android:tint="@color/white" />
                         </LinearLayout>
 
@@ -164,7 +164,7 @@
                                 android:layout_width="40dp"
                                 android:layout_height="40dp"
                                 android:layout_margin="4dp"
-                                android:src="@drawable/ic_btn_pause"
+                                android:src="@drawable/ic_quran"
                                 android:tint="@color/white" />
                         </LinearLayout>
 
@@ -224,7 +224,7 @@
                                 android:layout_marginTop="7dp"
                                 android:layout_marginRight="4dp"
                                 android:layout_marginBottom="4dp"
-                                android:src="@drawable/ic_btn_pause"
+                                android:src="@drawable/ic_location_on_white_36"
                                 android:tint="@color/white" />
                         </LinearLayout>
 

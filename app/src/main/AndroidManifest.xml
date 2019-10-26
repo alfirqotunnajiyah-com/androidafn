@@ -45,7 +45,8 @@
 
         <activity android:name=".activity.AlQuranFeature.AlQuranActivity" />
         <activity android:name=".activity.AlQuranFeature.IsiDariSurahActivity" />
-        <activity android:name=".activity.ArahKiblat" />
+        <activity android:name=".activity.ArahKiblat"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

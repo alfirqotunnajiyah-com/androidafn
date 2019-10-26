@@ -143,6 +143,8 @@ public class MainActivity extends AppCompatActivity
         bottomNavigation.addItem(item2);
         bottomNavigation.addItem(item3);
 
+        bottomNavigation.disableItemAtPosition(2);
+
         // Set background color
         bottomNavigation.setDefaultBackgroundColor(getResources().getColor(R.color.colorPrimary));
 

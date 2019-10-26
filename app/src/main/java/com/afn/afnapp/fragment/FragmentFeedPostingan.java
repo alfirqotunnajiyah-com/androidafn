@@ -27,17 +27,41 @@ public class FragmentFeedPostingan extends Fragment {
 
     private WebView web_view;
     private View view;
-    private com.github.paolorotolo.expandableheightlistview.ExpandableHeightGridView lvFeed;
+    private com.github.paolorotolo.expandableheightlistview.ExpandableHeightListView lvFeed;
 
     private FeedAdapter adapter;
     private List<FeedModel> listNa = new ArrayList<>();
 
     private int isi[] = {
-            R.drawable.afn1,
-            R.drawable.afn2,
-            R.drawable.afn3,
-            R.drawable.afn4,
-            R.drawable.afn5,
+            R.drawable.ic_facebook,
+            R.drawable.ic_instagram,
+            R.drawable.ic_telegram,
+            R.drawable.ic_twitter,
+            R.drawable.ic_youtube,
+    };
+
+    private String isi2[] = {
+            "Facebook",
+            "Instagram",
+            "Telegram",
+            "Twitter",
+            "Youtube",
+    };
+
+    private String isi3[] = {
+            "https://www.facebook.com/alfirqotunnajiyahcom/",
+            "https://www.instagram.com/al.firqotun.najiyah/",
+            "https://twitter.com/alfirqotunnjyh",
+            "https://t.me/al_firqotunnajiyah",
+            "https://www.youtube.com/channel/UCB2Q857sapIb-Xuj9r36EnA",
+    };
+
+    private String isi4[] = {
+            "@alfirqotunnajiyahcom",
+            "@al.firqotun.najiyah",
+            "@alfirqotunnjyh",
+            "Al Firqotun Najiyah",
+            "Al Firqotun Najiyah",
     };
 
     @Override
@@ -67,6 +91,9 @@ public class FragmentFeedPostingan extends Fragment {
         for (int i = 0; i < 5; i++) {
             FeedModel mm = new FeedModel();
             mm.setIdResource(isi[i]);
+            mm.setTitle(isi4[i]);
+            mm.setLinkImage(isi3[i]);
+            mm.setCaption(isi2[i]);
             listNa.add(mm);
         }
 
