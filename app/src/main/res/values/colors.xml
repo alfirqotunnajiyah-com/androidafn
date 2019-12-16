@@ -37,6 +37,8 @@
 
     <color name="light_blue">#00A9F4</color>
     <color name="pink">#FF005F</color>
+    <color name="red">#FF1744</color>
+    <color name="green">#00E676</color>
     <color name="blue_match">#3883A0</color>
     <color name="green_match">#3BB96A</color>
     <color name="yellow_match">#FFAC52</color>

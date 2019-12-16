@@ -9,6 +9,7 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
+        android:name=".utils.MyApplication"
         android:allowBackup="true"
         android:hardwareAccelerated="true"
         android:icon="@drawable/ic_logo_rect"
@@ -17,7 +18,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".activity.JadwalKajianFeature.JadwalKajianDetailActivity"></activity>
+        <activity android:name=".activity.JadwalKajianFeature.SubmitNewKajianActivity"></activity>
+        <activity android:name=".activity.JadwalKajianFeature.JadwalKajianDetailActivity" />
         <activity android:name=".activity.JadwalKajianFeature.JadwalKajianMainActivity" />
         <activity android:name=".activity.CalendarActivity" />
 
@@ -45,8 +47,9 @@
 
         <activity android:name=".activity.AlQuranFeature.AlQuranActivity" />
         <activity android:name=".activity.AlQuranFeature.IsiDariSurahActivity" />
-        <activity android:name=".activity.ArahKiblat"
-            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".activity.ArahKiblat"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

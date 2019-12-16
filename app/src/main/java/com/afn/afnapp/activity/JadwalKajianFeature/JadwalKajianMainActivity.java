@@ -1,19 +1,35 @@
 package com.afn.afnapp.activity.JadwalKajianFeature;
 
 import android.content.Intent;
+import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
+import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.afn.afnapp.R;
 import com.afn.afnapp.adapter.JadwalKajianAdapter;
 import com.afn.afnapp.model.JadwalKajianModel;
+import com.afn.afnapp.utils.ApiUrl;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.github.paolorotolo.expandableheightlistview.ExpandableHeightGridView;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,6 +41,10 @@ public class JadwalKajianMainActivity extends AppCompatActivity {
     private List<JadwalKajianModel> listKajian2 = new ArrayList<>();
     private ExpandableHeightGridView gvList;
     private EditText etSearch;
+    private Toolbar toolbar;
+    private RequestQueue queue;
+    private ApiUrl apiUrl;
+    private LinearLayout llSearch;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,19 +53,44 @@ public class JadwalKajianMainActivity extends AppCompatActivity {
 
         adapter = new JadwalKajianAdapter(this, listKajian);
         adapter.notifyDataSetChanged();
+        queue = Volley.newRequestQueue(this);
+        apiUrl = new ApiUrl();
+        setSupportActionBar(toolbar);
 
         initView();
         initClick();
-        retriveData();
+        retrieveData();
+
+        String android_id = Settings.Secure.getString(this.getContentResolver(),
+                Settings.Secure.ANDROID_ID);
+        //Toast.makeText(this, android_id + "", Toast.LENGTH_SHORT).show();
+    }
+
+    public class MainActivity extends AppCompatActivity {
+        @Override
+        public boolean onCreateOptionsMenu(Menu menu) {
+            // Membaca file menu dan menambahkan isinya ke action bar jika ada.
+            getMenuInflater().inflate(R.menu.main, menu);
+            return true;
+        }
     }
 
     void initView() {
-        gvList = (ExpandableHeightGridView) findViewById(R.id.gvList);
-        etSearch = (EditText) findViewById(R.id.etSearch);
+        toolbar = findViewById(R.id.toolbar);
+        gvList = findViewById(R.id.gvList);
+        etSearch = findViewById(R.id.etSearch);
+        llSearch = findViewById(R.id.llSearch);
         gvList.setExpanded(true);
     }
 
     void initClick() {
+        llSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(JadwalKajianMainActivity.this, SubmitNewKajianActivity.class));
+            }
+        });
+
         gvList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -56,8 +101,9 @@ public class JadwalKajianMainActivity extends AppCompatActivity {
                     mm = listKajian.get(i);
                 }
 
-                Toast.makeText(JadwalKajianMainActivity.this, mm.getJudulKajian() + "", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(JadwalKajianMainActivity.this, JadwalKajianDetailActivity.class));
+                Intent intent = new Intent(JadwalKajianMainActivity.this, JadwalKajianDetailActivity.class);
+                intent.putExtra("idKajian", mm.getIdKajian());
+                startActivity(intent);
             }
         });
 
@@ -73,8 +119,9 @@ public class JadwalKajianMainActivity extends AppCompatActivity {
                 listKajian2.clear();
                 for (int i = 0; i < listKajian.size(); i++) {
                     JadwalKajianModel ll = listKajian.get(i);
-                    if (ll.getJudulKajian().trim().toLowerCase().startsWith(isiNa.trim().toLowerCase())) {
-                        ll.setJudulKajian(ll.getJudulKajian());
+                    if (ll.getTema().trim().toLowerCase().startsWith(isiNa.trim().toLowerCase())) {
+                        ll.setTema(ll.getTema());
+                        ll.setIdKajian(ll.getIdKajian());
                         listKajian2.add(ll);
                     }
                 }
@@ -94,16 +141,41 @@ public class JadwalKajianMainActivity extends AppCompatActivity {
         return et.getText().toString();
     }
 
-    void retriveData() {
-        for (int i = 0; i < 6; i++) {
-            JadwalKajianModel l = new JadwalKajianModel();
-            if ((i % 2) == 0) {
-                l.setJudulKajian("Tematik");
-            } else {
-                l.setJudulKajian("Riyadhus Shalihin");
+    void retrieveData() {
+        String url = apiUrl.getMainUrl() + "get_data.php?mode=11";
+        Log.d("isiResponse", url);
+        // Request a string response from the provided URL.
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        Log.d("isiResponse", response);
+                        try {
+                            JSONObject obj = new JSONObject(response);
+                            JSONArray jsonArray = obj.getJSONArray("value");
+                            for (int i = 0; i < jsonArray.length(); i++) {
+                                JSONObject object = jsonArray.getJSONObject(i);
+                                JadwalKajianModel jkModel = new JadwalKajianModel();
+                                jkModel.setTema(object.getString("tema"));
+                                jkModel.setIdKajian(object.getInt("idKajian"));
+                                listKajian.add(jkModel);
+                            }
+
+                            gvList.setAdapter(adapter);
+                        } catch (JSONException ex) {
+                            Toast.makeText(JadwalKajianMainActivity.this, "Gagal", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.d("isiResponse", error.getMessage());
+                error.printStackTrace();
+                Toast.makeText(JadwalKajianMainActivity.this, "Error", Toast.LENGTH_SHORT).show();
             }
-            listKajian.add(l);
-        }
-        gvList.setAdapter(adapter);
+        });
+
+        // Add the request to the RequestQueue.
+        queue.add(stringRequest);
     }
 }

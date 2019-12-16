@@ -13,6 +13,7 @@
         android:gravity="center"
         android:theme="@style/AppTheme.AppBarOverlay">
         <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:title="Jadwal Kajian"
@@ -49,6 +50,7 @@
                     android:textSize="@dimen/font_h3" />
 
                 <LinearLayout
+                    android:id="@+id/llSearch"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.12"

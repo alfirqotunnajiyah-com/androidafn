@@ -37,7 +37,7 @@ public class JadwalKajianAdapter extends ArrayAdapter<JadwalKajianModel> {
 
 
         TextView tvJudulKajian = (TextView)view.findViewById(R.id.tvJudulKajian);
-        tvJudulKajian.setText(mm.getJudulKajian());
+        tvJudulKajian.setText(mm.getTema());
 
         return view;
     }

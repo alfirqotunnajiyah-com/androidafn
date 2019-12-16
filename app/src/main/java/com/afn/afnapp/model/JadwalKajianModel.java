@@ -1,12 +1,22 @@
 package com.afn.afnapp.model;
 
 public class JadwalKajianModel {
-    public int getJadwalKajianId() {
-        return jadwalKajianId;
+    private int idKajian,status,pekanKe,isKhusus,isApprove,kajianTypeId;
+
+    public int getIdKajian() {
+        return idKajian;
     }
 
-    public void setJadwalKajianId(int jadwalKajianId) {
-        this.jadwalKajianId = jadwalKajianId;
+    public void setIdKajian(int idKajian) {
+        this.idKajian = idKajian;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
     }
 
     public int getPekanKe() {
@@ -17,14 +27,6 @@ public class JadwalKajianModel {
         this.pekanKe = pekanKe;
     }
 
-    public int getIsRutin() {
-        return isRutin;
-    }
-
-    public void setIsRutin(int isRutin) {
-        this.isRutin = isRutin;
-    }
-
     public int getIsKhusus() {
         return isKhusus;
     }
@@ -33,94 +35,109 @@ public class JadwalKajianModel {
         this.isKhusus = isKhusus;
     }
 
-    public int getGenderId() {
-        return genderId;
+    public int getIsApprove() {
+        return isApprove;
     }
 
-    public void setGenderId(int genderId) {
-        this.genderId = genderId;
+    public void setIsApprove(int isApprove) {
+        this.isApprove = isApprove;
     }
 
-    public String getJudulKajian() {
-        return judulKajian;
+    public int getKajianTypeId() {
+        return kajianTypeId;
     }
 
-    public void setJudulKajian(String judulKajian) {
-        this.judulKajian = judulKajian;
+    public void setKajianTypeId(int kajianTypeId) {
+        this.kajianTypeId = kajianTypeId;
     }
 
-    public String getNamaPemateri() {
-        return namaPemateri;
+    public String getTema() {
+        return tema;
     }
 
-    public void setNamaPemateri(String namaPemateri) {
-        this.namaPemateri = namaPemateri;
+    public void setTema(String tema) {
+        this.tema = tema;
     }
 
-    public String getImgPoster() {
-        return imgPoster;
+    public String getInfoTema() {
+        return infoTema;
     }
 
-    public void setImgPoster(String imgPoster) {
-        this.imgPoster = imgPoster;
+    public void setInfoTema(String infoTema) {
+        this.infoTema = infoTema;
     }
 
-    public String getAlamatMasjid() {
-        return alamatMasjid;
+    public String getTanggal() {
+        return tanggal;
     }
 
-    public void setAlamatMasjid(String alamatMasjid) {
-        this.alamatMasjid = alamatMasjid;
+    public void setTanggal(String tanggal) {
+        this.tanggal = tanggal;
     }
 
-    public String getUrlGoogleMap() {
-        return urlGoogleMap;
+    public String getWaktu() {
+        return waktu;
     }
 
-    public void setUrlGoogleMap(String urlGoogleMap) {
-        this.urlGoogleMap = urlGoogleMap;
+    public void setWaktu(String waktu) {
+        this.waktu = waktu;
     }
 
-    public String getLatitude() {
-        return latitude;
+    public String getPemateri() {
+        return pemateri;
     }
 
-    public void setLatitude(String latitude) {
-        this.latitude = latitude;
+    public void setPemateri(String pemateri) {
+        this.pemateri = pemateri;
     }
 
-    public String getLongitude() {
-        return longitude;
+    public String getInfoPemateri() {
+        return infoPemateri;
     }
 
-    public void setLongitude(String longitude) {
-        this.longitude = longitude;
+    public void setInfoPemateri(String infoPemateri) {
+        this.infoPemateri = infoPemateri;
     }
 
-    public String getImgMasjid() {
-        return imgMasjid;
+    public String getTempat() {
+        return tempat;
     }
 
-    public void setImgMasjid(String imgMasjid) {
-        this.imgMasjid = imgMasjid;
+    public void setTempat(String tempat) {
+        this.tempat = tempat;
     }
 
-    public String getJamKajian() {
-        return jamKajian;
+    public String getInfoTempat() {
+        return infoTempat;
     }
 
-    public void setJamKajian(String jamKajian) {
-        this.jamKajian = jamKajian;
+    public void setInfoTempat(String infoTempat) {
+        this.infoTempat = infoTempat;
     }
 
-    public String getKitabYangDikaji() {
-        return kitabYangDikaji;
+    public String getAlamat() {
+        return alamat;
     }
 
-    public void setKitabYangDikaji(String kitabYangDikaji) {
-        this.kitabYangDikaji = kitabYangDikaji;
+    public void setAlamat(String alamat) {
+        this.alamat = alamat;
     }
 
-    private int jadwalKajianId, pekanKe, isRutin, isKhusus, genderId;
-    private String judulKajian, namaPemateri, imgPoster, alamatMasjid, urlGoogleMap, latitude, longitude, imgMasjid, jamKajian, kitabYangDikaji;
+    public String getLinkMaps() {
+        return linkMaps;
+    }
+
+    public void setLinkMaps(String linkMaps) {
+        this.linkMaps = linkMaps;
+    }
+
+    public String getDeviceId() {
+        return deviceId;
+    }
+
+    public void setDeviceId(String deviceId) {
+        this.deviceId = deviceId;
+    }
+
+    private String tema,infoTema,tanggal,waktu,pemateri,infoPemateri,tempat,infoTempat,alamat,linkMaps,deviceId;
 }
