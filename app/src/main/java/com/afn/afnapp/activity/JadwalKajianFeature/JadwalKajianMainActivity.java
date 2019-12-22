@@ -9,9 +9,11 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
@@ -34,7 +36,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-public class JadwalKajianMainActivity extends AppCompatActivity {
+public class JadwalKajianMainActivity extends AppCompatActivity  {
 
     private JadwalKajianAdapter adapter;
     private List<JadwalKajianModel> listKajian = new ArrayList<>();
@@ -44,18 +46,20 @@ public class JadwalKajianMainActivity extends AppCompatActivity {
     private Toolbar toolbar;
     private RequestQueue queue;
     private ApiUrl apiUrl;
-    private LinearLayout llSearch;
+    private ImageView btnSearch;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_jadwal_kajian_main);
+        toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
         adapter = new JadwalKajianAdapter(this, listKajian);
         adapter.notifyDataSetChanged();
         queue = Volley.newRequestQueue(this);
         apiUrl = new ApiUrl();
-        setSupportActionBar(toolbar);
+
 
         initView();
         initClick();
@@ -66,28 +70,41 @@ public class JadwalKajianMainActivity extends AppCompatActivity {
         //Toast.makeText(this, android_id + "", Toast.LENGTH_SHORT).show();
     }
 
-    public class MainActivity extends AppCompatActivity {
-        @Override
-        public boolean onCreateOptionsMenu(Menu menu) {
-            // Membaca file menu dan menambahkan isinya ke action bar jika ada.
-            getMenuInflater().inflate(R.menu.main, menu);
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_settings) {
+            startActivity(new Intent(JadwalKajianMainActivity.this, SubmitNewKajianActivity.class));
             return true;
         }
+
+        return super.onOptionsItemSelected(item);
     }
 
     void initView() {
-        toolbar = findViewById(R.id.toolbar);
         gvList = findViewById(R.id.gvList);
         etSearch = findViewById(R.id.etSearch);
-        llSearch = findViewById(R.id.llSearch);
+        btnSearch = findViewById(R.id.btnSearch);
         gvList.setExpanded(true);
     }
 
     void initClick() {
-        llSearch.setOnClickListener(new View.OnClickListener() {
+        btnSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(JadwalKajianMainActivity.this, SubmitNewKajianActivity.class));
+
             }
         });
 
