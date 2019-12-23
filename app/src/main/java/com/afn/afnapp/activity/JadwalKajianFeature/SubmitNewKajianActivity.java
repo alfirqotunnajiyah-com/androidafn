@@ -3,6 +3,7 @@ package com.afn.afnapp.activity.JadwalKajianFeature;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.support.design.widget.AppBarLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -18,8 +19,10 @@ import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.afn.afnapp.R;
+import com.afn.afnapp.adapter.MySimpleAdapter;
 import com.afn.afnapp.adapter.WilayahAdapter;
 import com.afn.afnapp.model.JadwalKajianModel;
+import com.afn.afnapp.model.SimpleModel;
 import com.afn.afnapp.model.WilayahModel;
 import com.afn.afnapp.utils.ApiUrl;
 import com.android.volley.Request;
@@ -78,23 +81,48 @@ public class SubmitNewKajianActivity extends AppCompatActivity {
     private RequestQueue queue;
 
     private List<WilayahModel> listWilayah = new ArrayList<>();
+    private List<SimpleModel> listTipe = new ArrayList<>();
+    private List<SimpleModel> listUntuk = new ArrayList<>();
+
     private WilayahAdapter adapter;
+    private MySimpleAdapter adapterTipe;
+    private MySimpleAdapter adapterUntuk;
+
+    private DialogPlus dialogTipe;
+    private DialogPlus dialogUntuk;
     private DialogPlus dialogProvinsi;
 
+    private String
+            idProvinsi,
+            idKabupaten,
+            idKecamatan;
+
+    private int
+            idTipeKajian,
+            idKajianUntuk;
+
+    private String android_id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_submit_new_kajian);
+        android_id = Settings.Secure.getString(this.getContentResolver(),
+                Settings.Secure.ANDROID_ID);
 
         apiUrl = new ApiUrl();
         queue = Volley.newRequestQueue(this);
-
         dateFormatter = new SimpleDateFormat("dd-MM-yyyy", Locale.US);
+
         adapter = new WilayahAdapter(this, listWilayah);
         adapter.notifyDataSetChanged();
+        adapterTipe = new MySimpleAdapter(this, listTipe);
+        adapterTipe.notifyDataSetChanged();
+        adapterUntuk = new MySimpleAdapter(this, listUntuk);
+        adapterUntuk.notifyDataSetChanged();
 
         initView();
+        initDialog();
         initClick();
     }
 
@@ -134,14 +162,36 @@ public class SubmitNewKajianActivity extends AppCompatActivity {
         tvKabupaten.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (tvProvinsi.getText().length() == 0) {
+                    Toast.makeText(SubmitNewKajianActivity.this, "Pilih Provisi terlebih dahulu", Toast.LENGTH_SHORT).show();
+                } else {
+                    getWilayah(tvKabupaten, 2);
+                }
+            }
+        });
 
+        tvKecamatan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (tvKabupaten.getText().length() == 0) {
+                    Toast.makeText(SubmitNewKajianActivity.this, "Pilih Kota/Kabupaten terlebih dahulu", Toast.LENGTH_SHORT).show();
+                } else {
+                    getWilayah(tvKecamatan, 3);
+                }
             }
         });
 
         tvKajianUntuk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                dialogUntuk.show();
+            }
+        });
 
+        tvTipeKajian.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialogTipe.show();
             }
         });
 
@@ -158,6 +208,62 @@ public class SubmitNewKajianActivity extends AppCompatActivity {
                 showDateDialog();
             }
         });
+        btnAjukan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ajukanKajian();
+            }
+        });
+    }
+
+    private void initDialog() {
+        String[] tipeKajian = {"Rutin", "Tematik", "Tabligh Akbar", "Daurah"};
+        String[] kajianUntuk = {"Umum", "Ikhwan", "Akhwat"};
+
+        for (int i = 0; i < tipeKajian.length; i++) {
+            SimpleModel sp = new SimpleModel();
+            sp.setIdSimple(i + 1);
+            sp.setNameSimple(tipeKajian[i]);
+            listTipe.add(sp);
+        }
+
+        for (int i = 0; i < kajianUntuk.length; i++) {
+            SimpleModel sp = new SimpleModel();
+            sp.setIdSimple(i + 1);
+            sp.setNameSimple(kajianUntuk[i]);
+            listUntuk.add(sp);
+        }
+
+        dialogUntuk = DialogPlus.newDialog(SubmitNewKajianActivity.this).setAdapter(adapterUntuk)
+                .setOnItemClickListener(new OnItemClickListener() {
+                    @Override
+                    public void onItemClick(DialogPlus dialog, Object item, View view, int position) {
+                        SimpleModel pp = listUntuk.get(position);
+                        tvKajianUntuk.setText(pp.getNameSimple());
+                        idKajianUntuk = pp.getIdSimple();
+                        dialog.dismiss();
+                    }
+                })
+                .setExpanded(false)  // This will enable the expand feature, (similar to android L share dialog)
+                .create();
+
+        dialogTipe = DialogPlus.newDialog(SubmitNewKajianActivity.this).setAdapter(adapterTipe)
+                .setOnItemClickListener(new OnItemClickListener() {
+                    @Override
+                    public void onItemClick(DialogPlus dialog, Object item, View view, int position) {
+                        SimpleModel pp = listTipe.get(position);
+                        tvTipeKajian.setText(pp.getNameSimple());
+                        idTipeKajian = pp.getIdSimple();
+                        if (idTipeKajian == 1) {
+                            llIfRutin.setVisibility(View.VISIBLE);
+                        } else {
+                            llIfRutin.setVisibility(View.GONE);
+                        }
+                        dialog.dismiss();
+                    }
+                })
+                .setExpanded(false)  // This will enable the expand feature, (similar to android L share dialog)
+                .create();
     }
 
     private void getWilayah(final TextView targetTv, final int level) {
@@ -187,7 +293,22 @@ public class SubmitNewKajianActivity extends AppCompatActivity {
                                     .setOnItemClickListener(new OnItemClickListener() {
                                         @Override
                                         public void onItemClick(DialogPlus dialog, Object item, View view, int position) {
-                                            WilayahModel wilModel = listWilayah.get(position);;
+                                            WilayahModel wilModel = listWilayah.get(position);
+                                            if (level == 1) {
+                                                idProvinsi = wilModel.getKodeWilayah();
+                                                idKabupaten = "";
+                                                idKecamatan = "";
+
+                                                tvKabupaten.setText("");
+                                                tvKecamatan.setText("");
+                                            } else if (level == 2) {
+                                                idKabupaten = wilModel.getKodeWilayah();
+                                                idKecamatan = "";
+
+                                                tvKecamatan.setText("");
+                                            } else {
+                                                idKecamatan = wilModel.getKodeWilayah();
+                                            }
                                             targetTv.setText(wilModel.getNama());
                                             dialog.dismiss();
                                         }
@@ -213,12 +334,81 @@ public class SubmitNewKajianActivity extends AppCompatActivity {
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<String, String>();
                 params.put("level", level + "");
+                if (level == 2) {
+                    params.put("mstWilayah", idProvinsi + "");
+                } else if (level == 3) {
+                    params.put("mstWilayah", idKabupaten + "");
+                }
                 return params;
             }
         };
 
         // Add the request to the RequestQueue.
         queue.add(stringRequest);
+    }
+
+    private void ajukanKajian() {
+        String url = apiUrl.getMainUrl() + "insert_data.php?mode=01";
+        Log.d("isiResponse", url);
+        // Request a string response from the provided URL.
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        Log.d("isiResponse", response);
+                        try {
+                            JSONObject obj = new JSONObject(response);
+                            JSONArray jsonArray = obj.getJSONArray("value");
+                            listWilayah.clear();
+                            for (int i = 0; i < jsonArray.length(); i++) {
+                                JSONObject object = jsonArray.getJSONObject(i);
+
+                            }
+
+                        } catch (JSONException ex) {
+                            ex.printStackTrace();
+                            Toast.makeText(SubmitNewKajianActivity.this, "Gagal", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.d("isiResponse", error.getMessage());
+                error.printStackTrace();
+                Toast.makeText(SubmitNewKajianActivity.this, "Error", Toast.LENGTH_SHORT).show();
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("p_tema", getText(etTema) + "");
+                params.put("p_infoTema", getText(etDetailTema) + "");
+                params.put("p_tanggal", getText(tvTanggal) + "");
+                params.put("p_waktu", getText(tvWaktu) + "");
+                params.put("p_pemateri", getText(etPemateri) + "");
+                params.put("p_infoPemateri", getText(etDetailPemateri) + "");
+                params.put("p_tempat", getText(etTempat) + "");
+                params.put("p_alamat", getText(etAlamat) + "");
+                params.put("p_linkMaps", getText(etLinkGmap) + "");
+                params.put("p_pekanKe", getText(etPekanKe) + "");
+                params.put("p_isKhusus", idKajianUntuk + "");
+                params.put("p_isApprove", 0 + "");
+                params.put("p_kajianTypeId", idTipeKajian + "");
+                params.put("p_deviceId", android_id+"");
+                return params;
+            }
+        };
+
+        // Add the request to the RequestQueue.
+        queue.add(stringRequest);
+    }
+
+    private String getText(EditText et) {
+        return et.getText().toString();
+    }
+
+    private String getText(TextView et) {
+        return et.getText().toString();
     }
 
     private void showDateDialog() {

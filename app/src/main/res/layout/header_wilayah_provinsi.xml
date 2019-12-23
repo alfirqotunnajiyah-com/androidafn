@@ -2,7 +2,6 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/colorPrimary"
     android:orientation="vertical">
 
     <TextView
@@ -11,7 +10,6 @@
         android:fontFamily="@font/robomedium"
         android:gravity="center"
         android:padding="10dp"
-        android:text="Pilih Provinsi"
-        android:textColor="@color/white"
+        android:text="Pilih Lokasi"
         android:textSize="18sp" />
 </LinearLayout>

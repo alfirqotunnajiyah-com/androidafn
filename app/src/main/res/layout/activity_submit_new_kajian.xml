@@ -25,7 +25,6 @@
         android:id="@+id/svMain"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@id/btnAjukan"
         android:layout_below="@id/appbar">
 
         <LinearLayout
@@ -40,14 +39,16 @@
                 android:layout_marginLeft="4dp"
                 android:layout_marginTop="4dp"
                 android:layout_marginRight="4dp"
-                android:text="Tema Kajian" />
+                android:text="Tema Kajian"
+                android:textColor="@color/colorPrimaryDark" />
 
             <EditText
                 android:id="@+id/etTema"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/white"
-                android:padding="4dp" />
+                android:padding="4dp"
+                android:singleLine="true" />
 
             <View
                 android:layout_width="match_parent"
@@ -62,14 +63,16 @@
                 android:layout_marginLeft="4dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="4dp"
-                android:text="Detail Tema" />
+                android:text="Detail Tema"
+                android:textColor="@color/colorPrimaryDark" />
 
             <EditText
                 android:id="@+id/etDetailTema"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/white"
-                android:padding="4dp" />
+                android:padding="4dp"
+                android:singleLine="true" />
 
             <View
                 android:layout_width="match_parent"
@@ -84,14 +87,16 @@
                 android:layout_marginLeft="4dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="4dp"
-                android:text="Pemateri" />
+                android:text="Pemateri"
+                android:textColor="@color/colorPrimaryDark" />
 
             <EditText
                 android:id="@+id/etPemateri"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/white"
-                android:padding="4dp" />
+                android:padding="4dp"
+                android:singleLine="true" />
 
             <View
                 android:layout_width="match_parent"
@@ -106,13 +111,15 @@
                 android:layout_marginLeft="4dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="4dp"
-                android:text="Detail Pemateri" />
+                android:text="Detail Pemateri"
+                android:textColor="@color/colorPrimaryDark" />
 
             <EditText
                 android:id="@+id/etDetailPemateri"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/white"
+                android:inputType="textMultiLine"
                 android:padding="4dp" />
 
             <View
@@ -139,7 +146,8 @@
                         android:layout_marginLeft="4dp"
                         android:layout_marginTop="10dp"
                         android:layout_marginRight="4dp"
-                        android:text="Tanggal" />
+                        android:text="Tanggal"
+                        android:textColor="@color/colorPrimaryDark" />
 
                     <TextView
                         android:id="@+id/tvTanggal"
@@ -168,7 +176,8 @@
                         android:layout_marginLeft="4dp"
                         android:layout_marginTop="10dp"
                         android:layout_marginRight="4dp"
-                        android:text="Waktu" />
+                        android:text="Waktu"
+                        android:textColor="@color/colorPrimaryDark" />
 
                     <TextView
                         android:id="@+id/tvWaktu"
@@ -192,14 +201,16 @@
                 android:layout_marginLeft="4dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="4dp"
-                android:text="Tempat" />
+                android:text="Tempat"
+                android:textColor="@color/colorPrimaryDark" />
 
             <EditText
                 android:id="@+id/etTempat"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/white"
-                android:padding="4dp" />
+                android:padding="4dp"
+                android:singleLine="true" />
 
             <View
                 android:layout_width="match_parent"
@@ -241,7 +252,8 @@
                     android:layout_marginLeft="4dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginRight="4dp"
-                    android:text="Provinsi" />
+                    android:text="Provinsi"
+                    android:textColor="@color/colorPrimaryDark" />
 
                 <TextView
                     android:id="@+id/tvProvinsi"
@@ -270,7 +282,8 @@
                     android:layout_marginLeft="4dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginRight="4dp"
-                    android:text="Kota/Kabupaten" />
+                    android:text="Kota/Kabupaten"
+                    android:textColor="@color/colorPrimaryDark" />
 
                 <TextView
                     android:id="@+id/tvKabupaten"
@@ -299,7 +312,8 @@
                     android:layout_marginLeft="4dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginRight="4dp"
-                    android:text="Kecamatan" />
+                    android:text="Kecamatan"
+                    android:textColor="@color/colorPrimaryDark" />
 
                 <TextView
                     android:id="@+id/tvKecamatan"
@@ -322,13 +336,15 @@
                 android:layout_marginLeft="4dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="4dp"
-                android:text="Alamat" />
+                android:text="Alamat Lengkap"
+                android:textColor="@color/colorPrimaryDark" />
 
             <EditText
                 android:id="@+id/etAlamat"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/white"
+                android:inputType="textMultiLine"
                 android:padding="4dp" />
 
             <View
@@ -344,14 +360,16 @@
                 android:layout_marginLeft="4dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="4dp"
-                android:text="Link Google Map (Opsional)" />
+                android:text="Link Google Map (Opsional)"
+                android:textColor="@color/colorPrimaryDark" />
 
             <EditText
                 android:id="@+id/etLinkGmap"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/white"
-                android:padding="4dp" />
+                android:padding="4dp"
+                android:singleLine="true" />
 
             <View
                 android:layout_width="match_parent"
@@ -366,7 +384,8 @@
                 android:layout_marginLeft="4dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="4dp"
-                android:text="Tipe Kajian" />
+                android:text="Tipe Kajian"
+                android:textColor="@color/colorPrimaryDark" />
 
             <TextView
                 android:id="@+id/tvTipeKajian"
@@ -394,9 +413,12 @@
                     android:layout_marginLeft="4dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginRight="4dp"
-                    android:text="Pekan Ke (Jika Kajian Rutin)" />
+                    android:text="Pekan Ke (Jika Kajian Rutin)"
+                    android:textColor="@color/colorPrimaryDark" />
 
                 <EditText
+                    android:inputType="number"
+                    android:maxLength="1"
                     android:id="@+id/etPekanKe"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -418,7 +440,8 @@
                 android:layout_marginLeft="4dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="4dp"
-                android:text="Kajian Untuk" />
+                android:text="Kajian Untuk"
+                android:textColor="@color/colorPrimaryDark" />
 
             <TextView
                 android:id="@+id/tvKajianUntuk"
@@ -435,16 +458,15 @@
                 android:layout_marginBottom="15dp"
                 android:background="@color/greyB" />
 
+            <Button
+                android:id="@+id/btnAjukan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:background="@color/blue_match_2"
+                android:text="Ajukan Kajian"
+                android:textColor="@color/white" />
         </LinearLayout>
     </ScrollView>
-
-    <Button
-        android:id="@+id/btnAjukan"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:background="@color/blue_match_2"
-        android:text="Ajukan Kajian"
-        android:textColor="@color/white" />
 
 </RelativeLayout>
