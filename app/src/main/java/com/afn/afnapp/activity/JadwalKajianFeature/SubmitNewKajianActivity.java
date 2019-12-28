@@ -1,10 +1,16 @@
 package com.afn.afnapp.activity.JadwalKajianFeature;
 
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.support.design.widget.AppBarLayout;
+import android.support.design.widget.Snackbar;
+import android.support.v4.content.ContextCompat;
+import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -21,7 +27,6 @@ import android.widget.Toast;
 import com.afn.afnapp.R;
 import com.afn.afnapp.adapter.MySimpleAdapter;
 import com.afn.afnapp.adapter.WilayahAdapter;
-import com.afn.afnapp.model.JadwalKajianModel;
 import com.afn.afnapp.model.SimpleModel;
 import com.afn.afnapp.model.WilayahModel;
 import com.afn.afnapp.utils.ApiUrl;
@@ -33,12 +38,12 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.orhanobut.dialogplus.DialogPlus;
 import com.orhanobut.dialogplus.OnItemClickListener;
+import com.shuhart.stepview.StepView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -102,6 +107,11 @@ public class SubmitNewKajianActivity extends AppCompatActivity {
             idKajianUntuk;
 
     private String android_id;
+    private StepView stepView;
+    private LinearLayout ll1;
+    private LinearLayout ll2;
+    private LinearLayout ll3;
+    private int currentPos = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -124,6 +134,22 @@ public class SubmitNewKajianActivity extends AppCompatActivity {
         initView();
         initDialog();
         initClick();
+        initStep();
+    }
+
+    private void initStep() {
+        stepView.getState()
+                .animationType(StepView.ANIMATION_CIRCLE)
+                .selectedCircleColor(ContextCompat.getColor(this, R.color.colorAccent))
+                .selectedStepNumberColor(ContextCompat.getColor(this, R.color.white))
+                .stepsNumber(3)
+                .doneTextColor(ContextCompat.getColor(this, R.color.white))
+                .doneCircleColor(ContextCompat.getColor(this, R.color.colorPrimary))
+                .doneStepMarkColor(ContextCompat.getColor(this, R.color.white))
+                .animationDuration(getResources().getInteger(android.R.integer.config_shortAnimTime))
+                .typeface(ResourcesCompat.getFont(SubmitNewKajianActivity.this, R.font.robothin))
+                // other state methods are equal to the corresponding xml attributes
+                .commit();
     }
 
     private void initView() {
@@ -150,6 +176,10 @@ public class SubmitNewKajianActivity extends AppCompatActivity {
         tvKabupaten = (TextView) findViewById(R.id.tvKabupaten);
         llKecamatan = (LinearLayout) findViewById(R.id.llKecamatan);
         tvKecamatan = (TextView) findViewById(R.id.tvKecamatan);
+        stepView = (StepView) findViewById(R.id.step_view);
+        ll1 = (LinearLayout) findViewById(R.id.ll1);
+        ll2 = (LinearLayout) findViewById(R.id.ll2);
+        ll3 = (LinearLayout) findViewById(R.id.ll3);
     }
 
     private void initClick() {
@@ -211,9 +241,80 @@ public class SubmitNewKajianActivity extends AppCompatActivity {
         btnAjukan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ajukanKajian();
+                if (currentPos == 1) {
+                    if (isValid(etTema, 5)) {
+                        showSnackbar("Tema minimal 5 Karakter", etTema);
+                    } else if (isValid(etDetailTema, 5)) {
+                        showSnackbar("Detail Tema minimal 5 Karakter", etDetailTema);
+                    } else if (isValid(etPemateri, 5)) {
+                        showSnackbar("Pemateri minimal 5 Karakter", etPemateri);
+                    } else if (isValid(etDetailPemateri, 5)) {
+                        showSnackbar("Detail Pemateri minimal  Karakter", etDetailPemateri);
+                    } else {
+                        btnAjukan.setText("Selanjutnya");
+                        ll1.setVisibility(View.GONE);
+                        ll2.setVisibility(View.VISIBLE);
+                        currentPos = 2;
+                        stepView.go(currentPos - 1, true);
+                    }
+                } else if (currentPos == 2) {
+                    if (isValid(tvTanggal, 0)) {
+                        showSnackbar("Tanggal harap diisi");
+                    } else if (isValid(tvWaktu, 0)) {
+                        showSnackbar("Waktu harap diisi");
+                    } else if (isValid(tvProvinsi, 0)) {
+                        showSnackbar("Anda belum memilih Provinsi");
+                    } else if (isValid(tvKabupaten, 0)) {
+                        showSnackbar("Anda belum memilih Kabupaten");
+                    } else if (isValid(tvKecamatan, 0)) {
+                        showSnackbar("Anda belum memilih Kecamatan");
+                    } else if (isValid(etAlamat, 10)) {
+                        showSnackbar("Alamat minimal 10 Karakter", etAlamat);
+                    } else {
+                        btnAjukan.setText("Ajukan Kajian");
+                        ll2.setVisibility(View.GONE);
+                        ll3.setVisibility(View.VISIBLE);
+                        currentPos = 3;
+                        stepView.go(currentPos - 1, true);
+                    }
+                } else {
+                    if (isValid(tvTipeKajian, 0)) {
+                        showSnackbar("Anda belum memilih tipe kajian");
+                    } else if (isValid(tvKajianUntuk, 0)) {
+                        showSnackbar("Anda belum memilih kajian untuk");
+                    } else {
+                        if (llIfRutin.getVisibility() == View.VISIBLE) {
+                            if (isValid(etPekanKe, 0)) {
+                                showSnackbar("Anda belum mengisi pekan ke", etPekanKe);
+                            } else {
+                                ajukanKajian();
+                            }
+                        } else {
+                            ajukanKajian();
+                        }
+                    }
+                }
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (currentPos == 1) {
+            finish();
+        } else if (currentPos == 2) {
+            btnAjukan.setText("Selanjutnya");
+            ll1.setVisibility(View.VISIBLE);
+            ll2.setVisibility(View.GONE);
+            currentPos = 1;
+            stepView.go(currentPos - 1, true);
+        } else {
+            btnAjukan.setText("Selanjutnya");
+            ll2.setVisibility(View.VISIBLE);
+            ll3.setVisibility(View.GONE);
+            currentPos = 2;
+            stepView.go(currentPos - 1, true);
+        }
     }
 
     private void initDialog() {
@@ -268,66 +369,70 @@ public class SubmitNewKajianActivity extends AppCompatActivity {
 
     private void getWilayah(final TextView targetTv, final int level) {
         String url = apiUrl.getMainUrl() + "get_data_wilayah.php?mode=1";
-        Log.d("isiResponse", url);
+        //Log.d("isiResponse", url);
         // Request a string response from the provided URL.
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        Log.d("isiResponse", response);
+                        //Log.d("isiResponse", response);
                         try {
                             JSONObject obj = new JSONObject(response);
-                            JSONArray jsonArray = obj.getJSONArray("value");
-                            listWilayah.clear();
-                            for (int i = 0; i < jsonArray.length(); i++) {
-                                JSONObject object = jsonArray.getJSONObject(i);
-                                WilayahModel wilayahModel = new WilayahModel();
-                                wilayahModel.setIdWilayah(object.getInt("idWilayah"));
-                                wilayahModel.setKodeWilayah(object.getString("kodeWilayah"));
-                                wilayahModel.setMstWilayah(object.getString("mstWilayah"));
-                                wilayahModel.setNama(object.getString("nama"));
-                                wilayahModel.setLevel(object.getInt("level"));
-                                listWilayah.add(wilayahModel);
-                            }
-                            dialogProvinsi = DialogPlus.newDialog(SubmitNewKajianActivity.this).setAdapter(adapter)
-                                    .setOnItemClickListener(new OnItemClickListener() {
-                                        @Override
-                                        public void onItemClick(DialogPlus dialog, Object item, View view, int position) {
-                                            WilayahModel wilModel = listWilayah.get(position);
-                                            if (level == 1) {
-                                                idProvinsi = wilModel.getKodeWilayah();
-                                                idKabupaten = "";
-                                                idKecamatan = "";
+                            String statusApi = obj.getString("afn_status");
+                            if (statusApi.equalsIgnoreCase("success")) {
+                                JSONArray jsonArray = obj.getJSONArray("value");
+                                listWilayah.clear();
+                                for (int i = 0; i < jsonArray.length(); i++) {
+                                    JSONObject object = jsonArray.getJSONObject(i);
+                                    WilayahModel wilayahModel = new WilayahModel();
+                                    wilayahModel.setIdWilayah(object.getInt("idWilayah"));
+                                    wilayahModel.setKodeWilayah(object.getString("kodeWilayah"));
+                                    wilayahModel.setMstWilayah(object.getString("mstWilayah"));
+                                    wilayahModel.setNama(object.getString("nama"));
+                                    wilayahModel.setLevel(object.getInt("level"));
+                                    listWilayah.add(wilayahModel);
+                                }
+                                dialogProvinsi = DialogPlus.newDialog(SubmitNewKajianActivity.this).setAdapter(adapter)
+                                        .setOnItemClickListener(new OnItemClickListener() {
+                                            @Override
+                                            public void onItemClick(DialogPlus dialog, Object item, View view, int position) {
+                                                WilayahModel wilModel = listWilayah.get(position);
+                                                if (level == 1) {
+                                                    idProvinsi = wilModel.getKodeWilayah();
+                                                    idKabupaten = "";
+                                                    idKecamatan = "";
 
-                                                tvKabupaten.setText("");
-                                                tvKecamatan.setText("");
-                                            } else if (level == 2) {
-                                                idKabupaten = wilModel.getKodeWilayah();
-                                                idKecamatan = "";
+                                                    tvKabupaten.setText("");
+                                                    tvKecamatan.setText("");
+                                                } else if (level == 2) {
+                                                    idKabupaten = wilModel.getKodeWilayah();
+                                                    idKecamatan = "";
 
-                                                tvKecamatan.setText("");
-                                            } else {
-                                                idKecamatan = wilModel.getKodeWilayah();
+                                                    tvKecamatan.setText("");
+                                                } else {
+                                                    idKecamatan = wilModel.getKodeWilayah();
+                                                }
+                                                targetTv.setText(wilModel.getNama());
+                                                dialog.dismiss();
                                             }
-                                            targetTv.setText(wilModel.getNama());
-                                            dialog.dismiss();
-                                        }
-                                    })
-                                    .setHeader(R.layout.header_wilayah_provinsi)
-                                    .setExpanded(true)  // This will enable the expand feature, (similar to android L share dialog)
-                                    .create();
-                            dialogProvinsi.show();
+                                        })
+                                        .setHeader(R.layout.header_wilayah_provinsi)
+                                        .setExpanded(true)  // This will enable the expand feature, (similar to android L share dialog)
+                                        .create();
+                                dialogProvinsi.show();
+                            }
                         } catch (JSONException ex) {
-                            ex.printStackTrace();
-                            Toast.makeText(SubmitNewKajianActivity.this, "Gagal", Toast.LENGTH_SHORT).show();
+                            //ex.printStackTrace();
+                            showSnackbar("Gagal mengambil data");
                         }
                     }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.d("isiResponse", error.getMessage());
-                error.printStackTrace();
-                Toast.makeText(SubmitNewKajianActivity.this, "Error", Toast.LENGTH_SHORT).show();
+                //Log.d("isiResponse", error.getMessage());
+                //error.printStackTrace();
+                //Toast.makeText(SubmitNewKajianActivity.this, "Error", Toast.LENGTH_SHORT).show();
+                showSnackbar("Tidak terhubung ke internet");
             }
         }) {
             @Override
@@ -349,7 +454,7 @@ public class SubmitNewKajianActivity extends AppCompatActivity {
 
     private void ajukanKajian() {
         String url = apiUrl.getMainUrl() + "insert_data.php?mode=01";
-        Log.d("isiResponse", url);
+        //Log.d("isiResponse", url);
         // Request a string response from the provided URL.
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
@@ -358,24 +463,38 @@ public class SubmitNewKajianActivity extends AppCompatActivity {
                         Log.d("isiResponse", response);
                         try {
                             JSONObject obj = new JSONObject(response);
-                            JSONArray jsonArray = obj.getJSONArray("value");
-                            listWilayah.clear();
-                            for (int i = 0; i < jsonArray.length(); i++) {
-                                JSONObject object = jsonArray.getJSONObject(i);
-
+                            String statusApi = obj.getString("afn_status");
+                            if (statusApi.equalsIgnoreCase("success")) {
+                                final int idKajian = obj.getInt("value");
+                                AlertDialog.Builder alertDialog = new AlertDialog.Builder(SubmitNewKajianActivity.this);
+                                alertDialog
+                                        .setCancelable(false)
+                                        .setTitle("Berhasil")
+                                        .setMessage("Pengajuan kajian berhasil diajukan, silakan tunggu konfirmasi dari kami")
+                                        .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialogInterface, int i) {
+                                                Intent intent = new Intent(SubmitNewKajianActivity.this, JadwalKajianDetailActivity.class);
+                                                intent.putExtra("idKajian", idKajian);
+                                                startActivity(intent);
+                                                finish();
+                                            }
+                                        });
+                                alertDialog.show();
+                            } else {
+                                showSnackbar("Data gagal disimpan");
                             }
-
                         } catch (JSONException ex) {
-                            ex.printStackTrace();
-                            Toast.makeText(SubmitNewKajianActivity.this, "Gagal", Toast.LENGTH_SHORT).show();
+                            //ex.printStackTrace();
+                            showSnackbar("Data gagal disimpan");
                         }
                     }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.d("isiResponse", error.getMessage());
-                error.printStackTrace();
-                Toast.makeText(SubmitNewKajianActivity.this, "Error", Toast.LENGTH_SHORT).show();
+                //Log.d("isiResponse", error.getMessage());
+                //error.printStackTrace();
+                showSnackbar("Tidak terhubung ke internet");
             }
         }) {
             @Override
@@ -394,7 +513,10 @@ public class SubmitNewKajianActivity extends AppCompatActivity {
                 params.put("p_isKhusus", idKajianUntuk + "");
                 params.put("p_isApprove", 0 + "");
                 params.put("p_kajianTypeId", idTipeKajian + "");
-                params.put("p_deviceId", android_id+"");
+                params.put("p_deviceId", android_id + "");
+                params.put("p_namaProvinsi", getText(tvProvinsi) + "");
+                params.put("p_namaKabupaten", getText(tvKabupaten) + "");
+                params.put("p_namaKecamatan", getText(tvKecamatan) + "");
                 return params;
             }
         };
@@ -409,6 +531,35 @@ public class SubmitNewKajianActivity extends AppCompatActivity {
 
     private String getText(TextView et) {
         return et.getText().toString();
+    }
+
+    private boolean isValid(EditText et, int minLength) {
+        if (et.getText().length() > minLength) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    private boolean isValid(TextView et, int minLength) {
+        if (et.getText().length() > minLength) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    private void showSnackbar(String isiValue, EditText et) {
+        Snackbar.make(et, isiValue, Snackbar.LENGTH_SHORT).setAction("Oke", new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                view.requestFocus();
+            }
+        }).show();
+    }
+
+    private void showSnackbar(String isiValue) {
+        Snackbar.make(tvKajianUntuk, isiValue, Snackbar.LENGTH_SHORT).show();
     }
 
     private void showDateDialog() {
@@ -468,7 +619,7 @@ public class SubmitNewKajianActivity extends AppCompatActivity {
                 if (i1 < 10) minutes = "0" + i1;
                 tvWaktu.setText(hours + ":" + minutes);
             }
-        }, newCalendar.get(Calendar.HOUR_OF_DAY), newCalendar.get(Calendar.MINUTE), true);
+        }, 07, 00, true);
 
         /**
          * Tampilkan DatePicker dialog

@@ -97,18 +97,18 @@ public class AyahRAdapter extends RecyclerView.Adapter<AyahRAdapter.MyViewHolder
         final MediaPlayer mp = new MediaPlayer();
         try {
             mp.setAudioStreamType(AudioManager.STREAM_MUSIC);
-            Log.d("testUrl", fm.getStrLink() + " ");
+            //Log.d("testUrl", fm.getStrLink() + " ");
             mp.setDataSource(fm.getStrLink());
             mp.prepare();
         } catch (NullPointerException ex) {
-            ex.printStackTrace();
-            Log.d("isiError", ex.getMessage());
+            //ex.printStackTrace();
+            //Log.d("isiError", ex.getMessage());
         } catch (IllegalStateException ex) {
-            ex.printStackTrace();
-            Log.d("isiError", ex.getMessage());
+            //ex.printStackTrace();
+            //Log.d("isiError", ex.getMessage());
         } catch (IOException ex) {
-            ex.printStackTrace();
-            Log.d("isiError", ex.getMessage());
+            //ex.printStackTrace();
+            //Log.d("isiError", ex.getMessage());
         }
 
         mp.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
@@ -117,7 +117,7 @@ public class AyahRAdapter extends RecyclerView.Adapter<AyahRAdapter.MyViewHolder
                 holder.btnPlay.setVisibility(View.VISIBLE);
                 holder.btnPause.setVisibility(View.GONE);
                 fm.setIsPlaying(0);
-                Log.d("masukSini?","Ya");
+                //Log.d("masukSini?","Ya");
                 //IsiDariSurahActivity.jump(position+1,mp);
             }
         });

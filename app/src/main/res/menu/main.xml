@@ -4,6 +4,6 @@
     <item
         android:id="@+id/action_settings"
         app:showAsAction="always"
-        android:title="@string/action_settings"
-        android:icon="@drawable/ic_btn_pause" />
+        android:title="Ajukan Kajian Baru"
+        android:icon="@drawable/ic_add" />
 </menu>

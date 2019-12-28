@@ -16,15 +16,17 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="150dp">
+                android:layout_height="280dp">
 
                 <ImageView
+                    android:id="@+id/ivImg"
                     android:layout_width="match_parent"
-                    android:layout_height="200dp"
+                    android:layout_height="300dp"
                     android:scaleType="centerCrop"
                     android:src="@drawable/afn1" />
 
                 <TextView
+                    android:id="@+id/tvKajianUntuk"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
@@ -56,7 +58,7 @@
                         android:orientation="vertical"
                         android:gravity="right">
                         <TextView
-                            android:id="@+id/tvJudulKajian"
+                            android:id="@+id/tvTema"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="Menjadi Salafi Sejati"
@@ -65,20 +67,32 @@
                             android:textStyle="bold" />
 
                         <TextView
+                            android:id="@+id/tvTempat"
                             android:textSize="@dimen/font_h3"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="0.8"
                             android:text="Masjid Jami Al-Barkah" />
+                        <TextView
+                            android:id="@+id/tvAlamatTempat"
+                            android:textSize="@dimen/font_h4"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.8"
+                            android:singleLine="true"
+                            android:ellipsize="marquee"
+                            android:text="Masjid Jami Al-Barkah" />
                     </LinearLayout>
 
                     <LinearLayout
+                        android:layout_gravity="center_vertical"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="0.2"
                         android:gravity="right">
 
                         <TextView
+                            android:id="@+id/tvWaktu"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="right"

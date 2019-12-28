@@ -72,7 +72,7 @@ public class JadwalSholat extends AppCompatActivity {
                             // Logic to handle location object
                             lat = location.getLatitude();
                             lng = location.getLongitude();
-                            Log.d("Lat Lng", String.valueOf(location.getLatitude()+","+String.valueOf(location.getLongitude())));
+                            //Log.d("Lat Lng", String.valueOf(location.getLatitude()+","+String.valueOf(location.getLongitude())));
 
                             List<Address> addresses = null;
                             try {
@@ -82,7 +82,7 @@ public class JadwalSholat extends AppCompatActivity {
                             }
                             cityName = addresses.get(0).getSubAdminArea();
                             address = addresses.get(0).getAddressLine(0);
-                            Log.d("Kota", cityName);
+                            //Log.d("Kota", cityName);
 
                             getViewModel();
 
@@ -112,19 +112,19 @@ public class JadwalSholat extends AppCompatActivity {
             @Override
             public void onChanged(@Nullable ResponseKodeKota responseKodeKota) {
                 kode_kota = responseKodeKota.getKota().get(0).getId();
-                Log.d("Kode Kota", responseKodeKota.getKota().get(0).getId());
+                //Log.d("Kode Kota", responseKodeKota.getKota().get(0).getId());
 
                 //Get date system today
                 Calendar calendar = Calendar.getInstance();
                 @SuppressLint("SimpleDateFormat") SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
                 String strdate = simpleDateFormat.format(calendar.getTime());
-                Log.d("Tgl",strdate);
+                //Log.d("Tgl",strdate);
 
                 mViewModel.JadwalSholatData(kode_kota, strdate).observe(JadwalSholat.this, new Observer<ResponseJadwalSholat>() {
                     @SuppressLint("SetTextI18n")
                     @Override
                     public void onChanged(@Nullable ResponseJadwalSholat responseJadwalSholat) {
-                        Log.d("Jadwal Sholat", responseJadwalSholat.getJadwal().toString());
+                        //Log.d("Jadwal Sholat", responseJadwalSholat.getJadwal().toString());
 
                         String[] ahad = responseJadwalSholat.getJadwal().getData().getTanggal().split(",");
                         if (ahad[0].equals("Minggu")){

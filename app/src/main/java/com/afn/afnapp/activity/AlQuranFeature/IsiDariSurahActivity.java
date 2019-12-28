@@ -359,7 +359,7 @@ public class IsiDariSurahActivity extends AppCompatActivity implements EasyPermi
                 return "success";
 
             } catch (Exception e) {
-                Log.e("Error: ", e.getMessage());
+                //Log.e("Error: ", e.getMessage());
             }
 
             return "Something went wrong";

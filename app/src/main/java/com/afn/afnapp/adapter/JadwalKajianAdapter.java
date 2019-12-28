@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.afn.afnapp.R;
@@ -19,6 +20,12 @@ public class JadwalKajianAdapter extends ArrayAdapter<JadwalKajianModel> {
     private Activity context;
     private List<JadwalKajianModel> listNa;
     private View view;
+    private ImageView ivImg;
+    private TextView tvKajianUntuk;
+    private TextView tvTema;
+    private TextView tvTempat;
+    private TextView tvAlamatTempat;
+    private TextView tvWaktu;
 
     public JadwalKajianAdapter(Activity context, List<JadwalKajianModel> model) {
         super(context, 0, model);
@@ -35,9 +42,22 @@ public class JadwalKajianAdapter extends ArrayAdapter<JadwalKajianModel> {
 
         JadwalKajianModel mm = listNa.get(position);
 
+        initView();
 
-        TextView tvJudulKajian = (TextView)view.findViewById(R.id.tvJudulKajian);
-        tvJudulKajian.setText(mm.getTema());
+        tvTema.setText(mm.getTema());
+        tvTempat.setText(mm.getTempat());
+        tvAlamatTempat.setText(mm.getAlamat());
+        tvWaktu.setText(mm.getWaktu());
+        if (mm.getIsKhusus() == 1) {
+            tvKajianUntuk.setBackgroundResource(R.drawable.bg_lbl_ikhwan);
+            tvKajianUntuk.setText("Umum");
+        }else if(mm.getIsKhusus() == 2){
+            tvKajianUntuk.setBackgroundResource(R.drawable.bg_lbl_ikhwan);
+            tvKajianUntuk.setText("Ikhwan");
+        }else{
+            tvKajianUntuk.setBackgroundResource(R.drawable.bg_lbl_akhwat);
+            tvKajianUntuk.setText("Akhwat");
+        }
 
         return view;
     }
@@ -48,5 +68,14 @@ public class JadwalKajianAdapter extends ArrayAdapter<JadwalKajianModel> {
         int px = (int) (TypedValue.applyDimension(
                 TypedValue.COMPLEX_UNIT_DIP, dps, r.getDisplayMetrics()));
         return px;
+    }
+
+    private void initView() {
+        tvTema = (TextView) view.findViewById(R.id.tvTema);
+        tvTempat = (TextView) view.findViewById(R.id.tvTempat);
+        tvAlamatTempat = (TextView) view.findViewById(R.id.tvAlamatTempat);
+        tvWaktu = (TextView) view.findViewById(R.id.tvWaktu);
+        tvKajianUntuk = (TextView) view.findViewById(R.id.tvKajianUntuk);
+        ivImg = (ImageView) view.findViewById(R.id.ivImg);
     }
 }

@@ -2,6 +2,7 @@ package com.afn.afnapp.activity.JadwalKajianFeature;
 
 import android.content.Intent;
 import android.provider.Settings;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -34,9 +35,11 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
-public class JadwalKajianMainActivity extends AppCompatActivity  {
+public class JadwalKajianMainActivity extends AppCompatActivity {
 
     private JadwalKajianAdapter adapter;
     private List<JadwalKajianModel> listKajian = new ArrayList<>();
@@ -112,11 +115,13 @@ public class JadwalKajianMainActivity extends AppCompatActivity  {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 JadwalKajianModel mm;
-                if (etSearch.getText().length() > 0) {
+                /*if (etSearch.getText().length() > 0) {
                     mm = listKajian2.get(i);
                 } else {
                     mm = listKajian.get(i);
-                }
+                }*/
+
+                mm = listKajian.get(i);
 
                 Intent intent = new Intent(JadwalKajianMainActivity.this, JadwalKajianDetailActivity.class);
                 intent.putExtra("idKajian", mm.getIdKajian());
@@ -132,7 +137,7 @@ public class JadwalKajianMainActivity extends AppCompatActivity  {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                String isiNa = getTextNa(etSearch);
+                /*String isiNa = getTextNa(etSearch);
                 listKajian2.clear();
                 for (int i = 0; i < listKajian.size(); i++) {
                     JadwalKajianModel ll = listKajian.get(i);
@@ -144,12 +149,21 @@ public class JadwalKajianMainActivity extends AppCompatActivity  {
                 }
                 adapter = new JadwalKajianAdapter(JadwalKajianMainActivity.this, listKajian2);
                 adapter.notifyDataSetChanged();
-                gvList.setAdapter(adapter);
+                gvList.setAdapter(adapter);*/
             }
 
             @Override
             public void afterTextChanged(Editable s) {
 
+            }
+        });
+
+        btnSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (getTextNa(etSearch).length() > 0) {
+                    retrieveData(getTextNa(etSearch));
+                }
             }
         });
     }
@@ -160,6 +174,55 @@ public class JadwalKajianMainActivity extends AppCompatActivity  {
 
     void retrieveData() {
         String url = apiUrl.getMainUrl() + "get_data.php?mode=11";
+        //Log.d("isiResponse", url);
+        // Request a string response from the provided URL.
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        //Log.d("isiResponse", response);
+                        try {
+                            JSONObject obj = new JSONObject(response);
+                            String statusApi = obj.getString("afn_status");
+                            listKajian.clear();
+                            if (statusApi.equalsIgnoreCase("success")) {
+                                JSONArray jsonArray = obj.getJSONArray("value");
+                                for (int i = 0; i < jsonArray.length(); i++) {
+                                    JSONObject object = jsonArray.getJSONObject(i);
+                                    JadwalKajianModel jkModel = new JadwalKajianModel();
+                                    jkModel.setIdKajian(object.getInt("idKajian"));
+                                    jkModel.setTema(object.getString("tema"));
+                                    jkModel.setTempat(object.getString("tempat"));
+                                    jkModel.setAlamat(object.getString("alamat"));
+                                    jkModel.setIsKhusus(object.getInt("isKhusus"));
+                                    jkModel.setWaktu(object.getString("waktu"));
+                                    listKajian.add(jkModel);
+                                }
+
+                                gvList.setAdapter(adapter);
+                            } else {
+                                showSnackbar("Kami belum mempunyai jadwal");
+                            }
+                        } catch (JSONException ex) {
+                            showSnackbar("Gagal mengambil data");
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                //Log.d("isiResponse", error.getMessage());
+                //error.printStackTrace();
+                showSnackbar("Tidak terhubung ke internet");
+                //Toast.makeText(JadwalKajianMainActivity.this, "Error", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        // Add the request to the RequestQueue.
+        queue.add(stringRequest);
+    }
+
+    void retrieveData(final String keyword) {
+        String url = apiUrl.getMainUrl() + "get_data.php?mode=13";
         Log.d("isiResponse", url);
         // Request a string response from the provided URL.
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
@@ -169,30 +232,52 @@ public class JadwalKajianMainActivity extends AppCompatActivity  {
                         Log.d("isiResponse", response);
                         try {
                             JSONObject obj = new JSONObject(response);
-                            JSONArray jsonArray = obj.getJSONArray("value");
-                            for (int i = 0; i < jsonArray.length(); i++) {
-                                JSONObject object = jsonArray.getJSONObject(i);
-                                JadwalKajianModel jkModel = new JadwalKajianModel();
-                                jkModel.setTema(object.getString("tema"));
-                                jkModel.setIdKajian(object.getInt("idKajian"));
-                                listKajian.add(jkModel);
-                            }
+                            String statusApi = obj.getString("afn_status");
+                            listKajian.clear();
+                            if (statusApi.equalsIgnoreCase("success")) {
+                                JSONArray jsonArray = obj.getJSONArray("value");
+                                for (int i = 0; i < jsonArray.length(); i++) {
+                                    JSONObject object = jsonArray.getJSONObject(i);
+                                    JadwalKajianModel jkModel = new JadwalKajianModel();
+                                    jkModel.setIdKajian(object.getInt("idKajian"));
+                                    jkModel.setTema(object.getString("tema"));
+                                    jkModel.setTempat(object.getString("tempat"));
+                                    jkModel.setAlamat(object.getString("alamat"));
+                                    jkModel.setIsKhusus(object.getInt("isKhusus"));
+                                    jkModel.setWaktu(object.getString("waktu"));
+                                    listKajian.add(jkModel);
+                                }
 
-                            gvList.setAdapter(adapter);
+                                gvList.setAdapter(adapter);
+                            } else {
+                                showSnackbar("Kami belum mempunyai jadwal dengan keyword \"" + keyword + "\"");
+                                gvList.setAdapter(adapter);
+                            }
                         } catch (JSONException ex) {
-                            Toast.makeText(JadwalKajianMainActivity.this, "Gagal", Toast.LENGTH_SHORT).show();
+                            showSnackbar("Gagal mengambil data");
                         }
                     }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.d("isiResponse", error.getMessage());
-                error.printStackTrace();
-                Toast.makeText(JadwalKajianMainActivity.this, "Error", Toast.LENGTH_SHORT).show();
+                //Log.d("isiResponse", error.getMessage());
+                //error.printStackTrace();
+                showSnackbar("Tidak terhubung ke internet");
+                //Toast.makeText(JadwalKajianMainActivity.this, "Error", Toast.LENGTH_SHORT).show();
             }
-        });
-
+        }) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("p_keyword", keyword);
+                return params;
+            }
+        };
         // Add the request to the RequestQueue.
         queue.add(stringRequest);
+    }
+
+    private void showSnackbar(String isiValue) {
+        Snackbar.make(etSearch, isiValue, Snackbar.LENGTH_SHORT).show();
     }
 }

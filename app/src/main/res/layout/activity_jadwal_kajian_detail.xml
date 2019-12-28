@@ -39,6 +39,288 @@
                 <android.support.v7.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="14dp"
+                    app:cardCornerRadius="0dp">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp">
+
+                        <com.facebook.drawee.view.SimpleDraweeView
+                            android:id="@+id/ivPoster"
+                            android:layout_width="match_parent"
+                            android:layout_height="200dp"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/afn1" />
+
+                        <TextView
+                            android:id="@+id/tvLblKhusus"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_alignParentBottom="true"
+                            android:background="@drawable/bg_lbl_akhwat"
+                            android:paddingLeft="11dp"
+                            android:paddingTop="4dp"
+                            android:paddingRight="7dp"
+                            android:paddingBottom="4dp"
+                            android:text="Ikhwan"
+                            android:textColor="@color/white" />
+                    </RelativeLayout>
+                </android.support.v7.widget.CardView>
+
+                <TextView
+                    android:id="@+id/tvTanggal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="14dp"
+                    android:text="Senin, 10 Oktober 2019"
+                    android:textColor="@color/textColor"
+                    android:textSize="@dimen/font_h2" />
+
+                <TextView
+                    android:id="@+id/tvWaktu"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="14dp"
+                    android:layout_marginBottom="7dp"
+                    android:text="19:00 - 20:00 (WIB)"
+                    android:textSize="@dimen/font_h3" />
+
+                <android.support.v7.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="14dp"
+                    android:layout_marginRight="14dp"
+                    android:layout_marginBottom="14dp"
+                    app:cardCornerRadius="0dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:background="@color/blue_match"
+                            android:gravity="center">
+
+                            <ImageView
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
+                                android:layout_margin="4dp"
+                                android:src="@drawable/ic_user"
+                                android:tint="@color/white" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:orientation="vertical"
+                            android:padding="7dp">
+
+                            <TextView
+                                android:id="@+id/tvPemateri"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:ellipsize="marquee"
+                                android:paddingLeft="3dp"
+                                android:singleLine="true"
+                                android:text="Ustadz Fulan"
+                                android:textColor="@color/textColor"
+                                android:textSize="@dimen/font_h2" />
+
+                            <TextView
+                                android:id="@+id/tvInfoPemateri"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:paddingLeft="3dp"
+                                android:singleLine="true"
+                                android:text="Alumni UIM, Pembina Mahad"
+                                android:textSize="@dimen/font_h4"
+                                android:textStyle="italic" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="14dp"
+                    android:layout_marginRight="14dp"
+                    android:layout_marginBottom="14dp"
+                    app:cardCornerRadius="0dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:background="@color/green_match"
+                            android:gravity="center">
+
+                            <ImageView
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
+                                android:layout_margin="4dp"
+                                android:src="@drawable/ic_quran"
+                                android:tint="@color/white" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:orientation="vertical"
+                            android:padding="7dp">
+
+                            <TextView
+                                android:id="@+id/tvTema"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:ellipsize="marquee"
+                                android:paddingLeft="3dp"
+                                android:singleLine="true"
+                                android:text="Tematik"
+                                android:textColor="@color/textColor"
+                                android:textSize="@dimen/font_h2" />
+
+                            <TextView
+                                android:id="@+id/tvInfoTema"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:paddingLeft="3dp"
+                                android:singleLine="true"
+                                android:text="Ini Judul Kajiannya"
+                                android:textSize="@dimen/font_h4"
+                                android:textStyle="italic" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="14dp"
+                    android:layout_marginRight="14dp"
+                    android:layout_marginBottom="14dp"
+                    app:cardCornerRadius="0dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:background="@color/yellow_match"
+                            android:gravity="top">
+
+                            <ImageView
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
+                                android:layout_marginLeft="4dp"
+                                android:layout_marginTop="7dp"
+                                android:layout_marginRight="4dp"
+                                android:layout_marginBottom="4dp"
+                                android:src="@drawable/ic_location_on_white_36"
+                                android:tint="@color/white" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:orientation="vertical"
+                            android:padding="7dp">
+
+                            <TextView
+                                android:id="@+id/tvTempat"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:ellipsize="marquee"
+                                android:paddingLeft="3dp"
+                                android:singleLine="true"
+                                android:text="Masjid Jami Al-Hasan"
+                                android:textColor="@color/textColor"
+                                android:textSize="@dimen/font_h2" />
+
+                            <TextView
+                                android:id="@+id/tvAlamatTempat"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:paddingLeft="3dp"
+                                android:singleLine="true"
+                                android:text="Jalan Ini Jalan Contoh no 17"
+                                android:textSize="@dimen/font_h4"
+                                android:textStyle="italic" />
+
+                            <TextView
+                                android:id="@+id/tvLinkMaps"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:paddingLeft="3dp"
+                                android:text="adf.ly/lok1"
+                                android:textColor="@color/light_blue"
+                                android:textSize="@dimen/font_h4" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </android.support.v7.widget.CardView>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>
+<!--
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".activity.JadwalKajianFeature.JadwalKajianDetailActivity">
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/appbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:gravity="center"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:title="Judul Toolbar"
+            app:titleTextColor="@color/white" />
+    </android.support.design.widget.AppBarLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <android.support.v7.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_margin="14dp"
                     app:cardCornerRadius="7dp">
 
@@ -277,4 +559,4 @@
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
-</LinearLayout>
+</LinearLayout>-->
