@@ -2,6 +2,7 @@ package com.afn.afnapp.activity.JadwalKajianFeature;
 
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.app.ProgressDialog;
 import android.app.TimePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -113,6 +114,8 @@ public class SubmitNewKajianActivity extends AppCompatActivity {
     private LinearLayout ll3;
     private int currentPos = 1;
 
+    private ProgressDialog loading;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -120,6 +123,7 @@ public class SubmitNewKajianActivity extends AppCompatActivity {
         android_id = Settings.Secure.getString(this.getContentResolver(),
                 Settings.Secure.ANDROID_ID);
 
+        loading = new ProgressDialog(this);
         apiUrl = new ApiUrl();
         queue = Volley.newRequestQueue(this);
         dateFormatter = new SimpleDateFormat("dd-MM-yyyy", Locale.US);
@@ -371,11 +375,14 @@ public class SubmitNewKajianActivity extends AppCompatActivity {
         String url = apiUrl.getMainUrl() + "get_data_wilayah.php?mode=1";
         //Log.d("isiResponse", url);
         // Request a string response from the provided URL.
+        loading.setMessage("Mengambil data...");
+        loading.show();
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
                         //Log.d("isiResponse", response);
+                        loading.dismiss();
                         try {
                             JSONObject obj = new JSONObject(response);
                             String statusApi = obj.getString("afn_status");
@@ -429,6 +436,7 @@ public class SubmitNewKajianActivity extends AppCompatActivity {
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
+                loading.dismiss();
                 //Log.d("isiResponse", error.getMessage());
                 //error.printStackTrace();
                 //Toast.makeText(SubmitNewKajianActivity.this, "Error", Toast.LENGTH_SHORT).show();
@@ -456,11 +464,14 @@ public class SubmitNewKajianActivity extends AppCompatActivity {
         String url = apiUrl.getMainUrl() + "insert_data.php?mode=01";
         //Log.d("isiResponse", url);
         // Request a string response from the provided URL.
+        loading.setMessage("Menambah data...");
+        loading.show();
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        Log.d("isiResponse", response);
+                        loading.dismiss();
+                        //Log.d("isiResponse", response);
                         try {
                             JSONObject obj = new JSONObject(response);
                             String statusApi = obj.getString("afn_status");
@@ -492,6 +503,7 @@ public class SubmitNewKajianActivity extends AppCompatActivity {
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
+                loading.dismiss();
                 //Log.d("isiResponse", error.getMessage());
                 //error.printStackTrace();
                 showSnackbar("Tidak terhubung ke internet");

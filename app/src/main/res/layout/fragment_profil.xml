@@ -16,9 +16,10 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="10dp"
-            android:src="@drawable/ic_logo_round" />
+            android:src="@drawable/logo_afn_01" />
 
         <TextView
+            android:id="@+id/tvName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -26,15 +27,18 @@
             android:textColor="@color/black"
             android:textSize="20sp" />
 
-        <View
+        <TextView
+            android:id="@+id/tvVersion"
             android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginTop="10dp"
-            android:background="@color/grey" />
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Versi 1.0"
+            android:textSize="16sp" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:gravity="center_vertical"
             android:orientation="horizontal">
 
@@ -52,7 +56,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="0.1"
                 android:src="@drawable/ic_keyboard_arrow_right"
-                android:tint="@color/textColor" />
+                android:tint="@color/textColor"
+                android:visibility="gone" />
         </LinearLayout>
 
         <View
@@ -60,9 +65,18 @@
             android:layout_height="1dp"
             android:background="@color/grey" />
 
-        <LinearLayout
+        <TextView
+            android:id="@+id/tvTentang"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="      Kami adalah media ahlu sunnah wal jama’ah yang membantu anda untuk mengenal dan mempelajari islam lebih dalam dengan mudah dan praktis." />
+
+        <LinearLayout
+            android:id="@+id/llOpenSource"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
             android:gravity="center_vertical"
             android:orientation="horizontal">
 
@@ -71,7 +85,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="0.9"
                 android:padding="10dp"
-                android:text="Lisensi Icon"
+                android:text="Lisensi Open Source"
                 android:textColor="@color/textColor"
                 android:textSize="16sp" />
 
@@ -89,8 +103,10 @@
             android:background="@color/grey" />
 
         <LinearLayout
+            android:id="@+id/llLisensiIkon"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
             android:gravity="center_vertical"
             android:orientation="horizontal">
 
@@ -99,7 +115,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="0.9"
                 android:padding="10dp"
-                android:text="Lisensi Library"
+                android:text="Lisensi Ikon"
                 android:textColor="@color/textColor"
                 android:textSize="16sp" />
 

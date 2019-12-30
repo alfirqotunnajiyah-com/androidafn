@@ -1,5 +1,6 @@
 package com.afn.afnapp.activity.JadwalKajianFeature;
 
+import android.app.ProgressDialog;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -50,12 +51,14 @@ public class JadwalKajianDetailActivity extends AppCompatActivity {
     private int idKajian = 0;
     private ApiUrl apiUrl;
     private RequestQueue queue;
+    private ProgressDialog loading;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_jadwal_kajian_detail);
 
+        loading = new ProgressDialog(this);
         idKajian = getIntent().getIntExtra("idKajian", 0);
         queue = Volley.newRequestQueue(this);
         apiUrl = new ApiUrl();
@@ -91,11 +94,14 @@ public class JadwalKajianDetailActivity extends AppCompatActivity {
     void retrieveData() {
         String url = apiUrl.getMainUrl() + "get_data.php?mode=14";
         // Request a string response from the provided URL.
+        loading.setMessage("Mengambil data...");
+        loading.show();
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override
 
                     public void onResponse(String response) {
+                        loading.dismiss();
                         try {
                             JSONObject obj = new JSONObject(response);
                             String statusApi = obj.getString("afn_status");
@@ -139,6 +145,7 @@ public class JadwalKajianDetailActivity extends AppCompatActivity {
             public void onErrorResponse(VolleyError error) {
                 //Log.d("isiResponse", error.getMessage());
                 //error.printStackTrace();
+                loading.dismiss();
                 showSnackbar("Tidak terhubung ke internet");
                 //Toast.makeText(JadwalKajianDetailActivity.this, "Error", Toast.LENGTH_SHORT).show();
             }

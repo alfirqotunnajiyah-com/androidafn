@@ -30,7 +30,7 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/tvJudulKajian"
+                        android:id="@+id/tvTema"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Menjadi Salafi Sejati"
@@ -39,6 +39,7 @@
                         android:textStyle="bold" />
 
                     <TextView
+                        android:id="@+id/tvTempat"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="0.8"
@@ -52,6 +53,7 @@
                     android:gravity="right">
 
                     <ImageView
+                        android:id="@+id/btnInfo"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="right"
@@ -68,6 +70,7 @@
                 android:padding="7dp">
 
                 <LinearLayout
+                    android:id="@+id/btnReject"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.5"
@@ -89,6 +92,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/btnAccept"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.5"

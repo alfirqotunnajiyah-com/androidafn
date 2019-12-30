@@ -23,7 +23,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="300dp"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/afn1" />
+                    android:src="@drawable/no_poster" />
 
                 <TextView
                     android:id="@+id/tvKajianUntuk"

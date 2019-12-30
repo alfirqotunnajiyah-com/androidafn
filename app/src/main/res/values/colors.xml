@@ -21,12 +21,10 @@
     <color name="grey">#9b9b9b</color>
     <color name="textColor">#383838</color>
     <color name="textColorSecondary">#afafaf</color>
-    <color name="transparet">#00ffffff</color>
 
     <color name="today">#4b82ff</color>
-    <color name="greyed_out">#c7c7c7</color>
     <color name="ahad">#830000</color>
-    <color name="senin_kamis_header">#618779</color>
+<!--    <color name="senin_kamis_header">#618779</color>-->
     <color name="senin_kamis">#BFA2E2CA</color>
     <color name="ramadhan">#BFAA9ACC</color>
     <color name="dilarang">#BFE48590</color>
@@ -36,7 +34,7 @@
     <color name="dasar">#ffa27f</color>
 
     <color name="light_blue">#00A9F4</color>
-    <color name="pink">#FF005F</color>
+<!--    <color name="pink">#FF005F</color>-->
     <color name="red">#FF1744</color>
     <color name="green">#00E676</color>
     <color name="blue_match">#3883A0</color>

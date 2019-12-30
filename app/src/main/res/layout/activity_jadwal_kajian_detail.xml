@@ -111,7 +111,7 @@
                                 android:layout_width="40dp"
                                 android:layout_height="40dp"
                                 android:layout_margin="4dp"
-                                android:src="@drawable/ic_user"
+                                android:src="@drawable/ic_person"
                                 android:tint="@color/white" />
                         </LinearLayout>
 
@@ -170,7 +170,7 @@
                                 android:layout_width="40dp"
                                 android:layout_height="40dp"
                                 android:layout_margin="4dp"
-                                android:src="@drawable/ic_quran"
+                                android:src="@drawable/ic_action_book"
                                 android:tint="@color/white" />
                         </LinearLayout>
 

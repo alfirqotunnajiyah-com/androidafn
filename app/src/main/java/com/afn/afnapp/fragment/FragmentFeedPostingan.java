@@ -51,8 +51,8 @@ public class FragmentFeedPostingan extends Fragment {
     private String isi3[] = {
             "https://www.facebook.com/alfirqotunnajiyahcom/",
             "https://www.instagram.com/al.firqotun.najiyah/",
-            "https://twitter.com/alfirqotunnjyh",
             "https://t.me/al_firqotunnajiyah",
+            "https://twitter.com/alfirqotunnjyh",
             "https://www.youtube.com/channel/UCB2Q857sapIb-Xuj9r36EnA",
     };
 

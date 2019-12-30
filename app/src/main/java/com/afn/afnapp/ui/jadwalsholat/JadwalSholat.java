@@ -78,7 +78,7 @@ public class JadwalSholat extends AppCompatActivity {
                             try {
                                 addresses = geocoder.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
                             } catch (IOException e) {
-                                e.printStackTrace();
+                                //e.printStackTrace();
                             }
                             cityName = addresses.get(0).getSubAdminArea();
                             address = addresses.get(0).getAddressLine(0);

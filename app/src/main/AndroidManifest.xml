@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.afn.afnapp">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -19,14 +20,20 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".activity.JadwalKajianFeature.SubmitNewKajianActivity"></activity>
+        <activity android:name=".activity.LicenseActivity"></activity>
+        <activity android:name=".activity.JadwalKajianFeature.ApproveListKajianActivity" />
+        <activity
+            android:name=".activity.JadwalKajianFeature.FloatingSecretActivity"
+            android:theme="@style/Theme.Transparent" />
+        <activity android:name=".activity.JadwalKajianFeature.SubmitNewKajianActivity" />
         <activity
             android:name=".activity.JadwalKajianFeature.JadwalKajianDetailActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden" />
-        <activity android:name=".activity.JadwalKajianFeature.JadwalKajianMainActivity"
+        <activity
+            android:name=".activity.JadwalKajianFeature.JadwalKajianMainActivity"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden"/>
+            android:windowSoftInputMode="stateHidden" />
         <activity android:name=".activity.CalendarActivity" />
 
         <meta-data

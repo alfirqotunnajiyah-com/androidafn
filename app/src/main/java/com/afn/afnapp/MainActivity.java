@@ -45,7 +45,6 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
-        //setSupportActionBar(toolbar);
 
         fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -143,7 +142,7 @@ public class MainActivity extends AppCompatActivity
         bottomNavigation.addItem(item2);
         bottomNavigation.addItem(item3);
 
-        bottomNavigation.disableItemAtPosition(2);
+        //bottomNavigation.disableItemAtPosition(2);
 
         // Set background color
         bottomNavigation.setDefaultBackgroundColor(getResources().getColor(R.color.colorPrimary));
@@ -267,7 +266,7 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
+        /*if (id == R.id.nav_camera) {
             // Handle the camera action
         } else if (id == R.id.nav_gallery) {
 
@@ -279,7 +278,7 @@ public class MainActivity extends AppCompatActivity
 
         } else if (id == R.id.nav_send) {
 
-        }
+        }*/
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);

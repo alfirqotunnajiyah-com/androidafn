@@ -1,5 +1,8 @@
 package com.afn.afnapp.activity.JadwalKajianFeature;
 
+import android.app.AlertDialog;
+import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.provider.Settings;
 import android.support.design.widget.Snackbar;
@@ -9,6 +12,7 @@ import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -16,6 +20,7 @@ import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.afn.afnapp.R;
@@ -50,6 +55,7 @@ public class JadwalKajianMainActivity extends AppCompatActivity {
     private RequestQueue queue;
     private ApiUrl apiUrl;
     private ImageView btnSearch;
+    private ProgressDialog loading;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +68,7 @@ public class JadwalKajianMainActivity extends AppCompatActivity {
         adapter.notifyDataSetChanged();
         queue = Volley.newRequestQueue(this);
         apiUrl = new ApiUrl();
+        loading = new ProgressDialog(this);
 
 
         initView();
@@ -96,14 +103,23 @@ public class JadwalKajianMainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    void initView() {
+    private void initView() {
         gvList = findViewById(R.id.gvList);
         etSearch = findViewById(R.id.etSearch);
         btnSearch = findViewById(R.id.btnSearch);
         gvList.setExpanded(true);
     }
 
-    void initClick() {
+    private void initClick() {
+        toolbar.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                Intent i = new Intent(JadwalKajianMainActivity.this, FloatingSecretActivity.class);
+                startActivity(i);
+                finish();
+                return false;
+            }
+        });
         btnSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -176,10 +192,13 @@ public class JadwalKajianMainActivity extends AppCompatActivity {
         String url = apiUrl.getMainUrl() + "get_data.php?mode=11";
         //Log.d("isiResponse", url);
         // Request a string response from the provided URL.
+        loading.setMessage("Mengambil data...");
+        loading.show();
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
+                        loading.dismiss();
                         //Log.d("isiResponse", response);
                         try {
                             JSONObject obj = new JSONObject(response);
@@ -210,6 +229,7 @@ public class JadwalKajianMainActivity extends AppCompatActivity {
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
+                loading.dismiss();
                 //Log.d("isiResponse", error.getMessage());
                 //error.printStackTrace();
                 showSnackbar("Tidak terhubung ke internet");
@@ -223,13 +243,16 @@ public class JadwalKajianMainActivity extends AppCompatActivity {
 
     void retrieveData(final String keyword) {
         String url = apiUrl.getMainUrl() + "get_data.php?mode=13";
-        Log.d("isiResponse", url);
+        //Log.d("isiResponse", url);
         // Request a string response from the provided URL.
+        loading.setMessage("Mengambil data...");
+        loading.show();
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        Log.d("isiResponse", response);
+                        //Log.d("isiResponse", response);
+                        loading.dismiss();
                         try {
                             JSONObject obj = new JSONObject(response);
                             String statusApi = obj.getString("afn_status");
@@ -262,6 +285,7 @@ public class JadwalKajianMainActivity extends AppCompatActivity {
             public void onErrorResponse(VolleyError error) {
                 //Log.d("isiResponse", error.getMessage());
                 //error.printStackTrace();
+                loading.dismiss();
                 showSnackbar("Tidak terhubung ke internet");
                 //Toast.makeText(JadwalKajianMainActivity.this, "Error", Toast.LENGTH_SHORT).show();
             }

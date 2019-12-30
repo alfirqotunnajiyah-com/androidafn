@@ -67,7 +67,7 @@ public class FragmentBeranda extends Fragment {
             R.drawable.ic_compass,
             R.drawable.ic_mosque,
             R.drawable.ic_calendar,
-            R.drawable.ic_mosque,
+            R.drawable.ic_kajian,
     };
 
     @Override

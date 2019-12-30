@@ -107,6 +107,29 @@ public class IsiDariSurahActivity extends AppCompatActivity implements EasyPermi
         this.adapter.notifyDataSetChanged();
 
         setUI();
+
+        final MediaPlayer mp = new MediaPlayer();
+        String isiLinkCek = Environment.getExternalStorageDirectory() + File.separator + "AFNFile/" + surahId + "/" + noSurahStr + 1 + ".mp3";
+        try {
+            mp.setAudioStreamType(AudioManager.STREAM_MUSIC);
+            //Log.d("testUrl", fm.getStrLink() + " ");
+            mp.setDataSource(isiLinkCek);
+            mp.prepare();
+            ivRight.setVisibility(View.GONE);
+        } catch (NullPointerException ex) {
+            ivRight.setVisibility(View.VISIBLE);
+            //ex.printStackTrace();
+            //Log.d("isiError", ex.getMessage());
+        } catch (IllegalStateException ex) {
+            ivRight.setVisibility(View.VISIBLE);
+            //ex.printStackTrace();
+            //Log.d("isiError", ex.getMessage());
+        } catch (IOException ex) {
+            ivRight.setVisibility(View.VISIBLE);
+            //ex.printStackTrace();
+            //Log.d("isiError", ex.getMessage());
+        }
+
         //end initialize
 
         //startServiceTask
@@ -192,9 +215,9 @@ public class IsiDariSurahActivity extends AppCompatActivity implements EasyPermi
 
     }
 
-    public static void jump(final int nextPosition,MediaPlayer mp) {
-            mp.start();
-            lvSurah.scrollToPosition(nextPosition);
+    public static void jump(final int nextPosition, MediaPlayer mp) {
+        mp.start();
+        lvSurah.scrollToPosition(nextPosition);
     }
 
     public class AsyncTaskSaya extends AsyncTask<String, Integer, Integer> {
@@ -239,7 +262,7 @@ public class IsiDariSurahActivity extends AppCompatActivity implements EasyPermi
                 qq.setStrLink(Environment.getExternalStorageDirectory() + File.separator + "AFNFile/" + surahId + "/" + noSurahStr + noAyahStr + ".mp3");
 
                 listAyah.add(qq);
-                Log.i("isiSurah", am.getAyahTranslate() + "");
+                //Log.i("isiSurah", am.getAyahTranslate() + "");
             }
 
             jumlahPersen = jumlahAyat * 100 / jumlahAyat;
@@ -343,7 +366,7 @@ public class IsiDariSurahActivity extends AppCompatActivity implements EasyPermi
                     // publishing the progress....
                     // After this onProgressUpdate will be called
                     publishProgress("" + (int) ((total * 100) / lengthOfFile));
-                    Log.d(TAG, "Progress: " + (int) ((total * 100) / lengthOfFile));
+                    //Log.d(TAG, "Progress: " + (int) ((total * 100) / lengthOfFile));
 
                     // writing data to file
                     output.write(data, 0, count);
