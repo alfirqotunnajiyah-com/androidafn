@@ -20,6 +20,7 @@ import com.afn.afnapp.activity.JadwalKajianFeature.JadwalKajianMainActivity;
 import com.afn.afnapp.adapter.FiturAdapter;
 import com.afn.afnapp.model.FiturModel;
 import com.afn.afnapp.ui.jadwalsholat.JadwalSholat;
+import com.afn.afnapp.ui.jadwalsholat.JadwalSholatActivity;
 import com.daimajia.slider.library.Indicators.PagerIndicator;
 import com.daimajia.slider.library.SliderLayout;
 import com.daimajia.slider.library.SliderTypes.BaseSliderView;
@@ -118,7 +119,7 @@ public class FragmentBeranda extends Fragment {
                     Intent i = new Intent(getActivity(), ArahKiblat.class);
                     startActivity(i);
                 } else if (ff.getFiturNama().equalsIgnoreCase("Jadwal Sholat")) {
-                    Intent i = new Intent(getActivity(), JadwalSholat.class);
+                    Intent i = new Intent(getActivity(), JadwalSholatActivity.class);
                     startActivity(i);
                 } else if (ff.getFiturNama().equalsIgnoreCase("Kalender Hijriah")) {
                     Intent i = new Intent(getActivity(), CalendarActivity.class);
