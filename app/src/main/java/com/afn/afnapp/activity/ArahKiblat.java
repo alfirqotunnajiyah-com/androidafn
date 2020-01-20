@@ -1,18 +1,23 @@
 package com.afn.afnapp.activity;
 
 import android.annotation.SuppressLint;
+import android.content.pm.PackageManager;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.animation.Animation;
 import android.view.animation.RotateAnimation;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.afn.afnapp.R;
+
+import java.util.List;
 
 public class ArahKiblat extends AppCompatActivity implements SensorEventListener {
 
@@ -37,6 +42,12 @@ public class ArahKiblat extends AppCompatActivity implements SensorEventListener
 
         // initialize your android device sensor capabilities
         mSensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
+        List<Sensor> isSupport = mSensorManager.getSensorList(Sensor.TYPE_ORIENTATION);
+        if (isSupport.size() < 1){
+            Log.d("supportHenteuna",isSupport.toString()+"   <<<<< ");
+            Toast.makeText(this, "Perangkat tidak support Sensor Kompas", Toast.LENGTH_SHORT).show();
+            finish();
+        }
     }
 
 
@@ -64,7 +75,7 @@ public class ArahKiblat extends AppCompatActivity implements SensorEventListener
         // get the angle around the z-axis rotated
         float degree = Math.round(event.values[0]);
 
-        derajat.setText("Derajat " + Float.toString(degree) + "°");
+        derajat.setText("Derajat " + degree + "°");
 
         // create a rotation animation (reverse turn degree degrees)
         RotateAnimation ra = new RotateAnimation(
@@ -88,6 +99,5 @@ public class ArahKiblat extends AppCompatActivity implements SensorEventListener
 
     @Override
     public void onAccuracyChanged(Sensor sensor, int accuracy) {
-
     }
 }

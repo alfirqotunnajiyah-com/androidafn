@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
 
+import com.afn.afnapp.MainActivity;
 import com.afn.afnapp.R;
 import com.afn.afnapp.adapter.FeedAdapter;
 import com.afn.afnapp.model.FeedModel;
@@ -76,6 +77,7 @@ public class FragmentFeedPostingan extends Fragment {
 
         adapter = new FeedAdapter(getActivity(), listNa);
         adapter.notifyDataSetChanged();
+        MainActivity.toolbar.setVisibility(View.VISIBLE);
 
         initLayout();
         pullData();

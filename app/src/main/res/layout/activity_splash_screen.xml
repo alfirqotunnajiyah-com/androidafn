@@ -4,18 +4,6 @@
     android:layout_height="match_parent"
     android:background="@drawable/gradient_splash_screen">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_above="@id/logo"
-        android:layout_marginBottom="50dp"
-        android:fontFamily="@font/scheherazade"
-        android:gravity="center"
-        android:text="اهلاوسهلا"
-        android:textColor="@color/white"
-        android:textSize="35sp"
-        android:visibility="gone" />
-
     <ImageView
         android:id="@+id/logo"
         android:layout_width="wrap_content"

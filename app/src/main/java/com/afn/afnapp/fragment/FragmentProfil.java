@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.afn.afnapp.MainActivity;
 import com.afn.afnapp.R;
 import com.afn.afnapp.activity.LicenseActivity;
 import com.franmontiel.attributionpresenter.AttributionPresenter;
@@ -43,6 +44,7 @@ public class FragmentProfil extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_profil, container, false);
+        MainActivity.toolbar.setVisibility(View.VISIBLE);
         initView();
 
         try {

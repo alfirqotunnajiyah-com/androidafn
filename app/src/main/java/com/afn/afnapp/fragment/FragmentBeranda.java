@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.TextView;
 
+import com.afn.afnapp.MainActivity;
 import com.afn.afnapp.R;
 import com.afn.afnapp.activity.AlQuranFeature.AlQuranActivity;
 import com.afn.afnapp.activity.ArahKiblat;
@@ -79,6 +80,7 @@ public class FragmentBeranda extends Fragment {
 
         fiturAdapter = new FiturAdapter(getActivity(), listFitur);
         fiturAdapter.notifyDataSetChanged();
+        MainActivity.toolbar.setVisibility(View.GONE);
 
         layoutNa();
         setGambarNa();
