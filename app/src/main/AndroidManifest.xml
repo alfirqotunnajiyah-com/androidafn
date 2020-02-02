@@ -25,6 +25,9 @@
         <activity
             android:name=".activity.JadwalKajianFeature.FloatingSecretActivity"
             android:theme="@style/Theme.Transparent" />
+        <activity
+            android:name=".activity.JadwalKajianFeature.FloatingHelpActivity"
+            android:theme="@style/Theme.Transparent" />
         <activity android:name=".activity.JadwalKajianFeature.SubmitNewKajianActivity" />
         <activity
             android:name=".activity.JadwalKajianFeature.JadwalKajianDetailActivity"

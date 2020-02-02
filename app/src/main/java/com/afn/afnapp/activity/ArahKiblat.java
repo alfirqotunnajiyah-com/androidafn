@@ -43,8 +43,8 @@ public class ArahKiblat extends AppCompatActivity implements SensorEventListener
         // initialize your android device sensor capabilities
         mSensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
         List<Sensor> isSupport = mSensorManager.getSensorList(Sensor.TYPE_ORIENTATION);
+        Log.d("supportHenteuna",isSupport.toString()+"   <<<<< ");
         if (isSupport.size() < 1){
-            Log.d("supportHenteuna",isSupport.toString()+"   <<<<< ");
             Toast.makeText(this, "Perangkat tidak support Sensor Kompas", Toast.LENGTH_SHORT).show();
             finish();
         }
