@@ -109,7 +109,7 @@ public class IsiDariSurahActivity extends AppCompatActivity implements EasyPermi
         setUI();
 
         final MediaPlayer mp = new MediaPlayer();
-        String isiLinkCek = Environment.getExternalStorageDirectory() + File.separator + "AFNFile/" + surahId + "/" + noSurahStr + 1 + ".mp3";
+        String isiLinkCek = Environment.getExternalStorageDirectory() + File.separator + ".AFNFile/" + surahId + "/" + noSurahStr + 1 + ".mp3";
         try {
             mp.setAudioStreamType(AudioManager.STREAM_MUSIC);
             //Log.d("testUrl", fm.getStrLink() + " ");
@@ -259,7 +259,7 @@ public class IsiDariSurahActivity extends AppCompatActivity implements EasyPermi
                 } else {
                     noAyahStr = "" + qq.getNoAyah();
                 }
-                qq.setStrLink(Environment.getExternalStorageDirectory() + File.separator + "AFNFile/" + surahId + "/" + noSurahStr + noAyahStr + ".mp3");
+                qq.setStrLink(Environment.getExternalStorageDirectory() + File.separator + ".AFNFile/" + surahId + "/" + noSurahStr + noAyahStr + ".mp3");
 
                 listAyah.add(qq);
                 //Log.i("isiSurah", am.getAyahTranslate() + "");
@@ -345,7 +345,7 @@ public class IsiDariSurahActivity extends AppCompatActivity implements EasyPermi
                 //fileName = fileName;
 
                 //External directory path to save file
-                folder = Environment.getExternalStorageDirectory() + File.separator + "AFNFile/" + surahId + "/";
+                folder = Environment.getExternalStorageDirectory() + File.separator + ".AFNFile/" + surahId + "/";
 
                 //Create androiddeft folder if it does not exist
                 File directory = new File(folder);

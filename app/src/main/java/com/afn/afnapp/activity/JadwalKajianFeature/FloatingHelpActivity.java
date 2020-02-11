@@ -47,7 +47,9 @@ public class FloatingHelpActivity extends AppCompatActivity {
                 "                <b>Pemateri</b><br>Nama Pemateri<br><br>\n" +
                 "                <b>Detail Pemateri</b><br>Biografi singkat Pemateri<br><br>\n" +
                 "                <b>Link Google Maps</b><br>Opsional, link Lokasi dari Google Maps<br><br>\n" +
-                "                <b>Kajian Untuk</b><br>Untuk Umum, Ikhwan atau Akhwat\n" +
+                "                <b>Kajian Untuk</b><br>Untuk Umum, Ikhwan atau Akhwat<br><br>\n" +
+                "                <br>\n" +
+                "                Setelah semua langkah selesai, silakan tunggu pihak AFN untuk mengkonfirmasi Jadwal Kajian yang telah diajukan<br>\n" +
                 "            </body>\n" +
                 "        </html>"));
 

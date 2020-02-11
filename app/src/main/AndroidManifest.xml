@@ -20,7 +20,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".activity.LicenseActivity"></activity>
+        <activity android:name=".activity.DoaHarianFeature.ListDoaActivity"></activity>
+        <activity android:name=".activity.LicenseActivity" />
         <activity android:name=".activity.JadwalKajianFeature.ApproveListKajianActivity" />
         <activity
             android:name=".activity.JadwalKajianFeature.FloatingSecretActivity"
