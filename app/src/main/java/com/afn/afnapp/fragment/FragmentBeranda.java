@@ -52,7 +52,6 @@ public class FragmentBeranda extends Fragment {
 
     private List<FiturModel> listFitur = new ArrayList<>();
     private FiturAdapter fiturAdapter;
-    private TextView tvHaditsToday;
 
     private String[] listNamaFitur = {
             "Dzikir Pagi",
@@ -83,7 +82,7 @@ public class FragmentBeranda extends Fragment {
 
         fiturAdapter = new FiturAdapter(getActivity(), listFitur);
         fiturAdapter.notifyDataSetChanged();
-        MainActivity.toolbar.setVisibility(View.GONE);
+        //MainActivity.toolbar.setVisibility(View.GONE);
 
         layoutNa();
         setGambarNa();
@@ -94,14 +93,11 @@ public class FragmentBeranda extends Fragment {
     }
 
     void layoutNa() {
-        tvHaditsToday = view.findViewById(R.id.tvHaditsToday);
         slider = view.findViewById(R.id.slider);
         pagerIndicator = view.findViewById(R.id.custom_indicator);
         gvFitur = view.findViewById(R.id.gvFitur);
 
         gvFitur.setExpanded(true);
-        tvHaditsToday.setText(haditsToday);
-        tvHaditsToday.setSelected(true);
     }
 
     void setKLik() {

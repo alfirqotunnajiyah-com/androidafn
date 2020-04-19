@@ -5,9 +5,9 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_desc">Navigation header</string>
 
-    <string name="tab_1">Beranda</string>
-    <string name="tab_2">Umpan</string>
-    <string name="tab_3">Profil</string>
+    <string name="tab_1"></string>
+    <string name="tab_2"></string>
+    <string name="tab_3"></string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="str_search_by_title">Cari Berdasarkan Judul...</string>

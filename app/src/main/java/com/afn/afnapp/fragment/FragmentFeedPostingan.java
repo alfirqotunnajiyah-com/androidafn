@@ -77,7 +77,7 @@ public class FragmentFeedPostingan extends Fragment {
 
         adapter = new FeedAdapter(getActivity(), listNa);
         adapter.notifyDataSetChanged();
-        MainActivity.toolbar.setVisibility(View.VISIBLE);
+        //MainActivity.toolbar.setVisibility(View.VISIBLE);
 
         initLayout();
         pullData();

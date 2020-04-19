@@ -44,7 +44,7 @@ public class FragmentProfil extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_profil, container, false);
-        MainActivity.toolbar.setVisibility(View.VISIBLE);
+        //MainActivity.toolbar.setVisibility(View.VISIBLE);
         initView();
 
         try {
